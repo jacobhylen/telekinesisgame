@@ -15082,8 +15082,12 @@ const reverse4d = Object(operation["a" /* op */])({ reverse4d_ });
 
 /**
  * @deprecated
- * Strict version of `tf.notEqual` that forces `a` and `b` to be of the same
+ * Strict version of `tf.notEqual` that 
+ * s `a` and `b` to be of the same
  * shape.
+ * 
+ * 
+ * 
  *
  * @param a The first input tensor.
  * @param b The second input tensor. Must have the same shape and dtype as
@@ -88366,7 +88370,6 @@ function setUserMediaVariable(){
  */
 src_webgazer.begin = function(onFail) {
   if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.chrome){
-    alert("WebGazer works only over https. If you are doing local development, you need to run a local server.");
   }
 
   // Load model data stored in localforage.
