@@ -36,14 +36,14 @@
     var width = window.innerWidth;
     var height = window.innerHeight;
 
-    var numberOfNodes = 200;
+    var numberOfNodes = 10;
 
     nodes = d3.range(numberOfNodes).map(function() { return {radius: Math.random() * 12 + 4}; }),
     nodes[0].radius = 0;
     nodes[0].fixed = true;
 
     force = d3.layout.force()
-    .gravity(0.05)
+    .gravity(0.3)
     .charge(function(d, i) { return i ? 0 : -2000; })
     .nodes(nodes)
     .size([width, height])
