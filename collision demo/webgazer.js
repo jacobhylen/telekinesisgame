@@ -86265,19 +86265,32 @@ TFFaceMesh.prototype.reset = function(){
 TFFaceMesh.prototype.drawFaceOverlay= function(ctx, keypoints){
   // If keypoints is falsy, don't do anything
   if (keypoints) {
-    ctx.fillStyle = '#32EEDB';
-    ctx.strokeStyle = '#32EEDB';
-    ctx.lineWidth = 0.5;
-
+    
     for (let i = 0; i < keypoints.length; i++) {
       const x = keypoints[i][0];
       const y = keypoints[i][1];
+
+      ctx.fillStyle = '#32EEDB';
+    ctx.strokeStyle = '#32EEDB';
+    ctx.lineWidth = 0.5;
 
       ctx.beginPath();
       ctx.arc(x, y, 1 /* radius */, 0, 2 * Math.PI);
       ctx.closePath();
       ctx.fill();
+
+
+//Uncomment to draw one red dot
+      /*       ctx.fillStyle="red";
+      ctx.strokeStyle="red";
+      ctx.lineWidth = 0.5; */
+      
+   /*    ctx.beginPath();
+      ctx.arc(keypoints[100][0], keypoints[100][1], 1, 0, 2*Math.PI);
+      ctx.closePath();
+      ctx.fill(); */
     }
+   
   }
 }
 
