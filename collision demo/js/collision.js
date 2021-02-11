@@ -43,8 +43,8 @@
     nodes[0].fixed = true;
 
     force = d3.layout.force()
-    .gravity(0.01)
-    .charge(function(d, i) { return i ? 0 : 3000; })
+    .gravity(0.05)
+    .charge(function(d, i) { return i ? 0 : 2000; })
     .nodes(nodes)
     .size([width, height])
     .start();
@@ -61,16 +61,11 @@
 
     var color = d3.scale.category10();
     var colors = [];
-    for(var i=0; i<numberOfNodes/2; i++){
-     // colors[i] = color(i%3);
+    for(var i=0; i<numberOfNodes-2; i++){
+      //colors[i] = color(i%3);
       colors[i] = color(0);
     }
-    for(var i=0; i<numberOfNodes/2; i++){
-      // colors[i] = color(i%3);
-      colors.push("orange");
-     }
-    
-  
+    colors.push("orange");
 
     svg.selectAll("circle")
     .data(nodes.slice(1))
@@ -91,7 +86,7 @@
       .attr("cy", function(d) { return d.y; });
     });
 
-   /*  svg.append("line")
+    svg.append("line")
     .attr("id", "eyeline1" )
     .attr("stroke-width",2)
     .attr("stroke","red");
@@ -100,12 +95,12 @@
     .attr("id", "eyeline2" )
     .attr("stroke-width",2)
     .attr("stroke","red");
- */
+
     svg.append("rect")
     .attr("id","predictionSquare")
-    .attr("width",15)
-    .attr("height",15)
-    .attr("fill","#6EE0D9");
+    .attr("width",5)
+    .attr("height",5)
+    .attr("fill","red");
 
 
     svg.on("mousemove", function() {
@@ -129,10 +124,10 @@
           r = node.radius + quad.point.radius;
           if (l < r) {
             l = (l - r) / l * .5;
-            node.x -= x *= l/5;
-            node.y -= y *= l/5;
-            quad.point.x += x/5;
-            quad.point.y += y/5;
+            node.x -= x *= l;
+            node.y -= y *= l;
+            quad.point.x += x;
+            quad.point.y += y;
           }
         }
         return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
