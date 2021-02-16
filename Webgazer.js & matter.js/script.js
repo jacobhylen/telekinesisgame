@@ -69,4 +69,6 @@ window.onload = async function() {
 
              eyeX = data.x;
              eyeY= data.y;
+
+             console.log("x = "+ eyeX +", y = "+eyeY);
   }
