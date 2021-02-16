@@ -128,11 +128,15 @@
             node.y -= y *= l;
             quad.point.x += x;
             quad.point.y += y;
+        /*     console.log(quad.point.x);
+            console.log(quad.point.y); */
           }
         }
         return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
       };
     }
+
+    
   }
 
   var webgazerCanvas = null;
@@ -171,4 +175,7 @@
     var dot = d3.select("#predictionSquare")
               .attr("x",data.x)
               .attr("y",data.y);
+
+              console.log("x= " + data.x);
+              //console.log(data.y);
   }
