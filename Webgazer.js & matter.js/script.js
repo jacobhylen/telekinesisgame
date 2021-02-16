@@ -69,7 +69,7 @@ window.onload = async function() {
              eyeX = data.x;
              eyeY= data.y;
 
-             console.log("x = "+ eyeX +", y = "+eyeY);
+           //  console.log("x = "+ eyeX +", y = "+eyeY);
   }
 
   var Engine = Matter.Engine,
@@ -95,13 +95,28 @@ var render = Render.create({
 // create two boxes and a ground
 var boxA = Bodies.rectangle(400, 200, 80, 80);
 var boxB = Bodies.rectangle(450, 50, 80, 80);
-var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+var ground = Bodies.rectangle(window.innerWidth/2, 900, window.innerWidth, 60, { isStatic: true });
+var wall1 = Bodies.rectangle(0, window.innerHeight/2, 100, window.innerHeight, { isStatic: true });
+var wall2 = Bodies.rectangle(window.innerWidth, window.innerHeight/2, 100, window.innerHeight, { isStatic: true });
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground]);
+World.add(engine.world, [boxA, boxB, ground, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);
 
 // run the renderer
 Render.run(render);
+
+setInterval(function(){
+  if(boxA.position.x < eyeX){
+    boxA.force.x = 0.05; 
+  }
+  if(boxA.position.x > eyeX){
+    boxA.force.x= - 0.05;
+  }
+
+  if(boxA.position.y - eyeY > 500){
+    boxA.force.y = -0.05 ;
+  }
+}, 10)
