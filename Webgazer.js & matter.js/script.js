@@ -1,4 +1,4 @@
-window.saveDataAcrossSessions = false;
+window.saveDataAcrossSessions = true;
 
 let eyeX = 0;
 let eyeY = 0;
@@ -35,7 +35,7 @@ window.onbeforeunload = function () {
   }
 };
 
-function executeGame() {}
+function executeGame() { }
 
 var webgazerCanvas = null;
 
@@ -51,30 +51,12 @@ var collisionEyeListener = async function (data, clock) {
   await webgazer
     .getTracker()
     .getEyePatches(webgazerCanvas, webgazerCanvas.width, webgazerCanvas.height);
-  var fmPositions = await webgazer.getTracker().getPositions();
 
-  var whr = webgazer.getVideoPreviewToCameraResolutionRatio();
-
-  var line = d3
-    .select("#eyeline1")
-    .attr("x1", data.x)
-    .attr("y1", data.y)
-    .attr("x2", previewWidth - fmPositions[145][0] * whr[0])
-    .attr("y2", fmPositions[145][1] * whr[1]);
-
-  var line = d3
-    .select("#eyeline2")
-    .attr("x1", data.x)
-    .attr("y1", data.y)
-    .attr("x2", previewWidth - fmPositions[374][0] * whr[0])
-    .attr("y2", fmPositions[374][1] * whr[1]);
-
-  var dot = d3.select("#predictionSquare").attr("x", data.x).attr("y", data.y);
 
   eyeX = data.x;
   eyeY = data.y;
 
-  //  console.log("x = "+ eyeX +", y = "+eyeY);
+
 };
 
 var Engine = Matter.Engine,
@@ -84,6 +66,7 @@ var Engine = Matter.Engine,
 
 // create an engine
 var engine = Engine.create();
+engine.world.gravity.y = 0.5;
 
 // create a renderer
 var render = Render.create({
@@ -97,7 +80,6 @@ var render = Render.create({
 
 // create two boxes and a ground
 var boxA = Bodies.rectangle(400, 200, 80, 80);
-boxA.mass = 3;
 var boxB = Bodies.rectangle(450, 50, 80, 80);
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
@@ -107,12 +89,12 @@ var ground = Bodies.rectangle(
   { isStatic: true }
 );
 var ground2 = Bodies.rectangle(
-    window.innerWidth / 2,
-    10,
-    window.innerWidth,
-    60,
-    { isStatic: true }
-  );
+  window.innerWidth / 2,
+  10,
+  window.innerWidth,
+  60,
+  { isStatic: true }
+);
 var wall1 = Bodies.rectangle(
   0,
   window.innerHeight / 2,
@@ -128,14 +110,10 @@ var wall2 = Bodies.rectangle(
   { isStatic: true }
 );
 
-var circle = Bodies.circle(
-    100,
-    100,
-    30
-)
+
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, circle]);
+World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2,]);
 
 // run the engine
 Engine.run(engine);
@@ -144,29 +122,24 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function () {
-    circle.position.x = eyeX;
-    circle.position.y = eyeY;
+  
+    if(eyeX > boxA.position.x){
+      boxA.force.x = calculateGravityForce(boxA);
+    }
+    if(eyeX < boxA.position.x){
+      boxA.force.x = -calculateGravityForce(boxA);
+    }
+  
+ // boxA.force.y = calculateGravityY(boxA);
+  
 
-    if (getDistanceToSingularity(boxA) > 5){
-        boxA.force.x = calculateGravityX(boxA);
-      }
- 
-  if (getDistanceToSingularity(boxA) > 5){
-        boxA.force.y = calculateGravityY(boxA);
-  }
-
-  console.log(calculateGravityY(boxA));
-
-  /*   if(boxA.position.y - eyeY > 500){
-    boxA.force.y = -0.05 ;
-  }
-  console.log(calculateGravityForce(boxA)); */
-}, 100);
+  console.log("Fx: " + calculateGravityX(boxA) + " Fy: " + calculateGravityY(boxA));
+}, 1);
 
 function getDistanceToSingularity(object) {
   let distance = Math.sqrt(
     Math.pow(object.position.x - eyeX, 2) +
-      Math.pow(object.position.y - eyeY, 2)
+    Math.pow(object.position.y - eyeY, 2)
   );
 
   return distance;
@@ -182,6 +155,8 @@ function calculateGravityForce(object) {
   return Fg;
 }
 
+
+//The two function below here probably need to be rewritten, they make things weird.
 function calculateGravityY(object) {
   let Fg = calculateGravityForce(object);
   let hypotenuse = getDistanceToSingularity(object);
