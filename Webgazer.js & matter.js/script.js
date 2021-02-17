@@ -1,4 +1,4 @@
-window.saveDataAcrossSessions = false;
+window.saveDataAcrossSessions = true;
 
 let eyeX  = 0;
 let eyeY = 0;
@@ -109,10 +109,10 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function(){
-  if(boxA.position.x < eyeX){
+  if(eyeX - boxA.position.x > 200){
     boxA.force.x = 0.05; 
   }
-  if(boxA.position.x > eyeX){
+  if(eyeX - boxA.position.x < -200){
     boxA.force.x= - 0.05;
   }
 
