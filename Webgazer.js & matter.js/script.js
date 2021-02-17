@@ -1,7 +1,9 @@
-window.saveDataAcrossSessions = true;
+window.saveDataAcrossSessions = false;
 
 let eyeX  = 0;
 let eyeY = 0;
+
+let singularityMass = 1000000000000;
 
 window.onload = async function() {
 
@@ -109,14 +111,33 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function(){
-  if(eyeX - boxA.position.x > 200){
-    boxA.force.x = 0.05; 
+  if(eyeX > boxA.position.x){
+    boxA.force.x = calculateGravityForce(boxA); 
   }
-  if(eyeX - boxA.position.x < -200){
-    boxA.force.x= - 0.05;
+  if(eyeX < boxA.position.x){
+    boxA.force.x = -calculateGravityForce(boxA); 
   }
+
 
   if(boxA.position.y - eyeY > 500){
     boxA.force.y = -0.05 ;
   }
+  console.log(calculateGravityForce(boxA));
 }, 10)
+
+function getDistanceToSingularity(object){
+  let distance = Math.sqrt(Math.pow(object.position.x - eyeX, 2) + Math.pow(object.position.y - eyeY, 2));
+
+  return distance;
+}
+
+function calculateGravityForce(object){
+  let Fg = (6.673 * Math.pow(10, -11)) * ((singularityMass * object.mass) / Math.pow(getDistanceToSingularity(object),2));
+
+  return Fg;
+}
+
+function calculateGravityX(object){
+let Fg = calculateGravityForce(object);
+
+}
