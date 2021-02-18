@@ -123,12 +123,13 @@ Render.run(render);
 
 setInterval(function () {
   
-    if(eyeX > boxA.position.x){
-      boxA.force.x = calculateGravityForce(boxA);
+    if(eyeY > boxA.position.y){
+      boxA.force.y = calculateGravityForce(boxA);
     }
-    if(eyeX < boxA.position.x){
-      boxA.force.x = -calculateGravityForce(boxA);
+    if(eyeY < boxA.position.y){
+      boxA.force.y = -calculateGravityForce(boxA);
     }
+    console.log(calculateGravityForce(boxA));
   
  // boxA.force.y = calculateGravityY(boxA);
   
@@ -151,6 +152,10 @@ function calculateGravityForce(object) {
     Math.pow(10, -11) *
     ((singularityMass * object.mass) /
       Math.pow(getDistanceToSingularity(object), 2));
+
+      if(Fg > 1){
+        Fg = 1;
+      }
 
   return Fg;
 }
