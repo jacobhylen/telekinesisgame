@@ -1,9 +1,9 @@
-window.saveDataAcrossSessions = true;
+window.saveDataAcrossSessions = false;
 
 let eyeX = 0;
 let eyeY = 0;
 
-let singularityMass = 1 * Math.pow(10, 12);
+let singularityMass = 1 * Math.pow(10, 13);
 
 window.onload = async function () {
   if (!window.saveDataAcrossSessions) {
@@ -19,7 +19,7 @@ window.onload = async function () {
   webgazerInstance
     .showVideoPreview(true) /* shows all video previews */
     .showPredictionPoints(
-      false
+      true
     ) /* shows a square every 100 milliseconds where current prediction is */
     .applyKalmanFilter(true); // Kalman Filter defaults to on.
   // Add the SVG component on the top of everything.
@@ -81,6 +81,7 @@ var render = Render.create({
 // create two boxes and a ground
 var boxA = Bodies.rectangle(400, 200, 80, 80);
 var boxB = Bodies.rectangle(450, 50, 80, 80);
+boxB.mass= 1000;
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
   900,
@@ -123,18 +124,20 @@ Render.run(render);
 
 setInterval(function () {
   
-    if(eyeY > boxA.position.y){
+/*     if(eyeY > boxA.position.y){
       boxA.force.y = calculateGravityForce(boxA);
     }
     if(eyeY < boxA.position.y){
       boxA.force.y = -calculateGravityForce(boxA);
     }
     console.log(calculateGravityForce(boxA));
-  
- // boxA.force.y = calculateGravityY(boxA);
-  
+   */
+  boxA.force.x = gravityX(boxA);
+  boxA.force.y = gravityY(boxA);
 
-  console.log("Fx: " + calculateGravityX(boxA) + " Fy: " + calculateGravityY(boxA));
+  boxB.force.x = gravityX(boxB);
+  boxB.force.y = gravityY(boxB);
+  
 }, 1);
 
 function getDistanceToSingularity(object) {
@@ -160,23 +163,20 @@ function calculateGravityForce(object) {
   return Fg;
 }
 
+function gravityX(object){
+  let percentage =  (eyeX - object.position.x) / getDistanceToSingularity(object);
+  let gravityForce = calculateGravityForce(object);
 
-//The two function below here probably need to be rewritten, they make things weird.
-function calculateGravityY(object) {
-  let Fg = calculateGravityForce(object);
-  let hypotenuse = getDistanceToSingularity(object);
+  let gravityX = gravityForce * percentage;
 
-  let sinV = (eyeY - object.position.y) / hypotenuse;
-  let forceY = Fg / sinV;
-
-  return forceY;
+  return gravityX;
 }
 
-function calculateGravityX(object) {
-  let forceY = calculateGravityY(object);
-  let ratio = (eyeY - object.position.y) / (eyeX - object.position.x);
+function gravityY(object){
+  let percentage =  (eyeY - object.position.y) / getDistanceToSingularity(object);
+  let gravityForce = calculateGravityForce(object);
 
-  let forceX = ratio * forceY;
+  let gravityY = gravityForce * percentage;
 
-  return forceX;
+  return gravityY;
 }
