@@ -27,6 +27,9 @@ window.onload = async function () {
   webgazer.setGazeListener(collisionEyeListener);
 };
 
+
+
+
 window.onbeforeunload = function () {
   if (window.saveDataAcrossSessions) {
     webgazer.end();
@@ -61,6 +64,7 @@ var Engine = Matter.Engine,
   World = Matter.World,
   Bodies = Matter.Bodies;
 
+
 // create an engine
 var engine = Engine.create();
 engine.world.gravity.y = 0.5;
@@ -70,11 +74,13 @@ var render = Render.create({
   element: document.body,
   engine: engine,
   options: {
-    height: window.innerHeight,
     width: window.innerWidth,
+    height: window.innerHeight,
     wireframes: false,
-  },
+    background: 'beach.jpg',
+  }
 });
+
 
 // create two boxes and a ground
 var boxA = Bodies.rectangle(400, 200, 80, 80, {
