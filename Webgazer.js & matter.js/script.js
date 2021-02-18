@@ -35,7 +35,7 @@ window.onbeforeunload = function () {
   }
 };
 
-function executeGame() { }
+function executeGame() {}
 
 var webgazerCanvas = null;
 
@@ -52,11 +52,8 @@ var collisionEyeListener = async function (data, clock) {
     .getTracker()
     .getEyePatches(webgazerCanvas, webgazerCanvas.width, webgazerCanvas.height);
 
-
   eyeX = data.x;
   eyeY = data.y;
-
-
 };
 
 var Engine = Matter.Engine,
@@ -75,13 +72,27 @@ var render = Render.create({
   options: {
     height: window.innerHeight,
     width: window.innerWidth,
+    wireframes: false,
   },
 });
 
 // create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 80, 80);
-var boxB = Bodies.rectangle(450, 50, 80, 80);
-boxB.mass= 1000;
+var boxA = Bodies.rectangle(400, 200, 80, 80, {
+  render: {
+    fillStyle: "#2EFC17",
+    strokeStyle: "#2EFC17",
+    lineWidth: 3,
+  },
+});
+boxA.mass = 500;
+var boxB = Bodies.rectangle(450, 50, 80, 80, {
+  render: {
+    fillStyle: "#E024C4",
+    strokeStyle: "#E024C4",
+    lineWidth: 3,
+  },
+});
+boxB.mass = 500;
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
   900,
@@ -111,10 +122,8 @@ var wall2 = Bodies.rectangle(
   { isStatic: true }
 );
 
-
-
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2,]);
+World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);
@@ -123,8 +132,7 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function () {
-  
-/*     if(eyeY > boxA.position.y){
+  /*     if(eyeY > boxA.position.y){
       boxA.force.y = calculateGravityForce(boxA);
     }
     if(eyeY < boxA.position.y){
@@ -137,13 +145,12 @@ setInterval(function () {
 
   boxB.force.x = gravityX(boxB);
   boxB.force.y = gravityY(boxB);
-  
 }, 1);
 
 function getDistanceToSingularity(object) {
   let distance = Math.sqrt(
     Math.pow(object.position.x - eyeX, 2) +
-    Math.pow(object.position.y - eyeY, 2)
+      Math.pow(object.position.y - eyeY, 2)
   );
 
   return distance;
@@ -156,15 +163,16 @@ function calculateGravityForce(object) {
     ((singularityMass * object.mass) /
       Math.pow(getDistanceToSingularity(object), 2));
 
-      if(Fg > 1){
-        Fg = 1;
-      }
+  if (Fg > 1) {
+    Fg = 1;
+  }
 
   return Fg;
 }
 
-function gravityX(object){
-  let percentage =  (eyeX - object.position.x) / getDistanceToSingularity(object);
+function gravityX(object) {
+  let percentage =
+    (eyeX - object.position.x) / getDistanceToSingularity(object);
   let gravityForce = calculateGravityForce(object);
 
   let gravityX = gravityForce * percentage;
@@ -172,8 +180,9 @@ function gravityX(object){
   return gravityX;
 }
 
-function gravityY(object){
-  let percentage =  (eyeY - object.position.y) / getDistanceToSingularity(object);
+function gravityY(object) {
+  let percentage =
+    (eyeY - object.position.y) / getDistanceToSingularity(object);
   let gravityForce = calculateGravityForce(object);
 
   let gravityY = gravityForce * percentage;
