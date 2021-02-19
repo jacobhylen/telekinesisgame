@@ -83,28 +83,6 @@ var boxD = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2,
   fillStyle: 'red',
 }});
 
-// let collisionAC = Matter.SAT.collides(boxA, boxC).collided
-// let collisionBC = Matter.SAT.collides(boxB, boxC).collided
-
-
-// let collisionAC = Matter.Detector.canCollide(boxA, boxC);
-let collisionBC = Matter.Detector.canCollide(boxB, boxC);
-let previousCollision = false;
-
-let collision = Matter.SAT.collides(boxA, boxC);
-
-
-// console.log(collisionAC);
-// console.log(collisionBC);
-
-// if (collisionAC){
-
-// }
-
-// if (collisionBC){
-  
-// }
-
 boxB.mass = 1000;
 boxA.mass = 1000;
 
@@ -158,8 +136,6 @@ setInterval(function () {
   if (collisionBD.collided) {
     boxB.position.x = 2000;
   }
-
-  console.log(collision.collided);
   
 /*     if(eyeY > boxA.position.y){
       boxA.force.y = calculateGravityForce(boxA);
