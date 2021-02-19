@@ -108,7 +108,7 @@ var boxD = Bodies.rectangle(400, 200, 40, 40, {
 boxD.mass = 300;
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
-  900,
+  window.innerHeight,
   window.innerWidth,
   60,
   { isStatic: true }
