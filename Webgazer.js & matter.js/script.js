@@ -104,8 +104,6 @@ var ground = Bodies.rectangle(
   window.innerHeight,
   window.innerWidth,
   60,
-  bodies.ground.fillStyle = '#353535',
-
   { isStatic: true }
 );
 var ground2 = Bodies.rectangle(
