@@ -73,47 +73,48 @@ var render = Render.create({
 });
 
 // create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 40, 40, {
-  render: {
-    fillStyle: "#2EFC17",
-    strokeStyle: "#2EFC17",
-    lineWidth: 3,
-  },
-});
+// create two boxes and a ground
+var boxA = Bodies.rectangle(400, 200, 80, 80);
+var boxB = Bodies.rectangle(450, 50, 80, 80, { render: {
+  fillStyle: 'red',
+}});
+var boxC = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true});
+var boxD = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true}, { render: {
+  fillStyle: 'red',
+}});
 
-boxA.mass = 1000;
-var boxB = Bodies.rectangle(450, 50, 240, 20, {
-  render: {
-    fillStyle: "#E024C4",
-    strokeStyle: "#E024C4",
-    lineWidth: 3,
-  },
-});
+// let collisionAC = Matter.SAT.collides(boxA, boxC).collided
+// let collisionBC = Matter.SAT.collides(boxB, boxC).collided
+
+
+// let collisionAC = Matter.Detector.canCollide(boxA, boxC);
+let collisionBC = Matter.Detector.canCollide(boxB, boxC);
+let previousCollision = false;
+
+let collision = Matter.SAT.collides(boxA, boxC);
+
+
+// console.log(collisionAC);
+// console.log(collisionBC);
+
+// if (collisionAC){
+
+// }
+
+// if (collisionBC){
+  
+// }
+
 boxB.mass = 1000;
-var boxC = Bodies.rectangle(400, 200, 40, 40, {
-  render: {
-    fillStyle: "#2EFC17",
-    strokeStyle: "#2EFC17",
-    lineWidth: 3,
-  },
-});
-boxC.mass = 300;
-var boxD = Bodies.rectangle(400, 200, 40, 40, {
-  render: {
-    fillStyle: "#2EFC17",
-    strokeStyle: "#2EFC17",
-    lineWidth: 3,
-  },
-});
-boxD.mass = 300;
+boxA.mass = 1000;
+
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
-  900,
+  700,
   window.innerWidth,
   60,
   { isStatic: true }
 );
-
 var ground2 = Bodies.rectangle(
   window.innerWidth / 2,
   10,
@@ -139,7 +140,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2]);
+World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, boxC, boxD]);
 
 // run the engine
 Engine.run(engine);
@@ -147,11 +148,20 @@ Engine.run(engine);
 // run the renderer
 Render.run(render);
 
-
-
-
 setInterval(function () {
-  /*     if(eyeY > boxA.position.y){
+  let collisionAC = Matter.SAT.collides(boxA, boxC);
+  let collisionBD = Matter.SAT.collides(boxB, boxD);
+
+  if (collisionAC.collided) {
+    boxA.position.x = 2000;
+  }
+  if (collisionBD.collided) {
+    boxB.position.x = 2000;
+  }
+
+  console.log(collision.collided);
+  
+/*     if(eyeY > boxA.position.y){
       boxA.force.y = calculateGravityForce(boxA);
     }
     if(eyeY < boxA.position.y){
@@ -164,12 +174,7 @@ setInterval(function () {
 
   boxB.force.x = gravityX(boxB);
   boxB.force.y = gravityY(boxB);
-
-  boxC.force.x = gravityX(boxC);
-  boxC.force.y = gravityY(boxC);
-
-  boxD.force.x = gravityX(boxD);
-  boxD.force.y = gravityY(boxD);
+  
 }, 1);
 
 
