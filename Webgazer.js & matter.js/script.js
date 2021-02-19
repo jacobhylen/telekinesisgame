@@ -73,21 +73,51 @@ var render = Render.create({
   },
 });
 
-// create two boxes and a ground
-// create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 80, 80, { render: {
-  fillStyle: '#ff6f3c',
+// The static boxes
+var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#ff6f3c',
+  lineWidth: 8
 }});
-var boxB = Bodies.rectangle(450, 50, 80, 80, { render: {
-  fillStyle: '#005691',
-}});
-var boxC = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true});
-var boxD = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true}, { render: {
-  fillStyle: 'red'
+var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#005691',
+  lineWidth: 8
 }});
 
-boxB.mass = 1000;
-boxA.mass = 1000;
+// create two boxes and a ground
+var boxC = Bodies.rectangle(1200, 50, 80, 80, { render: {
+  // orange
+  fillStyle: '#ff6f3c',
+}});
+var boxD = Bodies.rectangle(200, 50, 80, 80, { render: {
+  //blue
+  fillStyle: '#005691',
+}});
+var boxE = Bodies.rectangle(1200, 50, 80, 80, { render: {
+  // orange
+  fillStyle: '#ff6f3c',
+}});
+var boxF = Bodies.rectangle(200, 50, 80, 80, { render: {
+  //blue
+  fillStyle: '#005691',
+}});
+var boxG = Bodies.rectangle(1200, 50, 80, 80, { render: {
+  // orange
+  fillStyle: '#ff6f3c',
+}});
+var boxH = Bodies.rectangle(200, 50, 80, 80, { render: {
+  // blue
+  fillStyle: '#005691',
+}});
+
+
+boxC.mass = 1000;
+boxD.mass = 1000;
+boxE.mass = 1000;
+boxF.mass = 1000;
+boxG.mass = 1000;
+boxH.mass = 1000;
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
@@ -121,7 +151,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, boxC, boxD]);
+World.add(engine.world, [boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, ground, ground2, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);
@@ -131,13 +161,32 @@ Render.run(render);
 
 setInterval(function () {
   let collisionAC = Matter.SAT.collides(boxA, boxC);
+  let collisionAE = Matter.SAT.collides(boxA, boxE);
+  let collisionAG = Matter.SAT.collides(boxA, boxG);
+
   let collisionBD = Matter.SAT.collides(boxB, boxD);
+  let collisionBF = Matter.SAT.collides(boxB, boxF);
+  let collisionBH = Matter.SAT.collides(boxB, boxH);
 
   if (collisionAC.collided) {
-    boxA.position.x = 2000;
+    boxC.position.x = 2000;
   }
+  if (collisionAE.collided) {
+    boxE.position.x = 2000;
+  }
+  if (collisionAG.collided) {
+    boxG.position.x = 2000;
+  }
+
+
   if (collisionBD.collided) {
-    boxB.position.x = 2000;
+    boxD.position.x = 2000;
+  }
+  if (collisionBF.collided) {
+    boxF.position.x = 2000;
+  }
+  if (collisionBH.collided) {
+    boxH.position.x = 2000;
   }
   
 /*     if(eyeY > boxA.position.y){
@@ -148,11 +197,25 @@ setInterval(function () {
     }
     console.log(calculateGravityForce(boxA));
    */
-  boxA.force.x = gravityX(boxA);
-  boxA.force.y = gravityY(boxA);
+  boxC.force.x = gravityX(boxC);
+  boxC.force.y = gravityY(boxC);
 
-  boxB.force.x = gravityX(boxB);
-  boxB.force.y = gravityY(boxB);
+  boxD.force.x = gravityX(boxD);
+  boxD.force.y = gravityY(boxD);
+
+
+  boxE.force.x = gravityX(boxE);
+  boxE.force.y = gravityY(boxE);
+
+  boxF.force.x = gravityX(boxF);
+  boxF.force.y = gravityY(boxF);
+
+  boxG.force.x = gravityX(boxG);
+  boxG.force.y = gravityY(boxG);
+
+  boxH.force.x = gravityX(boxH);
+  boxH.force.y = gravityY(boxH);
+
   
 }, 1);
 
