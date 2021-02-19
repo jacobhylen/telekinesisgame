@@ -69,18 +69,21 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
+    background: '#222831' 
   },
 });
 
 // create two boxes and a ground
 // create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 80, 80);
+var boxA = Bodies.rectangle(400, 200, 80, 80, { render: {
+  fillStyle: '#ff6f3c',
+}});
 var boxB = Bodies.rectangle(450, 50, 80, 80, { render: {
-  fillStyle: 'red',
+  fillStyle: '#005691',
 }});
 var boxC = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true});
 var boxD = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true}, { render: {
-  fillStyle: 'red',
+  fillStyle: 'red'
 }});
 
 boxB.mass = 1000;
