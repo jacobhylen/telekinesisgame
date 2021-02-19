@@ -69,7 +69,7 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
-    background: '#222831' 
+    background: 'background.png' 
   },
 });
 
@@ -91,7 +91,7 @@ boxA.mass = 1000;
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
-  700,
+  window.innerHeight,
   window.innerWidth,
   60,
   { isStatic: true }
