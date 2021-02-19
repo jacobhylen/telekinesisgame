@@ -140,6 +140,8 @@ var wall2 = Bodies.rectangle(
   { isStatic: true }
 );
 
+
+
 // add all of the bodies to the world
 World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2]);
 
@@ -148,6 +150,9 @@ Engine.run(engine);
 
 // run the renderer
 Render.run(render);
+
+
+
 
 setInterval(function () {
   /*     if(eyeY > boxA.position.y){
@@ -170,6 +175,8 @@ setInterval(function () {
   boxD.force.x = gravityX(boxD);
   boxD.force.y = gravityY(boxD);
 }, 1);
+
+
 
 function getDistanceToSingularity(object) {
   let distance = Math.sqrt(
