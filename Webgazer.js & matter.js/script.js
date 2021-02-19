@@ -112,12 +112,12 @@ var boxH = Bodies.rectangle(200, 50, 80, 80, { render: {
 }});
 
 
-boxC.mass = 1000;
-boxD.mass = 1000;
-boxE.mass = 1000;
-boxF.mass = 1000;
-boxG.mass = 1000;
-boxH.mass = 1000;
+boxC.mass = 500;
+boxD.mass = 500;
+boxE.mass = 500;
+boxF.mass = 500;
+boxG.mass = 500;
+boxH.mass = 500;
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
