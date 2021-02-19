@@ -77,7 +77,7 @@ var render = Render.create({
     width: window.innerWidth,
     height: window.innerHeight,
     wireframes: false,
-    background: 'beach.jpg',
+    background: 'background.png',
   }
 });
 
@@ -101,9 +101,11 @@ var boxB = Bodies.rectangle(450, 50, 80, 80, {
 boxB.mass = 500;
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
-  900,
+  window.innerHeight,
   window.innerWidth,
   60,
+  bodies.ground.fillStyle = '#353535',
+
   { isStatic: true }
 );
 var ground2 = Bodies.rectangle(
@@ -118,6 +120,7 @@ var wall1 = Bodies.rectangle(
   window.innerHeight / 2,
   100,
   window.innerHeight,
+ 
   { isStatic: true }
 );
 var wall2 = Bodies.rectangle(
