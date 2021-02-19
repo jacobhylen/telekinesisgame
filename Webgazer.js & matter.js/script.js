@@ -22,8 +22,6 @@ window.onload = async function () {
       true
     ) /* shows a square every 100 milliseconds where current prediction is */
     .applyKalmanFilter(true); // Kalman Filter defaults to on.
-  // Add the SVG component on the top of everything.
-  executeGame();
   webgazer.setGazeListener(collisionEyeListener);
 };
 
@@ -34,8 +32,6 @@ window.onbeforeunload = function () {
     localforage.clear();
   }
 };
-
-function executeGame() {}
 
 var webgazerCanvas = null;
 
