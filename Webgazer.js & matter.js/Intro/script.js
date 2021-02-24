@@ -9,8 +9,12 @@ let calibrationMeter = document.getElementById("calibratingProgress");
 let calibrationInstructions = document.getElementById("instructions");
 let calibrationComplete = document.getElementById("complete");
 
+let calibrationExamplesGoal = 25;
+let calibration = 0;
+
 body.addEventListener("click", function(){
-  calibrationCounter += 3;
+  calibrationCounter += 200 / calibrationExamplesGoal;
+  calibration++;
 
   calibrationMeter.style.width= calibrationCounter +"px";
 })
@@ -142,10 +146,10 @@ var wall2 = Bodies.rectangle(
   { isStatic: true }
 );
 
-let calibration = 0;
+
 
 Events.on(mouseConstraint, 'mouseup', function(event) {
-  calibration++;
+  
 
   var mousePosition = event.mouse.position;
 
@@ -205,7 +209,7 @@ setInterval(function () {
     calibrationInstructions.style.visibility= "hidden";
   }
 
-  if(calibration >=25){
+  if(calibration >=calibrationExamplesGoal){
     calibrationComplete.style.visibility = "visible";
     Matter.Body.setPosition(ball, { x: 100, y: -100});
   }
