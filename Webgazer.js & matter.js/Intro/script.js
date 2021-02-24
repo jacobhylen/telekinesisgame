@@ -3,6 +3,18 @@ window.saveDataAcrossSessions = false;
 let eyeX = 0;
 let eyeY = 0;
 
+let calibrationCounter = 0;
+let body = document.getElementById("body");
+let calibrationMeter = document.getElementById("calibratingProgress");
+let calibrationInstructions = document.getElementById("instructions");
+let calibrationComplete = document.getElementById("complete");
+
+body.addEventListener("click", function(){
+  calibrationCounter += 3;
+
+  calibrationMeter.style.width= calibrationCounter +"px";
+})
+
 let singularityMass = 1 * Math.pow(10, 12);
 
 window.onload = async function () {
@@ -189,7 +201,14 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function () {
-  
+  if(calibration > 0){
+    calibrationInstructions.style.visibility= "hidden";
+  }
+
+  if(calibration >=25){
+    calibrationComplete.style.visibility = "visible";
+    Matter.Body.setPosition(ball, { x: 100, y: -100});
+  }
 }, 1);
 
 function getDistanceToSingularity(object) {
