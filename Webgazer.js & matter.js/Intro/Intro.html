@@ -5,14 +5,82 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body style="background-color: #2d2d2d" id="body">
-  <div style="display: block; position: fixed; z-index: 99999; left: -5px; top: -5px; background: black; opacity: 0.7; width: 200px; height: 50px; transform: 
-  translate3d(50px, 300px, 0px);"></div>
-  <div id="calibratingProgress" style="display: block; position: fixed; z-index: 99999; left: -5px; top: -5px; background: red; opacity: 0.7; width: 0px; height: 50px; transform: 
-  translate3d(50px, 300px, 0px);"></div>
-<p id="instructions" style="display:block; position:fixed; transform: translate3d(800px, 300px, 0px); color:white; font-size:40px; font-family: sans-serif; width:400px; ">Click to calibrate!</p> 
-<a href="../LVL1/index.html"><p id="complete" style="display:block; position:fixed; transform: translate3d(800px, 300px, 0px); color:white; font-size:40px; font-family: sans-serif; width:400px; visibility:hidden;">Calibration complete</p> </a>
+  <div
+    style="
+      display: block;
+      position: fixed;
+      z-index: 99999;
+      left: -5px;
+      top: -5px;
+      background: black;
+      opacity: 0.7;
+      width: 200px;
+      height: 50px;
+      transform: translate3d(50px, 300px, 0px);
+    "
+  ></div>
+  <div
+    id="calibratingProgress"
+    style="
+      display: block;
+      position: fixed;
+      z-index: 99999;
+      left: -5px;
+      top: -5px;
+      background: red;
+      opacity: 0.7;
+      width: 0px;
+      height: 50px;
+      transform: translate3d(50px, 300px, 0px);
+    "
+  ></div>
+  <p
+    id="instructions"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(800px, 150px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+      width: 400px;
+    "
+  >
+    Instructions<br />
+    <br />
+    In order to make the gaze tracking work we need to gather some data examples
+    of your eye movement. The data will store locally on your browser and will
+    disappear once you refresh the page. <br />
+    <br />
+    Make sure you have your webcam turned on, position yourself in good lighting
+    while making sure your face is within smaller/marked/colored square, keeping
+    it green. <br />
+    <br />
+    To calibrate the data, move the mouse over the appearing dot one by one.
+    Look at the cursor hovering the dot and press on mouse.
+  </p>
+  <a href="../LVL1/index.html"
+    ><p
+      id="complete"
+      style="
+        display: block;
+        position: fixed;
+        transform: translate3d(800px, 250px, 0px);
+        color: white;
+        font-size: 20px;
+        font-family: sans-serif;
+        width: 400px;
+        visibility: hidden;
+      "
+    >
+      Calibration complete.<br />
+      <br />
+      Continue to collect more data examples if you want to improve the model
+      further, or simply click here to play the game!
+    </p>
+  </a>
 
-<script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
   <script src="./webgazer.js"></script>
   <script src="./matter.js"></script>
