@@ -1,4 +1,4 @@
-window.saveDataAcrossSessions = false;
+window.saveDataAcrossSessions = true;
 
 let eyeX = 0;
 let eyeY = 0;
@@ -152,7 +152,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, ground, ground2, wall1, wall2]);
+World.add(engine.world, [boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, ground, ground2, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);

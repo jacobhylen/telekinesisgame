@@ -1,4 +1,4 @@
-window.saveDataAcrossSessions = false;
+window.saveDataAcrossSessions = true;
 
 let eyeX = 0;
 let eyeY = 0;
@@ -14,6 +14,7 @@ let calibration = 0;
 
 let progressColor = calibration/calibrationExamplesGoal * 100;
 
+//Counts clicks & alters the calibration progress bar
 body.addEventListener("click", function(){
   calibrationCounter += 200 / calibrationExamplesGoal;
   calibration++;
@@ -23,9 +24,13 @@ body.addEventListener("click", function(){
   calibrationMeter.style.background = "hsl(" + progressColor + ", 100%, 34%)"
 })
 
+//The mass of the singularity, used in calculation of the force. Written with scientific notation
 let singularityMass = 1 * Math.pow(10, 12);
 
+
+//webgazer stuff, sets up stuff for clearing calibrationdata
 window.onload = async function () {
+  localforage.clear();
   if (!window.saveDataAcrossSessions) {
     var localstorageDataLabel = "webgazerGlobalData";
     localforage.setItem(localstorageDataLabel, null);
@@ -45,6 +50,7 @@ window.onload = async function () {
   webgazer.setGazeListener(collisionEyeListener);
 };
 
+//Clears calibrationdata if set to do that.
 window.onbeforeunload = function () {
   if (window.saveDataAcrossSessions) {
     webgazer.end();
