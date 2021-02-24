@@ -16,7 +16,7 @@
       opacity: 0.7;
       width: 200px;
       height: 50px;
-      transform: translate3d(50px, 300px, 0px);
+      transform: translate3d(75px, 250px, 0px);
     "
   ></div>
   <div
@@ -31,7 +31,7 @@
       opacity: 0.7;
       width: 0px;
       height: 50px;
-      transform: translate3d(50px, 300px, 0px);
+      transform: translate3d(75px, 250px, 0px);
     "
   ></div>
   <p
@@ -53,33 +53,50 @@
     disappear once you refresh the page. <br />
     <br />
     Make sure you have your webcam turned on, position yourself in good lighting
-    while making sure your face is within the square, keeping
-    it green. <br />
+    while making sure your face is within the square, keeping it green. <br />
     <br />
     To calibrate the data, move the mouse over the appearing dot one by one.
     Look at the cursor hovering the dot and press on mouse.
   </p>
-  <a href="../LVL1/index.html"
-    ><p
-      id="complete"
+  <p
+    id="complete"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(800px, 250px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+      width: 400px;
+      visibility: hidden;
+    "
+  >
+    Calibration complete.<br />
+    <br />
+    Continue to collect more data examples if you want to improve the model
+    further, or simply play the game!
+  </p>
+  <a href="../LVL1/index.html">
+    <button
+      id="button"
+      class="button"
       style="
+        visibility: hidden;
         display: block;
         position: fixed;
-        transform: translate3d(800px, 250px, 0px);
-        color: white;
-        font-size: 20px;
+        transform: translate3d(800px, 400px, 0px);
+        border-radius: 12px;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
         font-family: sans-serif;
-        width: 400px;
-        visibility: hidden;
+        font-size: 16px;
+        transition-duration: 0.4s;
       "
     >
-      Calibration complete.<br />
-      <br />
-      Continue to collect more data examples if you want to improve the model
-      further, or simply click here to play the game!
-    </p>
+      Play
+    </button>
   </a>
-
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
   <script src="./webgazer.js"></script>

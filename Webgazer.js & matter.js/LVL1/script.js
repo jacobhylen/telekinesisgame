@@ -2,6 +2,7 @@ window.saveDataAcrossSessions = true;
 
 let body = document.getElementById("body");
 let finishedPlaying = document.getElementById("finished");
+let finishedButton = document.getElementById("backButton");
 
 let eyeX = 0;
 let eyeY = 0;
@@ -201,8 +202,8 @@ setInterval(function () {
   }
 
   if (collisionACcheck && collisionAEcheck && collisionAGcheck && collisionBDcheck && collisionBFcheck && collisionBHcheck) {
-    console.log("Finished Lvl 1!");
     finishedPlaying.style.visibility = "visible";
+    finishedButton.style.visibility = "visible";
   } else {
     finishedPlaying.style.visibility = "hidden";
   }

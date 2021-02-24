@@ -8,6 +8,7 @@ let body = document.getElementById("body");
 let calibrationMeter = document.getElementById("calibratingProgress");
 let calibrationInstructions = document.getElementById("instructions");
 let calibrationComplete = document.getElementById("complete");
+let calibrationCompleteButton = document.getElementById("button");
 
 let calibrationExamplesGoal = 25;
 let calibration = 0;
@@ -164,17 +165,55 @@ Events.on(mouseConstraint, 'mouseup', function(event) {
   var mousePosition = event.mouse.position;
 
   if (calibration == 1) {
-    Matter.Body.setPosition(ball, { x: 300, y: 300});
+    Matter.Body.setPosition(ball, { x: 720, y: 620});
   } else if (calibration == 2) {
-    Matter.Body.setPosition(ball, { x: 300, y: 200});
+    Matter.Body.setPosition(ball, { x: 98, y: 624});
   } else if (calibration == 3) {
-    Matter.Body.setPosition(ball, { x: 100, y: 400});
+    Matter.Body.setPosition(ball, { x: 370, y: 80});
   } else if (calibration == 4) {
-    Matter.Body.setPosition(ball, { x: 700, y: 500});
+    Matter.Body.setPosition(ball, { x: 727, y: 82});
   } else if (calibration == 5) {
-    Matter.Body.setPosition(ball, { x: 600, y: 100});
+    Matter.Body.setPosition(ball, { x: 1334, y: 90});
   } else if (calibration == 6) {
-    Matter.Body.setPosition(ball, { x: 100, y: 600});
+    Matter.Body.setPosition(ball, { x: 1330, y: 620});
+  } else if (calibration == 7) {
+    Matter.Body.setPosition(ball, { x: 1150, y: 355});
+  } else if (calibration == 8) {
+    Matter.Body.setPosition(ball, { x: 850, y: 330});
+  } else if (calibration == 9) {
+    Matter.Body.setPosition(ball, { x: 590, y: 360});
+  } else if (calibration == 10) {
+    Matter.Body.setPosition(ball, { x: 320, y: 380});
+  } else if (calibration == 11) {
+    Matter.Body.setPosition(ball, { x: 190, y: 422});
+  } else if (calibration == 12) {
+    Matter.Body.setPosition(ball, { x: 500, y: 190});
+  } else if (calibration == 13) {
+    Matter.Body.setPosition(ball, { x: 1046, y: 180});
+  } else if (calibration == 14) {
+    Matter.Body.setPosition(ball, { x: 1200, y: 490});
+  } else if (calibration == 15) {
+    Matter.Body.setPosition(ball, { x: 845, y: 325});
+  } else if (calibration == 16) {
+    Matter.Body.setPosition(ball, { x: 500, y: 205});
+  } else if (calibration == 17) {
+    Matter.Body.setPosition(ball, { x: 450, y: 460});
+  } else if (calibration == 18) {
+    Matter.Body.setPosition(ball, { x: 700, y: 380});
+  } else if (calibration == 19) {
+    Matter.Body.setPosition(ball, { x: 740, y: 130});
+  } else if (calibration == 20) {
+    Matter.Body.setPosition(ball, { x: 1174, y: 130});
+  } else if (calibration == 21) {
+    Matter.Body.setPosition(ball, { x: 1320, y: 530});
+  } else if (calibration == 22) {
+    Matter.Body.setPosition(ball, { x: 835, y: 620});
+  } else if (calibration == 23) {
+    Matter.Body.setPosition(ball, { x: 385, y: 590});
+  } else if (calibration == 24) {
+    Matter.Body.setPosition(ball, { x: 305, y: 360});
+  } else if (calibration == 25) {
+    Matter.Body.setPosition(ball, { x: 777, y: 777});
   }
 
   console.log(calibration);
@@ -221,6 +260,7 @@ setInterval(function () {
 
   if(calibration >=calibrationExamplesGoal){
     calibrationComplete.style.visibility = "visible";
+    calibrationCompleteButton.style.visibility= "visible";
     Matter.Body.setPosition(ball, { x: 100, y: -100});
   }
 }, 1);
