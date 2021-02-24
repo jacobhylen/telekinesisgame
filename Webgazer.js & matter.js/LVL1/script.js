@@ -152,13 +152,21 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, ground, ground2, wall1, wall2]);
+World.add(engine.world, [boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, ground, ground2, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);
 
 // run the renderer
 Render.run(render);
+
+let collisionACcheck = false;
+let collisionAEcheck = false;
+let collisionAGcheck = false;
+
+let collisionBDcheck = false; 
+let collisionBFcheck = false;
+let collisionBHcheck = false;
 
 setInterval(function () {
   let collisionAC = Matter.SAT.collides(boxA, boxC);
@@ -171,23 +179,26 @@ setInterval(function () {
 
   if (collisionAC.collided) {
     boxC.position.x = 2000;
-  }
-  if (collisionAE.collided) {
+    collisionACcheck = true;
+  } else if (collisionAE.collided) {
     boxE.position.x = 2000;
-  }
-  if (collisionAG.collided) {
+    collisionAEcheck = true;
+  } else if (collisionAG.collided) {
     boxG.position.x = 2000;
-  }
-
-
-  if (collisionBD.collided) {
+    collisionAGcheck = true;
+  } else if (collisionBD.collided) {
     boxD.position.x = 2000;
-  }
-  if (collisionBF.collided) {
+    collisionBDcheck = true; 
+  } else if (collisionBF.collided) {
     boxF.position.x = 2000;
-  }
-  if (collisionBH.collided) {
+    collisionBFcheck = true;
+  } else if (collisionBH.collided) {
     boxH.position.x = 2000;
+    collisionBHcheck = true;
+  }
+
+  if (collisionACcheck && collisionAEcheck && collisionAGcheck && collisionBDcheck && collisionBFcheck && collisionBHcheck) {
+    console.log("Finished Lvl 1!");
   }
   
 /*     if(eyeY > boxA.position.y){
