@@ -88,7 +88,7 @@ var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2,
 
 
 // create two boxes and a ground
-var boxC = Composites.softBody(200, 50, 5, 5, 0, 0, false, 20, { render: {
+var boxC = Composites.softBody(200, 50, 5, 5, 0, 0, true, 20, { render: {
    visible: true,
   fillStyle: '#ff6f3c',
 }});
