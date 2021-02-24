@@ -55,7 +55,8 @@ var collisionEyeListener = async function (data, clock) {
 var Engine = Matter.Engine,
   Render = Matter.Render,
   World = Matter.World,
-  Bodies = Matter.Bodies;
+  Bodies = Matter.Bodies,
+  Composites = Matter.Composites;
 
 // create an engine
 var engine = Engine.create();
@@ -85,9 +86,10 @@ var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2,
   lineWidth: 8
 }});
 
+
 // create two boxes and a ground
-var boxC = Bodies.rectangle(1200, 50, 80, 80, { render: {
-  // orange
+var boxC = Composites.softBody(200, 50, 5, 5, 0, 0, false, 20, { render: {
+   visible: true,
   fillStyle: '#ff6f3c',
 }});
 var boxD = Bodies.rectangle(200, 50, 80, 80, { render: {
@@ -151,7 +153,19 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, ground, ground2, wall1, wall2]);
+World.add(engine.world, [
+  boxA,
+  boxB, 
+  boxC, 
+  boxD, 
+  boxE,
+  boxF,
+  boxG, 
+  boxH, 
+  ground, 
+  ground2, 
+  wall1, 
+  wall2]);
 
 // run the engine
 Engine.run(engine);
@@ -160,7 +174,7 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function () {
-  let collisionAC = Matter.SAT.collides(boxA, boxC);
+  let collisionAC = Matter.SAT.collides(boxA, boxC.bodies[10,11,12]);
   let collisionAE = Matter.SAT.collides(boxA, boxE);
   let collisionAG = Matter.SAT.collides(boxA, boxG);
 
@@ -169,8 +183,8 @@ setInterval(function () {
   let collisionBH = Matter.SAT.collides(boxB, boxH);
 
   if (collisionAC.collided) {
-    boxC.position.x = 2000;
-  }
+    boxC.bodies[10,11,12].position.x = 2000;
+  } 
   if (collisionAE.collided) {
     boxE.position.x = 2000;
   }
@@ -197,8 +211,8 @@ setInterval(function () {
     }
     console.log(calculateGravityForce(boxA));
    */
-  boxC.force.x = gravityX(boxC);
-  boxC.force.y = gravityY(boxC);
+  boxC.bodies[10,11,12].force.x = gravityX(boxC.bodies[10, 11, 12]),
+  boxC.bodies[10,11, 12].force.y = gravityY(boxC.bodies[10, 11, 12]);
 
   boxD.force.x = gravityX(boxD);
   boxD.force.y = gravityY(boxD);
