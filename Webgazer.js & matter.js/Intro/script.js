@@ -12,11 +12,15 @@ let calibrationComplete = document.getElementById("complete");
 let calibrationExamplesGoal = 25;
 let calibration = 0;
 
+let progressColor = calibration/calibrationExamplesGoal * 100;
+
 body.addEventListener("click", function(){
   calibrationCounter += 200 / calibrationExamplesGoal;
   calibration++;
+  progressColor = calibration/calibrationExamplesGoal * 100;
 
   calibrationMeter.style.width= calibrationCounter +"px";
+  calibrationMeter.style.background = "hsl(" + progressColor + ", 100%, 34%)"
 })
 
 let singularityMass = 1 * Math.pow(10, 12);
