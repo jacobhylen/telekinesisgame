@@ -121,8 +121,8 @@ var render = Render.create({
 World.add(world, mouseConstraint);
 
 let ball = Matter.Bodies.circle(innerWidth / 2, innerHeight / 2,20, {isStatic: true, render: {
-  fillStyle: '#e84545',
-  strokeStyle: '#2b2e4a',
+  fillStyle: '#8769F5',
+  strokeStyle: '#8769F5',
   lineWidth: 8
 }});
 
