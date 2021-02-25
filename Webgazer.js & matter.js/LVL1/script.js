@@ -3,6 +3,10 @@ window.saveDataAcrossSessions = true;
 let body = document.getElementById("body");
 let finishedPlaying = document.getElementById("finished");
 let finishedButton = document.getElementById("backButton");
+let timer = document.getElementById("timer");
+let timePassed = 0;
+
+var start = Date.now();
 
 let eyeX = 0;
 let eyeY = 0;
@@ -15,6 +19,7 @@ window.onload = async function () {
     localforage.setItem(localstorageDataLabel, null);
     var localstorageSettingsLabel = "webgazerGlobalSettings";
     localforage.setItem(localstorageSettingsLabel, null);
+
   }
   const webgazerInstance = await webgazer
     .setRegression("ridge") /* currently must set regression and tracker */
@@ -172,6 +177,14 @@ let collisionBDcheck = false;
 let collisionBFcheck = false;
 let collisionBHcheck = false;
 
+var runningTimer = setInterval(function(){
+  timePassed = Date.now() - start;
+
+
+  //timer.innerHTML = Math.round(timePassed * 100) / 100 +"s"
+  timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+}, 10);
+
 setInterval(function () {
   let collisionAC = Matter.SAT.collides(boxA, boxC);
   let collisionAE = Matter.SAT.collides(boxA, boxE);
@@ -204,6 +217,7 @@ setInterval(function () {
   if (collisionACcheck && collisionAEcheck && collisionAGcheck && collisionBDcheck && collisionBFcheck && collisionBHcheck) {
     finishedPlaying.style.visibility = "visible";
     finishedButton.style.visibility = "visible";
+    clearInterval(runningTimer)
   } else {
     finishedPlaying.style.visibility = "hidden";
   }
