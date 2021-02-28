@@ -44,7 +44,7 @@
 
     force = d3.layout.force()
     .gravity(0.05)
-    .charge(function(d, i) { return i ? 0 : -2000; })
+    .charge(function(d, i) { return i ? 0 : 2000; })
     .nodes(nodes)
     .size([width, height])
     .start();

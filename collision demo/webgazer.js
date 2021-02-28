@@ -48042,7 +48042,7 @@ const uv_coords_1 = __webpack_require__(85);
 const FACEMESH_GRAPHMODEL_PATH = 'https://tfhub.dev/mediapipe/tfjs-model/facemesh/1/default/1';
 const MESH_MODEL_INPUT_WIDTH = 192;
 const MESH_MODEL_INPUT_HEIGHT = 192;
-async function load({ maxContinuousChecks = 5, detectionConfidence = 0.9, maxFaces = 10, iouThreshold = 0.3, scoreThreshold = 0.75 } = {}) {
+async function load({ maxContinuousChecks = 5, detectionConfidence = 0.9, maxFaces = 20, iouThreshold = 0.3, scoreThreshold = 0.75 } = {}) {
     const [blazeFace, blazeMeshModel] = await Promise.all([
         loadDetectorModel(maxFaces, iouThreshold, scoreThreshold), loadMeshModel()
     ]);
@@ -86265,19 +86265,32 @@ TFFaceMesh.prototype.reset = function(){
 TFFaceMesh.prototype.drawFaceOverlay= function(ctx, keypoints){
   // If keypoints is falsy, don't do anything
   if (keypoints) {
-    ctx.fillStyle = '#32EEDB';
-    ctx.strokeStyle = '#32EEDB';
-    ctx.lineWidth = 0.5;
-
+    
     for (let i = 0; i < keypoints.length; i++) {
       const x = keypoints[i][0];
       const y = keypoints[i][1];
+
+      ctx.fillStyle = '#32EEDB';
+    ctx.strokeStyle = '#32EEDB';
+    ctx.lineWidth = 0.5;
 
       ctx.beginPath();
       ctx.arc(x, y, 1 /* radius */, 0, 2 * Math.PI);
       ctx.closePath();
       ctx.fill();
+
+
+//Uncomment to draw one red dot
+      /*       ctx.fillStyle="red";
+      ctx.strokeStyle="red";
+      ctx.lineWidth = 0.5; */
+      
+   /*    ctx.beginPath();
+      ctx.arc(keypoints[100][0], keypoints[100][1], 1, 0, 2*Math.PI);
+      ctx.closePath();
+      ctx.fill(); */
     }
+   
   }
 }
 
@@ -87161,10 +87174,7 @@ ridgeReg_reg.RidgeReg.prototype.addData = function(eyes, screenPos, type) {
   if (!eyes) {
     return;
   }
-  //not doing anything with blink at present
-  // if (eyes.left.blink || eyes.right.blink) {
-  //   return;
-  // }
+
   //why are we pushing these as arrays rather than single elements?
   if (type === 'click') {
     this.screenXClicksArray.push([screenPos[0]]);
@@ -87439,9 +87449,10 @@ ridgeWeightedReg_reg.RidgeWeightedReg.prototype.addData = function(eyes, screenP
         return;
     }
     //not doing anything with blink at present
-    // if (eyes.left.blink || eyes.right.blink) {
-    //     return;
-    // }
+    if (eyes.left.blink || eyes.right.blink) {
+        console.log("success")
+        return;
+    }
     if (type === 'click') {
         this.screenXClicksArray.push([screenPos[0]]);
         this.screenYClicksArray.push([screenPos[1]]);
