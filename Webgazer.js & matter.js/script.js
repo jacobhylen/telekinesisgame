@@ -87,7 +87,7 @@ var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2,
 }});
 
 
-// create two boxes and a ground
+
 var boxC = Composites.softBody(200, 50, 5, 5, 0, 0, true, 20, { render: {
    visible: true,
   fillStyle: '#ff6f3c',
@@ -113,6 +113,32 @@ var boxH = Bodies.rectangle(200, 50, 80, 80, { render: {
   fillStyle: '#005691',
 }});
 
+let stack= Matter.Composites.stack(200,200, 4, 4,0, 0, function (x,y){
+  let sides = Math.round(Matter.Common.random(3,8));
+  return Matter.Bodies.polygon(x,y, sides, 50, {
+    render: {
+      fillStyle: 'pink'
+    }
+  });
+} 
+);
+
+//items with 3 sides belong to  vegetable grocery group
+
+//items with 4 sides belong to juice grocery grocery group
+
+//items with 5 side belong to fruit group
+
+//items with 6 sides belong to carbohydrates group
+
+//items with 7 sides belong to sauce group 
+
+//items with 8 sides belong to sweets group
+
+
+
+
+
 
 boxC.mass = 100;
 boxD.mass = 100;
@@ -126,7 +152,7 @@ var ground = Bodies.rectangle(
   window.innerHeight,
   window.innerWidth,
   60,
-  { isStatic: false }
+  { isStatic: true }
 );
 var ground2 = Bodies.rectangle(
   window.innerWidth / 2,
@@ -165,7 +191,7 @@ World.add(engine.world, [
   ground, 
   ground2, 
   wall1, 
-  wall2]);
+  stack,]);
 
 // run the engine
 Engine.run(engine);
@@ -203,14 +229,14 @@ setInterval(function () {
     boxH.position.x = 2000;
   }
   
-/*     if(eyeY > boxA.position.y){
-      boxA.force.y = calculateGravityForce(boxA);
+   if(eyeX > boxA.position.x){
+      boxA.force.x = calculateGravityForce(boxA);
     }
     if(eyeY < boxA.position.y){
       boxA.force.y = -calculateGravityForce(boxA);
     }
-    console.log(calculateGravityForce(boxA));
-   */
+    
+   
   boxC.bodies[10,11,12].force.x = gravityX(boxC.bodies[10, 11, 12]),
   boxC.bodies[10,11, 12].force.y = gravityY(boxC.bodies[10, 11, 12]);
 
