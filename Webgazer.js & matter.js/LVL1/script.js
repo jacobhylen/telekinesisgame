@@ -89,61 +89,61 @@ var render = Render.create({
 });
 
 // The static boxes
-var boxA = Bodies.rectangle(window.innerWidth / 2 - 100, window.innerHeight - 450, 60, 60, {isStatic: true, render: {
+var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
   strokeStyle: '#ff6f3c',
   lineWidth: 8
 }});
-var boxAB = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight - 450, 60, 60, {isStatic: true, render: {
+var boxAB = Bodies.rectangle(window.innerWidth / 2 - 100, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
-  strokeStyle: '#ff6f3c',
+  strokeStyle: '#61b15a',
   lineWidth: 8
 }});
-var boxAC = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight - 450, 60, 60, {isStatic: true, render: {
+var boxAC = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
-  strokeStyle: '#ff6f3c',
+  strokeStyle: '#f9ed69',
   lineWidth: 8
 }});
-var boxB = Bodies.rectangle(window.innerWidth / 2 + 100, window.innerHeight - 450, 60, 60, {isStatic: true, render: {
+var boxB = Bodies.rectangle(window.innerWidth / 2 + 100, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
   strokeStyle: '#005691',
   lineWidth: 8
 }});
-var boxBB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight - 450, 60, 60, {isStatic: true, render: {
+var boxBB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
-  strokeStyle: '#005691',
+  strokeStyle: '#e84545',
   lineWidth: 8
 }});
-var boxBC = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight - 450, 60, 60, {isStatic: true, render: {
+var boxBC = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
-  strokeStyle: '#005691',
+  strokeStyle: '#845ec2',
   lineWidth: 8
 }});
 
 // create two boxes and a ground
-var boxC = Bodies.rectangle(1200, 300, 60, 60, { render: {
+var boxC = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
   // orange
   fillStyle: '#ff6f3c',
 }});
-var boxD = Bodies.rectangle(200, 300, 60, 60, { render: {
+var boxD = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 650, 50, 50, { render: {
   //blue
-  fillStyle: '#005691',
+  fillStyle: '#61b15a',
 }});
-var boxE = Bodies.rectangle(1200, 300, 60, 60, { render: {
+var boxE = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
   // orange
-  fillStyle: '#ff6f3c',
+  fillStyle: '#00adb5',
 }});
-var boxF = Bodies.rectangle(200, 300, 60, 60, { render: {
+var boxF = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
   //blue
-  fillStyle: '#005691',
+  fillStyle: '#e84545',
 }});
-var boxG = Bodies.rectangle(1200, 300, 60, 60, { render: {
+var boxG = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 600, 50, 50, { render: {
   // orange
-  fillStyle: '#ff6f3c',
+  fillStyle: '#f9ed69',
 }});
-var boxH = Bodies.rectangle(200, 300, 60, 60, { render: {
+var boxH = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
   // blue
-  fillStyle: '#005691',
+  fillStyle: '#845ec2',
 }});
 
 
@@ -225,13 +225,13 @@ setInterval(function () {
   if (collisionABE.collided) {
     //boxE.position.x = 2000;
     //boxE.isStatic = true;
-    boxAB.render.fillStyle = '#ff6f3c';
+    boxAB.render.fillStyle = '#61b15a';
     collisionABEcheck = true;
   } 
   if (collisionACG.collided) {
     //boxG.position.x = 2000;
     //boxG.isStatic = true;
-    boxAC.render.fillStyle = '#ff6f3c';
+    boxAC.render.fillStyle = '#f9ed69';
     collisionACGcheck = true;
   } 
   if (collisionBD.collided) {
@@ -243,13 +243,13 @@ setInterval(function () {
   if (collisionBBF.collided) {
     //boxF.position.x = 2000;
     //boxF.isStatic = true;
-    boxBB.render.fillStyle = '#005691';
+    boxBB.render.fillStyle = '#e84545';
     collisionBBFcheck = true;
   }
   if (collisionBCH.collided) {
     //boxH.position.x = 2000;
     //boxH.isStatic = true;
-    boxBC.render.fillStyle = '#005691';
+    boxBC.render.fillStyle = '#845ec2';
     collisionBCHcheck = true;
   }
 
