@@ -114,18 +114,6 @@ let stack2= Matter.Composites.stack( 500, 300, 3, 4,0, 0, function (x,y){
 } 
 );
 
-//items with 3 sides belong to  vegetable grocery group
-
-//items with 4 sides belong to juice grocery grocery group
-
-//items with 5 side belong to fruit group
-
-//items with 6 sides belong to carbohydrates group
-
-//items with 7 sides belong to sauce group 
-
-//items with 8 sides belong to sweets group
-
 
 var leftShelf1 = Bodies.rectangle( 150, 400, 200, 20,{isStatic: true, render: {
     fillStyle: '#B0EB6E',
