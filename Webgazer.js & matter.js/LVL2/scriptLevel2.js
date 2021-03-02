@@ -84,19 +84,20 @@ var render = Render.create({
   },
 });
 
-// The static boxes
-var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
-  fillStyle: 'black',
-  strokeStyle: '#ff6f3c',
-  lineWidth: 8
+var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'White'}}, 20);
+var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'Red'}}, 20);
+
+var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
+  fillStyle: 'White',
 }});
-var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
-  fillStyle: 'black',
-  strokeStyle: '#005691',
-  lineWidth: 8
+var boxAB = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
+  fillStyle: 'Red',
 }});
 
-// create two boxes and a ground
+
+var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
+  fillStyle: 'Red',
+}});
 
 
 var ground = Bodies.rectangle(
@@ -127,11 +128,19 @@ var wall2 = Bodies.rectangle(
   window.innerHeight,
   { isStatic: true }
 );
+var middleWall = Bodies.rectangle(
+  window.innerWidth / 2,
+  window.innerHeight / 2,
+  50,
+  window.innerHeight,
+  { isStatic: true }
+);
 
-
+boxA.mass = 500;
+boxB.mass = 500;
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2]);
+World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, middleWall, portalHeaven, portalHell]);
 
 // run the engine
 Engine.run(engine);
@@ -140,7 +149,11 @@ Engine.run(engine);
 Render.run(render);
 
 setInterval(function () {
+  boxA.force.x = gravityX(boxA);
+  boxA.force.y = gravityY(boxA);
 
+  boxB.force.x = gravityX(boxA);
+  boxB.force.y = gravityY(boxA);
 }, 1);
 
 
