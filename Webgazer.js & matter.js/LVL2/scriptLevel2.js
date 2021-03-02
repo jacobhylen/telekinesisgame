@@ -1,7 +1,18 @@
-window.saveDataAcrossSessions = false;
+window.saveDataAcrossSessions = true;
 
 let eyeX = 0;
 let eyeY = 0;
+
+let calibrationCounter = 0;
+let body = document.getElementById("body");
+let calibrationMeter = document.getElementById("calibratingProgress");
+
+body.addEventListener("click", function(){
+  calibrationCounter += 3;
+  
+ 
+  calibrationMeter.style.width= calibrationCounter +"px";
+})
 
 let singularityMass = 1 * Math.pow(10, 12);
 
@@ -69,43 +80,25 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
+    background: 'background.png' 
   },
 });
+
+// The static boxes
+var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#ff6f3c',
+  lineWidth: 8
+}});
+var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#005691',
+  lineWidth: 8
+}});
 
 // create two boxes and a ground
-var boxA = Bodies.rectangle(400, 200, 40, 40, {
-  render: {
-    fillStyle: "#2EFC17",
-    strokeStyle: "#2EFC17",
-    lineWidth: 3,
-  },
-});
 
-boxA.mass = 1000;
-var boxB = Bodies.rectangle(450, 50, 240, 20, {
-  render: {
-    fillStyle: "#E024C4",
-    strokeStyle: "#E024C4",
-    lineWidth: 3,
-  },
-});
-boxB.mass = 1000;
-var boxC = Bodies.rectangle(400, 200, 40, 40, {
-  render: {
-    fillStyle: "#2EFC17",
-    strokeStyle: "#2EFC17",
-    lineWidth: 3,
-  },
-});
-boxC.mass = 300;
-var boxD = Bodies.rectangle(400, 200, 40, 40, {
-  render: {
-    fillStyle: "#2EFC17",
-    strokeStyle: "#2EFC17",
-    lineWidth: 3,
-  },
-});
-boxD.mass = 300;
+
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
   window.innerHeight,
@@ -113,7 +106,6 @@ var ground = Bodies.rectangle(
   60,
   { isStatic: true }
 );
-
 var ground2 = Bodies.rectangle(
   window.innerWidth / 2,
   10,
@@ -139,7 +131,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2]);
+World.add(engine.world, [ground, ground2, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);
@@ -147,29 +139,8 @@ Engine.run(engine);
 // run the renderer
 Render.run(render);
 
-
-
-
 setInterval(function () {
-  /*     if(eyeY > boxA.position.y){
-      boxA.force.y = calculateGravityForce(boxA);
-    }
-    if(eyeY < boxA.position.y){
-      boxA.force.y = -calculateGravityForce(boxA);
-    }
-    console.log(calculateGravityForce(boxA));
-   */
-  boxA.force.x = gravityX(boxA);
-  boxA.force.y = gravityY(boxA);
 
-  boxB.force.x = gravityX(boxB);
-  boxB.force.y = gravityY(boxB);
-
-  boxC.force.x = gravityX(boxC);
-  boxC.force.y = gravityY(boxC);
-
-  boxD.force.x = gravityX(boxD);
-  boxD.force.y = gravityY(boxD);
 }, 1);
 
 

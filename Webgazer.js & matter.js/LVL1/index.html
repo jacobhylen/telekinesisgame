@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<head>
+  <title>Webgazer.js + D3.js + matter.js</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body style="background-color: #2d2d2d">
+  <p
+    id="finished"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(620px, 280px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+      width: 400px;
+      visibility: hidden;
+    "
+  >
+    The level is complete!
+  </p>
+
+  <p
+  id="timer"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(50%, 80px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+      width:1400px;
+    ">
+   0.00s
+  </p>
+  <a href="../Intro/Intro.html">
+    <button
+      id="backButton"
+      class="button"
+      style="
+        visibility: hidden;
+        display: block;
+        position: fixed;
+        transform: translate3d(600px, 355px, 0px);
+        border-radius: 12px;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 16px;
+        transition-duration: 0.4s;
+      "
+    >
+      Go back to introduction
+    </button>
+  </a>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
+  <script src="./webgazer.js"></script>
+  <script src="./matter.js"></script>
+  <script src="script.js"></script>
+</body>
