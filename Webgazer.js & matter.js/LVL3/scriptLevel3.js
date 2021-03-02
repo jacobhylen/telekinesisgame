@@ -86,19 +86,29 @@ var render = Render.create({
 });
 
 // The static boxes
-var boxA = Bodies.rectangle(1200, 50, 80, 80, { render: {
+/*var boxA = Bodies.rectangle(1200, 50, 80, 80, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
 
-  boxA.mass = 500;
+  boxA.mass = 500;*/
 
 // create two boxes and a ground
-let stack= Matter.Composites.stack( 500, 300, 4, 4,0, 0, function (x,y){
-  let sides = Math.round(Matter.Common.random(3,8));
+let stack= Matter.Composites.stack( 500, 300, 3, 4,0, 0, function (x,y){
+  let sides = Math.round(Matter.Common.random(3,7));
   return Matter.Bodies.polygon(x,y, sides, 40, {
     render: {
-      fillStyle: 'pink'
+      fillStyle: '#E36744'
+    }
+  });
+} 
+);
+
+let stack2= Matter.Composites.stack( 500, 300, 3, 4,0, 0, function (x,y){
+  let sides2 = Math.round(Matter.Common.random(3,7));
+  return Matter.Bodies.polygon(x,y, sides2, 40, {
+    render: {
+      fillStyle: '#B0EB6E'
     }
   });
 } 
@@ -118,11 +128,20 @@ let stack= Matter.Composites.stack( 500, 300, 4, 4,0, 0, function (x,y){
 
 
 var leftShelf1 = Bodies.rectangle( 150, 400, 200, 20,{isStatic: true, render: {
-    fillStyle: 'green',
+    fillStyle: '#B0EB6E',
   }});
 
   var leftShelf2 = Bodies.rectangle( 150, 500, 200, 20,{isStatic: true, render: {
-    fillStyle: 'green',
+    fillStyle: '#B0EB6E',
+  }});
+
+
+  var rightShelf1 = Bodies.rectangle(1290, 400, 200, 20,{isStatic: true, render: {
+    fillStyle: '#E36744',
+  }});
+
+  var rightShelf2 = Bodies.rectangle( 1290, 500, 200, 20,{isStatic: true, render: {
+    fillStyle: '#E36744',
   }});
 
 var ground = Bodies.rectangle(
@@ -157,7 +176,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA, stack, leftShelf1, leftShelf2]);
+World.add(engine.world, [ground, ground2, wall1, wall2, stack, leftShelf1, leftShelf2, rightShelf1, rightShelf2, stack2]);
 
 // run the engine
 Engine.run(engine);
