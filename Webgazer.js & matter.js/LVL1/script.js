@@ -202,9 +202,16 @@ let collisionBDcheck = false;
 let collisionBBFcheck = false;
 let collisionBCHcheck = false;
 
-var runningTimer = setInterval(function(){
-  timePassed = Date.now() - start;
-  timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+
+var checkIfLoaded = setInterval(() => {
+  if(eyeX != 0){
+    start = Date.now();
+    clearInterval(checkIfLoaded);
+    setInterval(function(){
+      timePassed = Date.now() - start;
+      timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+    }, 10);
+  }
 }, 10);
 
 setInterval(function () {

@@ -15,6 +15,7 @@ let calibration = 0;
 
 let progressColor = calibration/calibrationExamplesGoal * 100;
 
+
 //Counts clicks & alters the calibration progress bar
 body.addEventListener("click", function(){
   calibrationCounter += 200 / calibrationExamplesGoal;
@@ -119,6 +120,16 @@ var render = Render.create({
  });
 
 World.add(world, mouseConstraint);
+
+async function success() {
+  await this.initializeBackend(backendName).success;
+    if (success) {
+    await this.setBackend(backendName);
+    return;
+  }
+}
+
+success();
 
 let ball = Matter.Bodies.circle(innerWidth / 2, innerHeight / 2,20, {isStatic: true, render: {
   fillStyle: '#8769F5',
