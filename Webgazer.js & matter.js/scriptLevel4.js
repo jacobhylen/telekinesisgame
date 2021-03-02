@@ -9,14 +9,17 @@ let calibrationMeter = document.getElementById("calibratingProgress");
 
 var start = Date.now();
 
-body.addEventListener("click", function(){
-  calibrationCounter += 3;
-  
- 
-  calibrationMeter.style.width= calibrationCounter +"px";
-})
+let singularityMass = 1 * Math.pow(10, 12);
 
-let singularityMass = 1 * Math.pow(10, 13);
+let boxAAttached = false;
+let boxBAttached = false;
+let boxCAttached = false;
+let boxDAttached = false;
+let boxFAttached = false;
+let boxGAttached = false;
+let boxHAttached = false;
+let boxIAttached = false;
+
 
 window.onload = async function () {
   if (!window.saveDataAcrossSessions) {
@@ -46,6 +49,11 @@ window.onbeforeunload = function () {
   }
 };
 
+setInterval(function(){
+console.log(eyeY);
+console.log(eyeX);
+},10)
+
 var webgazerCanvas = null;
 
 var previewWidth = webgazer.params.videoViewerWidth;
@@ -68,7 +76,8 @@ var collisionEyeListener = async function (data, clock) {
 var Engine = Matter.Engine,
   Render = Matter.Render,
   World = Matter.World,
-  Bodies = Matter.Bodies;
+  Bodies = Matter.Bodies,
+  Constraint = Matter.Constraint;
 
 // create an engine
 var engine = Engine.create();
@@ -88,13 +97,13 @@ var render = Render.create({
 });
 
 // The static boxes
-var boxA = Bodies.rectangle(1200, 50, 30, 30, { render: {
+var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
   boxA.mass = 100;
 
-  var boxB = Bodies.rectangle(1300, 50, 30, 30, { render: {
+  var boxB = Bodies.rectangle(300, 300, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
@@ -106,31 +115,31 @@ var boxA = Bodies.rectangle(1200, 50, 30, 30, { render: {
   }});
   boxC.mass = 100;
 
-  var boxD = Bodies.rectangle(1500, 50, 30, 30, { render: {
+  var boxD = Bodies.rectangle(1300, 500, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
   boxD.mass = 100;
 
-  var boxF = Bodies.rectangle(1200, 50, 30, 30, { render: {
+  var boxF = Bodies.rectangle(100, 900, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
   boxF.mass = 100;
 
-  var boxG = Bodies.rectangle(1300, 50, 30, 30, { render: {
+  var boxG = Bodies.rectangle(1600, 800, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
   boxG.mass = 100;
 
-  var boxH = Bodies.rectangle(1400, 50, 30, 30, { render: {
+  var boxH = Bodies.rectangle(1400, 300, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
   boxH.mass = 100;
 
-  var boxI = Bodies.rectangle(1500, 50, 30, 30, { render: {
+  var boxI = Bodies.rectangle(100, 50, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
@@ -168,10 +177,72 @@ var wall2 = Bodies.rectangle(
   { isStatic: true }
 );
 
+var boxAConstraint = Constraint.create({
+  bodyA: boxA,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
 
+var boxBConstraint = Constraint.create({
+  bodyA: boxB,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxCConstraint = Constraint.create({
+  bodyA: boxC,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxDConstraint = Constraint.create({
+  bodyA: boxD,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxFConstraint = Constraint.create({
+  bodyA: boxF,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxGConstraint = Constraint.create({
+  bodyA: boxG,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxHConstraint = Constraint.create({
+  bodyA: boxH,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxIConstraint = Constraint.create({
+  bodyA: boxI,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+boxAConstraint.render.visible = false
+boxBConstraint.render.visible = false
+boxCConstraint.render.visible = false
+boxDConstraint.render.visible = false
+boxFConstraint.render.visible = false
+boxGConstraint.render.visible = false
+boxHConstraint.render.visible = false
+boxIConstraint.render.visible = false
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxF, boxG, boxH, boxI]);
+World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxF, boxG, boxH, boxI, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint]);
 
 // run the engine
 Engine.run(engine);
@@ -205,7 +276,46 @@ setInterval(function () {
     boxI.force.x = gravityX(boxI);
     boxI.force.y = gravityY(boxI);
 
-
+    if(getDistanceToSingularity(boxA) < 50 && boxAAttached == false){
+      boxAConstraint.stiffness = 0.005;
+      boxAAttached = true;
+    }
+    if(getDistanceToSingularity(boxB) < 50 && boxBAttached == false){
+      boxBConstraint.stiffness = 0.005;
+      boxBAttached = true;
+    }
+    if(getDistanceToSingularity(boxC) < 50 && boxCAttached == false){
+      boxCConstraint.stiffness = 0.005;
+      boxCAttached = true;
+    }
+    if(getDistanceToSingularity(boxD) < 50 && boxDAttached == false){
+      boxDConstraint.stiffness = 0.005;
+      boxDAttached = true;
+    }
+    if(getDistanceToSingularity(boxF) < 50 && boxFAttached == false){
+      boxFConstraint.stiffness = 0.005;
+      boxFAttached = true;
+    }
+    if(getDistanceToSingularity(boxG) < 50 && boxGAttached == false){
+      boxGConstraint.stiffness = 0.005;
+      boxGAttached = true;
+    }
+    if(getDistanceToSingularity(boxH) < 50 && boxHAttached == false){
+      boxHConstraint.stiffness = 0.005;
+      boxHAttached = true;
+    }
+    if(getDistanceToSingularity(boxI) < 50 && boxIAttached == false){
+      boxIConstraint.stiffness = 0.005;
+      boxIAttached = true;
+    }
+      boxAConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxBConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxCConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxDConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxFConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxGConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxHConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxIConstraint.pointB =  { x: eyeX, y: eyeY };
     
 }, 1);
 
