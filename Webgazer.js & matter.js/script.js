@@ -114,19 +114,19 @@ var boxH = Bodies.rectangle(200, 50, 80, 80, { render: {
 }});
 
 
-boxC.mass = 500;
-boxD.mass = 500;
-boxE.mass = 500;
-boxF.mass = 500;
-boxG.mass = 500;
-boxH.mass = 500;
+boxC.mass = 100;
+boxD.mass = 100;
+boxE.mass = 100;
+boxF.mass = 100;
+boxG.mass = 100;
+boxH.mass = 100;
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
   window.innerHeight,
   window.innerWidth,
   60,
-  { isStatic: true }
+  { isStatic: false }
 );
 var ground2 = Bodies.rectangle(
   window.innerWidth / 2,
