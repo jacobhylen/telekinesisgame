@@ -96,7 +96,7 @@ var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight - 50
 }});
 var boxAB = Bodies.rectangle(window.innerWidth / 2 - 100, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
-  strokeStyle: '#61b15a',
+  strokeStyle: '#005691',
   lineWidth: 8
 }});
 var boxAC = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
@@ -106,7 +106,7 @@ var boxAC = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight - 5
 }});
 var boxB = Bodies.rectangle(window.innerWidth / 2 + 100, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
-  strokeStyle: '#005691',
+  strokeStyle: '#61b15a',
   lineWidth: 8
 }});
 var boxBB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
@@ -131,7 +131,7 @@ var boxD = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 650, 50, 5
 }});
 var boxE = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
   // orange
-  fillStyle: '#00adb5',
+  fillStyle: '#005691',
 }});
 var boxF = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
   //blue
@@ -202,9 +202,21 @@ let collisionBDcheck = false;
 let collisionBBFcheck = false;
 let collisionBCHcheck = false;
 
-var runningTimer = setInterval(function(){
-  timePassed = Date.now() - start;
-  timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+let levelComplete = false;
+
+var checkIfLoaded = setInterval(() => {
+  if(eyeX != 0){
+    
+    start = Date.now();
+    clearInterval(checkIfLoaded);
+    setInterval(function(){
+      if (levelComplete == false){
+      timePassed = Date.now() - start;
+      timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+      }
+    }, 10);
+  }
+
 }, 10);
 
 setInterval(function () {
@@ -225,7 +237,7 @@ setInterval(function () {
   if (collisionABE.collided) {
     //boxE.position.x = 2000;
     //boxE.isStatic = true;
-    boxAB.render.fillStyle = '#61b15a';
+    boxAB.render.fillStyle = '#005691';
     collisionABEcheck = true;
   } 
   if (collisionACG.collided) {
@@ -237,7 +249,7 @@ setInterval(function () {
   if (collisionBD.collided) {
     //boxD.position.x = 2000;
     //boxD.isStatic = true;
-    boxB.render.fillStyle = '#005691';
+    boxB.render.fillStyle = '#61b15a';
     collisionBDcheck = true; 
   } 
   if (collisionBBF.collided) {
@@ -254,9 +266,9 @@ setInterval(function () {
   }
 
   if (collisionACcheck && collisionABEcheck && collisionACGcheck && collisionBDcheck && collisionBBFcheck && collisionBCHcheck) {
+    levelComplete = true;
     finishedPlaying.style.visibility = "visible";
     finishedButton.style.visibility = "visible";
-    clearInterval(runningTimer)
   } else {
     finishedPlaying.style.visibility = "hidden";
   }
