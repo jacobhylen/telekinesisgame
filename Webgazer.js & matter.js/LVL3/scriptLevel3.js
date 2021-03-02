@@ -96,7 +96,7 @@ var boxA = Bodies.rectangle(1200, 50, 80, 80, { render: {
 // create two boxes and a ground
 let stack= Matter.Composites.stack( 500, 300, 4, 4,0, 0, function (x,y){
   let sides = Math.round(Matter.Common.random(3,8));
-  return Matter.Bodies.polygon(x,y, sides, 50, {
+  return Matter.Bodies.polygon(x,y, sides, 40, {
     render: {
       fillStyle: 'pink'
     }
@@ -116,12 +116,14 @@ let stack= Matter.Composites.stack( 500, 300, 4, 4,0, 0, function (x,y){
 
 //items with 8 sides belong to sweets group
 
-var leftShelf1 = Bodies.rectangle( 100, 100, 100, 20, { render: 
-  {
-    fillStyle: 'black',
-    isStatic: true,
-  }},
-);
+
+var leftShelf1 = Bodies.rectangle( 150, 400, 200, 20,{isStatic: true, render: {
+    fillStyle: 'green',
+  }});
+
+  var leftShelf2 = Bodies.rectangle( 150, 500, 200, 20,{isStatic: true, render: {
+    fillStyle: 'green',
+  }});
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
@@ -155,7 +157,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA, stack, leftShelf1]);
+World.add(engine.world, [ground, ground2, wall1, wall2, boxA, stack, leftShelf1, leftShelf2]);
 
 // run the engine
 Engine.run(engine);
