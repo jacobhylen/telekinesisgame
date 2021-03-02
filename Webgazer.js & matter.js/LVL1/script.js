@@ -11,7 +11,8 @@ var start = Date.now();
 let eyeX = 0;
 let eyeY = 0;
 
-let singularityMass = 1 * Math.pow(10, 12);
+let singularityMass = 1 * Math.pow(10, 11);
+let singularityMassMagnet = 1 * Math.pow(10, 12);
 
 window.onload = async function () {
   if (!window.saveDataAcrossSessions) {
@@ -88,41 +89,61 @@ var render = Render.create({
 });
 
 // The static boxes
-var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
+var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
   strokeStyle: '#ff6f3c',
   lineWidth: 8
 }});
-var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: true, render: {
+var boxAB = Bodies.rectangle(window.innerWidth / 2 - 100, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#61b15a',
+  lineWidth: 8
+}});
+var boxAC = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#f9ed69',
+  lineWidth: 8
+}});
+var boxB = Bodies.rectangle(window.innerWidth / 2 + 100, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
   fillStyle: 'black',
   strokeStyle: '#005691',
   lineWidth: 8
 }});
+var boxBB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#e84545',
+  lineWidth: 8
+}});
+var boxBC = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight - 500, 50, 50, {isStatic: true, render: {
+  fillStyle: 'black',
+  strokeStyle: '#845ec2',
+  lineWidth: 8
+}});
 
 // create two boxes and a ground
-var boxC = Bodies.rectangle(1200, 50, 80, 80, { render: {
+var boxC = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
   // orange
   fillStyle: '#ff6f3c',
 }});
-var boxD = Bodies.rectangle(200, 50, 80, 80, { render: {
+var boxD = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 650, 50, 50, { render: {
   //blue
-  fillStyle: '#005691',
+  fillStyle: '#61b15a',
 }});
-var boxE = Bodies.rectangle(1200, 50, 80, 80, { render: {
+var boxE = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
   // orange
-  fillStyle: '#ff6f3c',
+  fillStyle: '#00adb5',
 }});
-var boxF = Bodies.rectangle(200, 50, 80, 80, { render: {
+var boxF = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
   //blue
-  fillStyle: '#005691',
+  fillStyle: '#e84545',
 }});
-var boxG = Bodies.rectangle(1200, 50, 80, 80, { render: {
+var boxG = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 600, 50, 50, { render: {
   // orange
-  fillStyle: '#ff6f3c',
+  fillStyle: '#f9ed69',
 }});
-var boxH = Bodies.rectangle(200, 50, 80, 80, { render: {
+var boxH = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
   // blue
-  fillStyle: '#005691',
+  fillStyle: '#845ec2',
 }});
 
 
@@ -165,7 +186,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, ground, ground2, wall1, wall2]);
+World.add(engine.world, [boxA, boxAB, boxAC, boxB, boxBB, boxBC, boxC, boxD, boxE, boxF, boxG, boxH, ground, ground2, wall1, wall2]);
 
 // run the engine
 Engine.run(engine);
@@ -174,12 +195,12 @@ Engine.run(engine);
 Render.run(render);
 
 let collisionACcheck = false;
-let collisionAEcheck = false;
-let collisionAGcheck = false;
+let collisionABEcheck = false;
+let collisionACGcheck = false;
 
 let collisionBDcheck = false; 
-let collisionBFcheck = false;
-let collisionBHcheck = false;
+let collisionBBFcheck = false;
+let collisionBCHcheck = false;
 
 var runningTimer = setInterval(function(){
   timePassed = Date.now() - start;
@@ -188,34 +209,51 @@ var runningTimer = setInterval(function(){
 
 setInterval(function () {
   let collisionAC = Matter.SAT.collides(boxA, boxC);
-  let collisionAE = Matter.SAT.collides(boxA, boxE);
-  let collisionAG = Matter.SAT.collides(boxA, boxG);
+  let collisionABE = Matter.SAT.collides(boxAB, boxE);
+  let collisionACG = Matter.SAT.collides(boxAC, boxG);
 
   let collisionBD = Matter.SAT.collides(boxB, boxD);
-  let collisionBF = Matter.SAT.collides(boxB, boxF);
-  let collisionBH = Matter.SAT.collides(boxB, boxH);
+  let collisionBBF = Matter.SAT.collides(boxBB, boxF);
+  let collisionBCH = Matter.SAT.collides(boxBC, boxH);
 
   if (collisionAC.collided) {
-    boxC.position.x = 2000;
+    //boxC.position.x = 2000;
+    //boxC.isStatic = true;
+    boxA.render.fillStyle = '#ff6f3c';
     collisionACcheck = true;
-  } else if (collisionAE.collided) {
-    boxE.position.x = 2000;
-    collisionAEcheck = true;
-  } else if (collisionAG.collided) {
-    boxG.position.x = 2000;
-    collisionAGcheck = true;
-  } else if (collisionBD.collided) {
-    boxD.position.x = 2000;
+  }
+  if (collisionABE.collided) {
+    //boxE.position.x = 2000;
+    //boxE.isStatic = true;
+    boxAB.render.fillStyle = '#61b15a';
+    collisionABEcheck = true;
+  } 
+  if (collisionACG.collided) {
+    //boxG.position.x = 2000;
+    //boxG.isStatic = true;
+    boxAC.render.fillStyle = '#f9ed69';
+    collisionACGcheck = true;
+  } 
+  if (collisionBD.collided) {
+    //boxD.position.x = 2000;
+    //boxD.isStatic = true;
+    boxB.render.fillStyle = '#005691';
     collisionBDcheck = true; 
-  } else if (collisionBF.collided) {
-    boxF.position.x = 2000;
-    collisionBFcheck = true;
-  } else if (collisionBH.collided) {
-    boxH.position.x = 2000;
-    collisionBHcheck = true;
+  } 
+  if (collisionBBF.collided) {
+    //boxF.position.x = 2000;
+    //boxF.isStatic = true;
+    boxBB.render.fillStyle = '#e84545';
+    collisionBBFcheck = true;
+  }
+  if (collisionBCH.collided) {
+    //boxH.position.x = 2000;
+    //boxH.isStatic = true;
+    boxBC.render.fillStyle = '#845ec2';
+    collisionBCHcheck = true;
   }
 
-  if (collisionACcheck && collisionAEcheck && collisionAGcheck && collisionBDcheck && collisionBFcheck && collisionBHcheck) {
+  if (collisionACcheck && collisionABEcheck && collisionACGcheck && collisionBDcheck && collisionBBFcheck && collisionBCHcheck) {
     finishedPlaying.style.visibility = "visible";
     finishedButton.style.visibility = "visible";
     clearInterval(runningTimer)
@@ -231,29 +269,70 @@ setInterval(function () {
     }
     console.log(calculateGravityForce(boxA));
    */
-  boxC.force.x = gravityX(boxC);
-  boxC.force.y = gravityY(boxC);
+  boxC.force.x = gravityX(boxC) + gravityXmagnet(boxC, boxA);;
+  boxC.force.y = gravityY(boxC) + gravityYmagnet(boxC, boxA);;
 
-  boxD.force.x = gravityX(boxD);
-  boxD.force.y = gravityY(boxD);
+  boxD.force.x = gravityX(boxD) + gravityXmagnet(boxD, boxB);;
+  boxD.force.y = gravityY(boxD) + gravityYmagnet(boxD, boxB);;
 
 
-  boxE.force.x = gravityX(boxE);
-  boxE.force.y = gravityY(boxE);
+  boxE.force.x = gravityX(boxE) + gravityXmagnet(boxE, boxAB);;
+  boxE.force.y = gravityY(boxE) + gravityYmagnet(boxE, boxAB);;
 
-  boxF.force.x = gravityX(boxF);
-  boxF.force.y = gravityY(boxF);
+  boxF.force.x = gravityX(boxF) + gravityXmagnet(boxF, boxBB);;
+  boxF.force.y = gravityY(boxF) + gravityYmagnet(boxF, boxBB);;
 
-  boxG.force.x = gravityX(boxG);
-  boxG.force.y = gravityY(boxG);
+  boxG.force.x = gravityX(boxG) + gravityXmagnet(boxG, boxAC);;
+  boxG.force.y = gravityY(boxG) + gravityYmagnet(boxG, boxAC);;
 
-  boxH.force.x = gravityX(boxH);
-  boxH.force.y = gravityY(boxH);
+  boxH.force.x = gravityX(boxH) + gravityXmagnet(boxH, boxBC);
+  boxH.force.y = gravityY(boxH) + gravityYmagnet(boxH, boxBC);
 
-  
 }, 1);
 
 
+function getDistanceToSingularityMagnets(object, magnet) {
+  let distance = Math.sqrt(
+    Math.pow(object.position.x - magnet.position.x, 2) +
+      Math.pow(object.position.y - magnet.position.y, 2)
+  );
+
+  return distance;
+}
+
+function gravityXmagnet(object, magnet) {
+  let percentage =
+    (magnet.position.x - object.position.x) / getDistanceToSingularityMagnets(object, magnet);
+  let gravityForce = calculateGravityForceMagnets(object, magnet);
+
+  let gravityX = gravityForce * percentage;
+
+  return gravityX;
+}
+
+function gravityYmagnet(object, magnet) {
+  let percentage =
+    (magnet.position.y - object.position.y) / getDistanceToSingularityMagnets(object, magnet);
+  let gravityForce = calculateGravityForceMagnets(object, magnet);
+
+  let gravityY = gravityForce * percentage;
+
+  return gravityY;
+}
+
+function calculateGravityForceMagnets(object, magnet) {
+  let FgM =
+    6.673 *
+    Math.pow(10, -11) *
+    ((singularityMassMagnet * object.mass) /
+      Math.pow(getDistanceToSingularityMagnets(object, magnet), 2));
+
+  if (FgM > 1) {
+    FgM = 1;
+  }
+
+  return FgM;
+}
 
 function getDistanceToSingularity(object) {
   let distance = Math.sqrt(
