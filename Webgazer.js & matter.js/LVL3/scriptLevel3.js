@@ -94,7 +94,34 @@ var boxA = Bodies.rectangle(1200, 50, 80, 80, { render: {
   boxA.mass = 500;
 
 // create two boxes and a ground
+let stack= Matter.Composites.stack( 500, 300, 4, 4,0, 0, function (x,y){
+  let sides = Math.round(Matter.Common.random(3,8));
+  return Matter.Bodies.polygon(x,y, sides, 50, {
+    render: {
+      fillStyle: 'pink'
+    }
+  });
+} 
+);
 
+//items with 3 sides belong to  vegetable grocery group
+
+//items with 4 sides belong to juice grocery grocery group
+
+//items with 5 side belong to fruit group
+
+//items with 6 sides belong to carbohydrates group
+
+//items with 7 sides belong to sauce group 
+
+//items with 8 sides belong to sweets group
+
+var leftShelf1 = Bodies.rectangle( 100, 100, 100, 20, { render: 
+  {
+    fillStyle: 'black',
+    isStatic: true,
+  }},
+);
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
@@ -128,7 +155,7 @@ var wall2 = Bodies.rectangle(
 
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA]);
+World.add(engine.world, [ground, ground2, wall1, wall2, boxA, stack, leftShelf1]);
 
 // run the engine
 Engine.run(engine);
