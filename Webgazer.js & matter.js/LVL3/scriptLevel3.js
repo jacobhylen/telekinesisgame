@@ -94,7 +94,7 @@ var render = Render.create({
   boxA.mass = 500;*/
 
 // create two boxes and a ground
-let stack= Matter.Composites.stack( 500, 300, 3, 4,0, 0, function (x,y){
+let stack= Matter.Composites.stack( 500, 300, 2, 4,0, 0, function (x,y){
   let sides = Math.round(Matter.Common.random(3,7));
   return Matter.Bodies.polygon(x,y, sides, 40, {
     render: {
@@ -115,11 +115,11 @@ let stack2= Matter.Composites.stack( 500, 300, 3, 4,0, 0, function (x,y){
 );
 
 
-var leftShelf1 = Bodies.rectangle( 150, 400, 200, 20,{isStatic: true, render: {
+var leftShelf1 = Bodies.rectangle( 200, 400, 300, 20,{isStatic: true, render: {
     fillStyle: '#B0EB6E',
   }});
 
-  var leftShelf2 = Bodies.rectangle( 150, 500, 200, 20,{isStatic: true, render: {
+  var leftShelf2 = Bodies.rectangle( 200, 500, 300, 20,{isStatic: true, render: {
     fillStyle: '#B0EB6E',
   }});
 
