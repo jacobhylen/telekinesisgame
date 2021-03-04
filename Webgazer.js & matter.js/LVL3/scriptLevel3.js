@@ -117,6 +117,7 @@ Events.on(render, 'afterRender', function() {
   context.lineTo(endPoint.x, endPoint.y);
   if (collisions.length > 0) {
       context.strokeStyle = 'black';
+    
       //add the stickiness here probably.
       /*collision.bodyA.position.x = eyeX;
       collision.bodyA.position.y = eyeY;*/
