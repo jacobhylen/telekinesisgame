@@ -35,7 +35,7 @@ window.onload = async function () {
   webgazerInstance
     .showVideoPreview(true) /* shows all video previews */
     .showPredictionPoints(
-      true
+      false
     ) /* shows a square every 100 milliseconds where current prediction is */
     .applyKalmanFilter(true); // Kalman Filter defaults to on.
   webgazer.setGazeListener(collisionEyeListener);
@@ -49,10 +49,7 @@ window.onbeforeunload = function () {
   }
 };
 
-setInterval(function(){
-console.log(eyeY);
-console.log(eyeX);
-},10)
+
 
 var webgazerCanvas = null;
 
@@ -96,10 +93,76 @@ var render = Render.create({
   },
 });
 
-// The static boxes
+
+let cloud1 = Bodies.circle(600, 100, 100,{
+  collisionFilter: {
+      group:-1,
+      category:2,
+      mask:0
+  },
+  render: {
+      fillStyle: "hsla(294, 28%, 50%, 0.68)"
+  }
+})
+let cloud2 = Bodies.circle(500, 200, 100,{
+  collisionFilter: {
+      group:-1,
+      category:2,
+      mask:0
+  },
+  render: {
+      fillStyle: "hsla(294, 28%, 50%, 0.68)"
+  }
+})
+let cloud3 = Bodies.circle(300, 300, 100,{
+  collisionFilter: {
+      group:-1,
+      category:2,
+      mask:0
+  },
+  render: {
+      fillStyle: "hsla(294, 28%, 50%, 0.68)"
+  }
+})
+
+var cloud1Constraint = Constraint.create({
+  bodyA: cloud1,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.4,
+  length:10,
+  collisionFilter: {
+    group:-1,
+    category:2,
+    mask:2
+}
+});;
+var cloud2Constraint = Constraint.create({
+  bodyA: cloud2,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.05,
+  length:30,
+  collisionFilter: {
+    group:-1,
+    category:2,
+    mask:2
+}
+});;
+var cloud3Constraint = Constraint.create({
+  bodyA: cloud3,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.03,
+  length:50,
+  collisionFilter: {
+    group:-1,
+    category:2,
+    mask:2
+}
+});;
+
+
 var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    fillStyle: 'red',
   }});
   boxA.mass = 100;
 
@@ -241,8 +304,12 @@ boxGConstraint.render.visible = false
 boxHConstraint.render.visible = false
 boxIConstraint.render.visible = false
 
+cloud1Constraint.render.visible = false;
+cloud2Constraint.render.visible = false;
+cloud3Constraint.render.visible = false;
+
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxF, boxG, boxH, boxI, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint]);
+World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxF, boxG, boxH, boxI, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint,cloud1, cloud2, cloud3, cloud1Constraint, cloud2Constraint, cloud3Constraint]);
 
 // run the engine
 Engine.run(engine);
@@ -289,23 +356,23 @@ setInterval(function () {
       boxCAttached = true;
     }
     if(getDistanceToSingularity(boxD) < 50 && boxDAttached == false){
-      boxDConstraint.stiffness = 0.005;
+      boxDConstraint.stiffness = 0.1;
       boxDAttached = true;
     }
     if(getDistanceToSingularity(boxF) < 50 && boxFAttached == false){
-      boxFConstraint.stiffness = 0.005;
+      boxFConstraint.stiffness = 0.1;
       boxFAttached = true;
     }
     if(getDistanceToSingularity(boxG) < 50 && boxGAttached == false){
-      boxGConstraint.stiffness = 0.005;
+      boxGConstraint.stiffness = 0.1;
       boxGAttached = true;
     }
     if(getDistanceToSingularity(boxH) < 50 && boxHAttached == false){
-      boxHConstraint.stiffness = 0.005;
+      boxHConstraint.stiffness = 0.1;
       boxHAttached = true;
     }
     if(getDistanceToSingularity(boxI) < 50 && boxIAttached == false){
-      boxIConstraint.stiffness = 0.005;
+      boxIConstraint.stiffness = 0.1;
       boxIAttached = true;
     }
       boxAConstraint.pointB =  { x: eyeX, y: eyeY };
@@ -316,6 +383,10 @@ setInterval(function () {
       boxGConstraint.pointB =  { x: eyeX, y: eyeY };
       boxHConstraint.pointB =  { x: eyeX, y: eyeY };
       boxIConstraint.pointB =  { x: eyeX, y: eyeY };
+
+      cloud1Constraint.pointB =  { x: eyeX, y: eyeY };
+      cloud2Constraint.pointB =  { x: eyeX, y: eyeY };
+      cloud3Constraint.pointB =  { x: eyeX, y: eyeY };
     
 }, 1);
 
