@@ -3,16 +3,6 @@ window.saveDataAcrossSessions = true;
 let eyeX = 0;
 let eyeY = 0;
 
-let calibrationCounter = 0;
-let body = document.getElementById("body");
-let calibrationMeter = document.getElementById("calibratingProgress");
-
-body.addEventListener("click", function(){
-  calibrationCounter += 3;
-  
- 
-  calibrationMeter.style.width= calibrationCounter +"px";
-})
 
 let singularityMass = 1 * Math.pow(10, 12);
 
@@ -80,12 +70,12 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
-    background: 'background.png' 
+    background: 'rgba(255, 217, 0, 0)',
   },
 });
 
-var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'White'}}, 20);
-var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'Red'}}, 20);
+//var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'White'}}, 20);
+var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'Yellow'}}, 20);
 
 var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
   fillStyle: 'White',
@@ -96,7 +86,7 @@ var boxAB = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2
 
 
 var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
-  fillStyle: 'Red',
+  fillStyle: 'Yellow',
 }});
 
 
@@ -140,7 +130,7 @@ boxA.mass = 500;
 boxB.mass = 500;
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, middleWall, portalHeaven, portalHell]);
+World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, middleWall, portalHell]);
 
 // run the engine
 Engine.run(engine);
@@ -200,3 +190,85 @@ function gravityY(object) {
 
   return gravityY;
 }
+
+//KOPIERAT FRÅN LVL 1
+/*
+let collisionACcheck = false;
+let collisionABEcheck = false;
+let collisionACGcheck = false;
+
+let collisionBDcheck = false; 
+let collisionBBFcheck = false;
+let collisionBCHcheck = false;
+
+let levelComplete = false;
+
+var checkIfLoaded = setInterval(() => {
+  if(eyeX != 0){
+    
+    start = Date.now();
+    clearInterval(checkIfLoaded);
+    setInterval(function(){
+      if (levelComplete == false){
+      timePassed = Date.now() - start;
+      timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+      }
+    }, 10);
+  }
+
+}, 10);
+
+setInterval(function () {
+  let collisionAC = Matter.SAT.collides(boxA, boxC);
+  let collisionABE = Matter.SAT.collides(boxAB, boxE);
+  let collisionACG = Matter.SAT.collides(boxAC, boxG);
+
+  let collisionBD = Matter.SAT.collides(boxB, boxD);
+  let collisionBBF = Matter.SAT.collides(boxBB, boxF);
+  let collisionBCH = Matter.SAT.collides(boxBC, boxH);
+
+  if (collisionAC.collided) {
+    //boxC.position.x = 2000;
+    //boxC.isStatic = true;
+    boxA.render.fillStyle = '#ff6f3c';
+    collisionACcheck = true;
+  }
+  if (collisionABE.collided) {
+    //boxE.position.x = 2000;
+    //boxE.isStatic = true;
+    boxAB.render.fillStyle = '#005691';
+    collisionABEcheck = true;
+  } 
+  if (collisionACG.collided) {
+    //boxG.position.x = 2000;
+    //boxG.isStatic = true;
+    boxAC.render.fillStyle = '#f9ed69';
+    collisionACGcheck = true;
+  } 
+  if (collisionBD.collided) {
+    //boxD.position.x = 2000;
+    //boxD.isStatic = true;
+    boxB.render.fillStyle = '#61b15a';
+    collisionBDcheck = true; 
+  } 
+  if (collisionBBF.collided) {
+    //boxF.position.x = 2000;
+    //boxF.isStatic = true;
+    boxBB.render.fillStyle = '#e84545';
+    collisionBBFcheck = true;
+  }
+  if (collisionBCH.collided) {
+    //boxH.position.x = 2000;
+    //boxH.isStatic = true;
+    boxBC.render.fillStyle = '#845ec2';
+    collisionBCHcheck = true;
+  }
+
+  if (collisionACcheck && collisionABEcheck && collisionACGcheck && collisionBDcheck && collisionBBFcheck && collisionBCHcheck) {
+    levelComplete = true;
+    finishedPlaying.style.visibility = "visible";
+    finishedButton.style.visibility = "visible";
+  } else {
+    finishedPlaying.style.visibility = "hidden";
+  }
+*/
