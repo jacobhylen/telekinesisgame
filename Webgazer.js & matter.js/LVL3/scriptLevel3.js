@@ -70,7 +70,13 @@ var Engine = Matter.Engine,
   World = Matter.World,
   MouseConstraint = Matter.MouseConstraint,
   Mouse = Matter.Mouse,
-  Bodies = Matter.Bodies;
+  Bodies = Matter.Bodies,
+  Query = Matter.Query,
+  Runner = Matter.Runner,
+  Composite = Matter.Composite,
+  Composites = Matter.Composites,
+  Events = Matter.Events,
+  Vertices = Matter.Vertices;
 
 // create an engine
 var engine = Engine.create();
@@ -96,21 +102,46 @@ var boxA = Bodies.rectangle(1200, 200, 100, 100, {
   fillStyle: '#ff6f3c',
 });
 
-var mouse = Mouse.create(render.canvas),
-  mouseConstraint = MouseConstraint.create(engine, {
-    mouse: mouse,
-    constraint: {
-      stiffness: 0.2,
-      render: {
-        visible: false
-      }
-    }
-  });
+Events.on(render, 'afterRender', function() {
+      context = render.context,
+      bodies = Composite.allBodies(engine.world),
+      startPoint = { x: window.innerWidth/2, y: window.innerHeight/2 },
+      endPoint = { x: eyeX, y: eyeY};
 
+  var collisions = Query.ray(bodies, startPoint, endPoint);
+
+  Render.startViewTransform(render);
+
+  context.beginPath();
+  context.moveTo(startPoint.x, startPoint.y);
+  context.lineTo(endPoint.x, endPoint.y);
+  if (collisions.length > 0) {
+      context.strokeStyle = 'black';
+      //add the stickiness here probably.
+      /*collision.bodyA.position.x = eyeX;
+      collision.bodyA.position.y = eyeY;*/
+  } else {
+      context.strokeStyle = '#555';
+  }
+  context.lineWidth = 0.5;
+  context.stroke();
+
+
+  for (var i = 0; i < collisions.length; i++) {
+    var collision = collisions[i];
+    context.rect(collision.bodyA.position.x - 4.5, collision.bodyA.position.y - 4.5, 8, 8);
+
+}
+
+context.fillStyle = 'rgba(255,165,0,0.7)';
+context.fill();
+
+Render.endViewTransform(render);
+});
 
 
 // keep the mouse in sync with rendering
-render.mouse = mouse;
+
 
 // create two stacks of objects
 let stack = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
@@ -141,14 +172,14 @@ let stack3 = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
 });
 
 
-var lowerLeftShelf = Bodies.rectangle(200, 400, 300, 20, {
+var lowerLeftShelf = Bodies.rectangle(200, 500, 300, 20, {
   isStatic: true,
   render: {
     fillStyle: '#B0EB6E',
   }
 });
 
-var lowerLeftShelf1 = Bodies.rectangle(200, 500, 300, 20, {
+var lowerLeftShelf1 = Bodies.rectangle(200, 600, 300, 20, {
   isStatic: true,
   render: {
     fillStyle: '#B0EB6E',
@@ -156,14 +187,14 @@ var lowerLeftShelf1 = Bodies.rectangle(200, 500, 300, 20, {
 });
 
 
-var upperLeftShelf = Bodies.rectangle(200, 150, 300, 20, {
+var upperLeftShelf = Bodies.rectangle(200, 250, 300, 20, {
   isStatic: true,
   render: {
     fillStyle: '#F9D857',
   }
 });
 
-var upperLeftShelf1 = Bodies.rectangle(200, 250, 300, 20, {
+var upperLeftShelf1 = Bodies.rectangle(200, 350, 300, 20, {
   isStatic: true,
   render: {
     fillStyle: '#F9D857',
@@ -225,10 +256,11 @@ var wall2 = Bodies.rectangle(
 // add all of the bodies to the world
 World.add(engine.world, [ground, ground2,
   wall1, wall2, stack, lowerLeftShelf, lowerLeftShelf1,
-  rightShelf1, rightShelf2, stack2, mouseConstraint,
+  rightShelf1, rightShelf2, stack2,
   stack3,
   upperLeftShelf,
-  upperLeftShelf1
+  upperLeftShelf1,
+  
 ]);
 
 // run the engine
