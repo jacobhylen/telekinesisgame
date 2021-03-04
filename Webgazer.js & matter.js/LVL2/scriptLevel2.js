@@ -75,7 +75,7 @@ var render = Render.create({
 });
 
 //var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'White'}}, 20);
-var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'Yellow'}}, 20);
+var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'Pink'}}, 20);
 
 var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
   fillStyle: 'White',
@@ -85,8 +85,25 @@ var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2,
   fillStyle: 'Yellow',
 }});
 
+//Teleported B-box from hell to heaven
 var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
   fillStyle: 'Red',
+}});
+
+var boxC = Bodies.rectangle(window.innerWidth / 2 + 250, window.innerHeight / 2, 140, 100, {isStatic: false, render: {
+  fillStyle: 'Green',
+}});
+
+var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 250, window.innerHeight / 2, 140, 100, {isStatic: false, render: {
+  fillStyle: 'Green',
+}});
+
+var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2, 80, 160, {isStatic: false, render: {
+  fillStyle: 'Blue',
+}});
+
+var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight / 2, 80, 160, {isStatic: false, render: {
+  fillStyle: 'Blue',
 }});
 
 var ground = Bodies.rectangle(
@@ -129,7 +146,7 @@ boxA.mass = 500;
 boxB.mass = 500;
 
 // add all of the bodies to the world
-World.add(engine.world, [boxA, boxB, ground, ground2, wall1, wall2, middleWall, portalHell]);
+World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2, middleWall, portalHell]);
 
 // run the engine
 Engine.run(engine);
