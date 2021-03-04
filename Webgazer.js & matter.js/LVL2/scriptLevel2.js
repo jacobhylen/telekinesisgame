@@ -150,8 +150,10 @@ setInterval(function () {
 
   if (collisionHellB.collided) {
     boxB.position.x = 2000;
-    //boxC.isStatic = true;
+    
     //boxA.render.fillStyle = '#ff6f3c';
+    
+    Matter.World.add(engine.world, [boxB2]);
     collisionHellB = true;
   }
 
