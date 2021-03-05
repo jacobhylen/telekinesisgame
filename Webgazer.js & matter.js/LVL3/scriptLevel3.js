@@ -6,7 +6,7 @@ let eyeY = 0;
 let calibrationCounter = 0;
 let body = document.getElementById("body");
 let calibrationMeter = document.getElementById("calibratingProgress");
-
+let slot = 0;
 var start = Date.now();
 
 body.addEventListener("click", function () {
@@ -32,7 +32,7 @@ window.onload = async function () {
   webgazerInstance
     .showVideoPreview(true) /* shows all video previews */
     .showPredictionPoints(
-      true
+      false
     ) /* shows a square every 100 milliseconds where current prediction is */
     .applyKalmanFilter(true); // Kalman Filter defaults to on.
   webgazer.setGazeListener(collisionEyeListener);
@@ -117,8 +117,10 @@ Events.on(render, 'afterRender', function() {
   context.lineTo(endPoint.x, endPoint.y);
   if (collisions.length > 0) {
       context.strokeStyle = 'black';
-      
-      //add the stickiness here probably.
+     // console.log(collisions[0]);
+     if(slot == 0 && !collisions[0].bodyA.isStatic) {
+      slot = collisions[0].bodyA;
+     }
      
   } else {
       context.strokeStyle = '#555';
@@ -273,6 +275,8 @@ setInterval(function () {
 
   boxA.force.x = gravityX(boxA);
   boxA.force.y = gravityY(boxA);
+
+  followSlot(slot);
 }, 1);
 
 setInterval(function () {
@@ -328,4 +332,23 @@ function gravityY(object) {
   let gravityY = gravityForce * percentage;
 
   return gravityY;
+}
+
+function followSlot(object){
+if(slot !=0){
+
+    object.mass = 3;
+    if(object.position.x < eyeX){
+      object.force.x = 0.1;
+    } else {
+      object.force.x = -0.1;
+    }
+
+    if(object.position.y < eyeY){
+      object.force.y = 0.1;
+    } else {
+      object.force.y = -0.1;
+    }
+}
+  
 }
