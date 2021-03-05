@@ -144,6 +144,11 @@ var middleWall = Bodies.rectangle(
 
 boxA.mass = 500;
 boxB.mass = 500;
+boxB2.mass = 500;
+boxC.mass = 500;
+boxC2.mass = 500;
+boxD.mass = 500;
+boxD2.mass = 500;
 
 // add all of the bodies to the world
 World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2, middleWall, portalHell]);
@@ -155,24 +160,95 @@ Engine.run(engine);
 Render.run(render);
 
 let collisionHellB = false;
+let collisionHellC = false;
+let collisionHellD = false;
+
+let stateAB = true;
+let stateB2C = false;
+let stateC2D = false;
 
 setInterval(function () {
-  boxA.force.x = gravityX(boxA);
-  boxA.force.y = gravityY(boxA);
-
-  boxB.force.x = gravityX(boxA);
-  boxB.force.y = gravityY(boxA);
 
   let collisionHellB = Matter.SAT.collides(portalHell, boxB);
+  let collisionHellC = Matter.SAT.collides(portalHell, boxC);
+  let collisionHellD = Matter.SAT.collides(portalHell, boxD);
 
   if (collisionHellB.collided) {
-    boxB.position.x = 2000;
-    
-    //boxA.render.fillStyle = '#ff6f3c';
-    
-    Matter.World.add(engine.world, [boxB2]);
-    collisionHellB = true;
+    //Matter.World.remove(engine.world, [boxB]); 
+    boxB.position.x = 2000;  
+    Matter.World.add(engine.world, [boxB2]);   
+
+    stateAB = false;
+    stateB2C = true;
+    //collisionHellB = true;
+  } else if (stateAB) {
+    boxA.force.x = gravityX(boxA);
+    boxA.force.y = gravityY(boxA);
+
+    boxB.force.x = gravityX(boxA);
+    boxB.force.y = gravityY(boxA);
   }
+
+  if (collisionHellC.collided) {
+    //Matter.World.remove(engine.world, [boxC]);  
+    boxC.position.x = 2000; 
+    Matter.World.add(engine.world, [boxC2]); 
+
+    stateB2C = false;
+    stateC2D = true;
+    //collisionHellC = true;
+  } else if (stateB2C) {
+
+    boxB2.force.x = gravityX(boxB2);
+    boxB2.force.y = gravityY(boxB2);
+
+    boxC.force.x = gravityX(boxB2);
+    boxC.force.y = gravityY(boxB2);
+
+    //collisionHellB = true;
+  }
+
+  if (collisionHellD.collided) {
+    //Matter.World.remove(engine.world, [boxD]); 
+    boxD.position.x = 2000; 
+    Matter.World.add(engine.world, [boxD2]);  
+
+    stateC2D = false;
+
+    // stateB2C = false;
+    // stateC2D = true;
+    //collisionHellC = true;
+  } else if(stateC2D){
+    boxC2.force.x = gravityX(boxC2);
+    boxC2.force.y = gravityY(boxC2);
+
+    boxD.force.x = gravityX(boxC2);
+    boxD.force.y = gravityY(boxC2);
+  }
+
+
+  // if (stateC2D){
+  //   boxC2.force.x = gravityX(boxC2);
+  //   boxC2.force.y = gravityY(boxC2);
+
+  //   boxD.force.x = gravityX(boxC2);
+  //   boxD.force.y = gravityY(boxC2);
+
+  // } else if(stateB2C){
+  //   boxB2.force.x = gravityX(boxB2);
+  //   boxB2.force.y = gravityY(boxB2);
+
+  //   boxC.force.x = gravityX(boxB2);
+  //   boxC.force.y = gravityY(boxB2);
+
+  // } else if (stateAB) {
+  //   boxA.force.x = gravityX(boxA);
+  //   boxA.force.y = gravityY(boxA);
+
+  //   boxB.force.x = gravityX(boxA);
+  //   boxB.force.y = gravityY(boxA);
+  // }
+
 
   // if (collisionACcheck) {
   //   levelComplete = true;
@@ -182,8 +258,6 @@ setInterval(function () {
   //   finishedPlaying.style.visibility = "hidden";
   // }
 }, 1);
-
-
 
 function getDistanceToSingularity(object) {
   let distance = Math.sqrt(
