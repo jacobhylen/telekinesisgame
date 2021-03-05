@@ -168,85 +168,155 @@ var cloud3Constraint = Constraint.create({
 
 var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
     // orange
-    fillStyle: 'red',
+    sprite: {
+      texture: 'candyBad.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxA.mass = 100;
 
   var boxB = Bodies.rectangle(300, 300, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy1.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxB.mass = 100;
 
   var boxC = Bodies.rectangle(1400, 50, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxC.mass = 100;
 
   var boxD = Bodies.rectangle(1300, 500, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy1.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxD.mass = 100;
 
   var boxE = Bodies.rectangle(1000, 300, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxE.mass = 100;
 
   var boxF = Bodies.rectangle(500, 900, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxF.mass = 100;
 
   var boxG = Bodies.rectangle(1600, 800, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy1.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxG.mass = 100;
 
   var boxH = Bodies.rectangle(1400, 300, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxH.mass = 100;
 
   var boxI = Bodies.rectangle(100, 50, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy1.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxI.mass = 100;
 
   var boxJ = Bodies.rectangle(1700, 400, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxJ.mass = 100;
 
   var boxK = Bodies.rectangle(100, 900, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy1.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxK.mass = 100;
 
   var boxL = Bodies.rectangle(200, 800, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxL.mass = 100;
 
   var boxM = Bodies.rectangle(1500, 100, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy1.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxM.mass = 100;
 
   var boxN = Bodies.rectangle(300, 600, 30, 30, { render: {
     // orange
-    fillStyle: '#ff6f3c',
+    sprite: {
+      texture: 'candy2.png',
+      xScale: 0.5,
+      yScale: 0.5
+    },
+    
   }});
   boxN.mass = 100;
 
