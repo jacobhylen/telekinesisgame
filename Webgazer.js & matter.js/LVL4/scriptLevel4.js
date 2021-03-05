@@ -9,16 +9,22 @@ let calibrationMeter = document.getElementById("calibratingProgress");
 
 var start = Date.now();
 
-let singularityMass = 1 * Math.pow(10, 12);
+let singularityMass = 1 * Math.pow(10, 10);
 
 let boxAAttached = false;
 let boxBAttached = false;
 let boxCAttached = false;
 let boxDAttached = false;
+let boxEAttached = false;
 let boxFAttached = false;
 let boxGAttached = false;
 let boxHAttached = false;
 let boxIAttached = false;
+let boxJAttached = false;
+let boxKAttached = false;
+let boxLAttached = false;
+let boxMAttached = false;
+let boxNAttached = false;
 
 
 window.onload = async function () {
@@ -184,7 +190,13 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxD.mass = 100;
 
-  var boxF = Bodies.rectangle(100, 900, 30, 30, { render: {
+  var boxE = Bodies.rectangle(1000, 300, 30, 30, { render: {
+    // orange
+    fillStyle: '#ff6f3c',
+  }});
+  boxE.mass = 100;
+
+  var boxF = Bodies.rectangle(500, 900, 30, 30, { render: {
     // orange
     fillStyle: '#ff6f3c',
   }});
@@ -207,6 +219,36 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
     fillStyle: '#ff6f3c',
   }});
   boxI.mass = 100;
+
+  var boxJ = Bodies.rectangle(1700, 400, 30, 30, { render: {
+    // orange
+    fillStyle: '#ff6f3c',
+  }});
+  boxJ.mass = 100;
+
+  var boxK = Bodies.rectangle(100, 900, 30, 30, { render: {
+    // orange
+    fillStyle: '#ff6f3c',
+  }});
+  boxK.mass = 100;
+
+  var boxL = Bodies.rectangle(200, 800, 30, 30, { render: {
+    // orange
+    fillStyle: '#ff6f3c',
+  }});
+  boxL.mass = 100;
+
+  var boxM = Bodies.rectangle(1500, 100, 30, 30, { render: {
+    // orange
+    fillStyle: '#ff6f3c',
+  }});
+  boxM.mass = 100;
+
+  var boxN = Bodies.rectangle(300, 600, 30, 30, { render: {
+    // orange
+    fillStyle: '#ff6f3c',
+  }});
+  boxN.mass = 100;
 
 // create two boxes and a ground
 
@@ -268,6 +310,13 @@ var boxDConstraint = Constraint.create({
   length:100
 });;
 
+var boxEConstraint = Constraint.create({
+  bodyA: boxE,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
 var boxFConstraint = Constraint.create({
   bodyA: boxF,
   pointB: { x: 500, y: 500 },
@@ -295,21 +344,62 @@ var boxIConstraint = Constraint.create({
   stiffness: 0.000001,
   length:100
 });;
+
+var boxJConstraint = Constraint.create({
+  bodyA: boxJ,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxKConstraint = Constraint.create({
+  bodyA: boxK,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxLConstraint = Constraint.create({
+  bodyA: boxL,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxMConstraint = Constraint.create({
+  bodyA: boxM,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
+
+var boxNConstraint = Constraint.create({
+  bodyA: boxN,
+  pointB: { x: 500, y: 500 },
+  stiffness: 0.000001,
+  length:100
+});;
 boxAConstraint.render.visible = false
 boxBConstraint.render.visible = false
 boxCConstraint.render.visible = false
 boxDConstraint.render.visible = false
+boxEConstraint.render.visible = false
 boxFConstraint.render.visible = false
 boxGConstraint.render.visible = false
 boxHConstraint.render.visible = false
 boxIConstraint.render.visible = false
+boxJConstraint.render.visible = false
+boxKConstraint.render.visible = false
+boxLConstraint.render.visible = false
+boxMConstraint.render.visible = false
+boxNConstraint.render.visible = false
 
 cloud1Constraint.render.visible = false;
 cloud2Constraint.render.visible = false;
 cloud3Constraint.render.visible = false;
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxF, boxG, boxH, boxI, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint,cloud1, cloud2, cloud3, cloud1Constraint, cloud2Constraint, cloud3Constraint]);
+World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, boxI, boxJ, boxK, boxL, boxM, boxN, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxEConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint, boxJConstraint, boxKConstraint, boxLConstraint, boxMConstraint, boxNConstraint, cloud1, cloud2, cloud3, cloud1Constraint, cloud2Constraint, cloud3Constraint]);
 
 // run the engine
 Engine.run(engine);
@@ -344,45 +434,157 @@ setInterval(function () {
     boxI.force.y = gravityY(boxI);
 
     if(getDistanceToSingularity(boxA) < 50 && boxAAttached == false){
-      boxAConstraint.stiffness = 0.005;
       boxAAttached = true;
     }
     if(getDistanceToSingularity(boxB) < 50 && boxBAttached == false){
-      boxBConstraint.stiffness = 0.005;
       boxBAttached = true;
     }
     if(getDistanceToSingularity(boxC) < 50 && boxCAttached == false){
-      boxCConstraint.stiffness = 0.005;
       boxCAttached = true;
     }
     if(getDistanceToSingularity(boxD) < 50 && boxDAttached == false){
-      boxDConstraint.stiffness = 0.1;
       boxDAttached = true;
     }
+    if(getDistanceToSingularity(boxE) < 50 && boxEAttached == false){
+      boxEAttached = true;
+    }
     if(getDistanceToSingularity(boxF) < 50 && boxFAttached == false){
-      boxFConstraint.stiffness = 0.1;
       boxFAttached = true;
     }
     if(getDistanceToSingularity(boxG) < 50 && boxGAttached == false){
-      boxGConstraint.stiffness = 0.1;
       boxGAttached = true;
     }
     if(getDistanceToSingularity(boxH) < 50 && boxHAttached == false){
-      boxHConstraint.stiffness = 0.1;
       boxHAttached = true;
     }
     if(getDistanceToSingularity(boxI) < 50 && boxIAttached == false){
-      boxIConstraint.stiffness = 0.1;
       boxIAttached = true;
     }
+    if(getDistanceToSingularity(boxJ) < 50 && boxJAttached == false){
+      boxJAttached = true;
+    }
+    if(getDistanceToSingularity(boxK) < 50 && boxKAttached == false){
+      boxKAttached = true;
+    }
+    if(getDistanceToSingularity(boxL) < 50 && boxLAttached == false){
+      boxLAttached = true;
+    }
+    if(getDistanceToSingularity(boxM) < 50 && boxMAttached == false){
+      boxMAttached = true;
+    }
+    if(getDistanceToSingularity(boxN) < 50 && boxNAttached == false){
+      boxNAttached = true;
+    }
+
+    if(boxAAttached){
+      boxAAttached = false;
+      boxBAttached = false;
+      boxCAttached = false;
+      boxDAttached = false;
+      boxEAttached = false;
+      boxFAttached = false;
+      boxGAttached = false;
+      boxHAttached = false;
+      boxIAttached = false;
+      boxJAttached = false;
+      boxKAttached = false;
+      boxLAttached = false;
+      boxMAttached = false;
+      boxNAttached = false;
+    } 
+
+    if(boxBAttached){
+      boxBConstraint.stiffness = 0.005;
+    }else {
+      boxBConstraint.stiffness = 0.000001;
+    }
+
+    if(boxCAttached){
+      boxCConstraint.stiffness = 0.005;
+    } else {
+      boxCConstraint.stiffness = 0.000001;
+    }
+
+    if(boxDAttached){
+      boxDConstraint.stiffness = 0.005;
+    } else {
+      boxDConstraint.stiffness = 0.000001;
+    }
+
+    if(boxEAttached){
+      boxEConstraint.stiffness = 0.005;
+    }else {
+      boxEConstraint.stiffness = 0.000001;
+    }
+
+    if(boxFAttached){
+      boxFConstraint.stiffness = 0.005;
+    }else {
+      boxFConstraint.stiffness = 0.000001;
+    }
+
+    if(boxGAttached){
+      boxGConstraint.stiffness = 0.005;
+    }else {
+      boxGConstraint.stiffness = 0.000001;
+    }
+
+    if(boxHAttached){
+      boxHConstraint.stiffness = 0.005;
+    }else {
+      boxHConstraint.stiffness = 0.000001;
+    }
+
+    if(boxIAttached){
+      boxIConstraint.stiffness = 0.005;
+    }else {
+      boxIConstraint.stiffness = 0.000001;
+    }
+
+    if(boxJAttached){
+      boxJConstraint.stiffness = 0.005;
+    }else {
+      boxJConstraint.stiffness = 0.000001;
+    }
+
+    if(boxKAttached){
+      boxKConstraint.stiffness = 0.005;
+    }else {
+      boxKConstraint.stiffness = 0.000001;
+    }
+
+    if(boxLAttached){
+      boxLConstraint.stiffness = 0.005;
+    }else {
+      boxLConstraint.stiffness = 0.000001;
+    }
+
+    if(boxMAttached){
+      boxMConstraint.stiffness = 0.005;
+    }else {
+      boxMConstraint.stiffness = 0.000001;
+    }
+
+    if(boxNAttached){
+      boxNConstraint.stiffness = 0.005;
+    }else {
+      boxNConstraint.stiffness = 0.000001;
+    }
+
       boxAConstraint.pointB =  { x: eyeX, y: eyeY };
       boxBConstraint.pointB =  { x: eyeX, y: eyeY };
       boxCConstraint.pointB =  { x: eyeX, y: eyeY };
       boxDConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxEConstraint.pointB =  { x: eyeX, y: eyeY };
       boxFConstraint.pointB =  { x: eyeX, y: eyeY };
       boxGConstraint.pointB =  { x: eyeX, y: eyeY };
       boxHConstraint.pointB =  { x: eyeX, y: eyeY };
       boxIConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxJConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxKConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxLConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxMConstraint.pointB =  { x: eyeX, y: eyeY };
+      boxNConstraint.pointB =  { x: eyeX, y: eyeY };
 
       cloud1Constraint.pointB =  { x: eyeX, y: eyeY };
       cloud2Constraint.pointB =  { x: eyeX, y: eyeY };
@@ -406,8 +608,8 @@ function calculateGravityForce(object) {
     ((singularityMass * object.mass) /
       Math.pow(getDistanceToSingularity(object), 2));
 
-  if (Fg > 1) {
-    Fg = 1;
+  if (Fg > 0.5) {
+    Fg = 0.5;
   }
 
   return Fg;
@@ -422,7 +624,6 @@ function gravityX(object) {
 
   return gravityX;
 }
-
 function gravityY(object) {
   let percentage =
     (eyeY - object.position.y) / getDistanceToSingularity(object);
