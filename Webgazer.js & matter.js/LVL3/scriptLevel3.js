@@ -9,6 +9,8 @@ let calibrationMeter = document.getElementById("calibratingProgress");
 let slot = 0;
 var start = Date.now();
 
+let door1ShouldOpen = false;
+
 body.addEventListener("click", function () {
   calibrationCounter += 3;
 
@@ -130,12 +132,18 @@ Events.on(render, 'afterRender', function() {
   context.lineWidth = 0.5;
   context.stroke();
 
-
+  door1ShouldOpen = false;
   for (var i = 0; i < collisions.length; i++) {
     var collision = collisions[i];
     context.rect(collision.bodyA.position.x - 4.5, collision.bodyA.position.y - 4.5, 8, 8);
 
+
+    if(collision.bodyA.id == 19){
+      door1ShouldOpen = true;
+    } 
 }
+
+console.log(door1ShouldOpen);
 
 context.fillStyle = 'rgba(255,165,0,0.7)';
 context.fill();
@@ -157,12 +165,6 @@ let stack = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
     }
   });
 });
-
-
-
-
-
-
 
 var ground = Bodies.rectangle(
   window.innerWidth / 2,
@@ -214,16 +216,52 @@ var cabinetdoor2 = Bodies.rectangle(
   }
 );
 
+var cabinetLeftPost = Bodies.rectangle(
+  window.innerWidth/6,
+  80,
+  10,
+  80, {
+    isStatic: true
+  }
+);
+
+var cabinetRightPost = Bodies.rectangle(
+  window.innerWidth - window.innerWidth/6 ,
+  80,
+  10,
+  80, {
+    isStatic: true
+  }
+);
+
+var ghostBox = Bodies.rectangle(
+  window.innerWidth/2 ,
+  80,
+  window.innerWidth/1.5,
+  190, {
+    isStatic: true,
+    collisionFilter: {
+      group:-1,
+      category:2,
+      mask:0
+  },
+  }
+);
+ghostBox.render.visible = false;
+
+
+
 //make the first stack attract towards the right shelf
 
 
 // add all of the bodies to the world
 World.add(engine.world, [ground, ground2,
   wall1, wall2, stack,
-  cabinetdoor1, cabinetdoor2
-  
- 
-  
+  cabinetdoor1, cabinetdoor2,
+  cabinetLeftPost,
+  cabinetRightPost,
+  ghostBox
+   
 ]);
 
 // run the engine
@@ -232,12 +270,25 @@ Engine.run(engine);
 // run the renderer
 Render.run(render);
 
+let isDoorOpen = false;
 setInterval(function () {
 
   for (let i=0; i < stack.bodies.length; i++){
     stack.bodies[i].force.x = -gravityX(stack.bodies[i]);
     stack.bodies[i].force.y = -gravityY(stack.bodies[i]);
     
+  }
+
+  if(door1ShouldOpen && !isDoorOpen){
+
+    Matter.Body.scale(cabinetdoor1, 0.5, 1, {x: window.innerWidth/6.4, y: 0});
+    Matter.Body.scale(cabinetdoor2, 0.5, 1, {x: window.innerWidth - window.innerWidth/6.4, y: 0});
+    isDoorOpen = true;
+  }else if(!door1ShouldOpen && isDoorOpen){
+    
+    Matter.Body.scale(cabinetdoor1, 2, 1, {x: window.innerWidth/6.4, y: 0});
+    Matter.Body.scale(cabinetdoor2, 2, 1, {x: window.innerWidth - window.innerWidth/6.4, y: 0});
+    isDoorOpen = false;
   }
 
   //followSlot(slot);
