@@ -4,13 +4,49 @@
   <title>Webgazer.js + D3.js + matter.js</title>
   <link rel="stylesheet" href="stylelvl2.css" />
 </head>
-<body >
+<body>
+  <p
+    id="finished"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(620px, 280px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: sans-serif;
+      width: 400px;
+      visibility: hidden;
+    "
+  >
+    The level is complete!
+  </p>
 
+  <a href="../LVL3/level3.html">
+    <button
+      id="nextButton"
+      class="button"
+      style="
+        visibility: hidden;
+        display: block;
+        position: fixed;
+        transform: translate3d(600px, 355px, 0px);
+        border-radius: 12px;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-size: 16px;
+        transition-duration: 0.4s;
+      "
+    >
+      Go to the next level!
+    </button>
+  </a>
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
   <script src="webgazer.js"></script>
   <script src="matter.js"></script>
   <script src="scriptLevel2.js"></script>
 
-  <a href="./index.html">level1</a>
+  <!--<a href="./index.html">level1</a>-->
 </body>

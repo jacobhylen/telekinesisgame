@@ -1,5 +1,10 @@
 window.saveDataAcrossSessions = true;
 
+let finishedPlaying = document.getElementById("finished");
+let finishedButton = document.getElementById("nextButton");
+
+let levelComplete = false;
+
 let eyeX = 0;
 let eyeY = 0;
 
@@ -81,28 +86,28 @@ var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2,
   fillStyle: 'White',
 }});
 
-var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
+var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2 + 100, 80, 80, {isStatic: false, render: {
   fillStyle: 'Yellow',
 }});
 
 //Teleported B-box from hell to heaven
-var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
+var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2 + 100, 80, 80, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
-var boxC = Bodies.rectangle(window.innerWidth / 2 + 250, window.innerHeight / 2, 140, 100, {isStatic: false, render: {
+var boxC = Bodies.rectangle(window.innerWidth / 2 + 500, window.innerHeight / 2 + 100, 140, 100, {isStatic: false, render: {
   fillStyle: 'Green',
 }});
 
-var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 250, window.innerHeight / 2, 140, 100, {isStatic: false, render: {
+var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 250, window.innerHeight / 2 + 100, 140, 100, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
-var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2, 80, 160, {isStatic: false, render: {
+var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2 + 100, 80, 160, {isStatic: false, render: {
   fillStyle: 'Blue',
 }});
 
-var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight / 2, 80, 160, {isStatic: false, render: {
+var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight / 2 + 100, 80, 160, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
@@ -142,13 +147,13 @@ var middleWall = Bodies.rectangle(
   { isStatic: true }
 );
 
-boxA.mass = 500;
-boxB.mass = 500;
-boxB2.mass = 500;
-boxC.mass = 500;
-boxC2.mass = 500;
-boxD.mass = 500;
-boxD2.mass = 500;
+boxA.mass = 1000;
+boxB.mass = 1000;
+boxB2.mass = 1000;
+boxC.mass = 1000;
+boxC2.mass = 1000;
+boxD.mass = 1000;
+boxD2.mass = 1000;
 
 // add all of the bodies to the world
 World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2, middleWall, portalHell]);
@@ -163,6 +168,10 @@ let stateAB = true;
 let stateB2C = false;
 let stateC2D = false;
 
+let collisionPortalB = false;
+let collisionPortalC = false;
+let collisionPortalD = false;
+
 setInterval(function () {
 
   let collisionHellB = Matter.SAT.collides(portalHell, boxB);
@@ -174,6 +183,8 @@ setInterval(function () {
     boxB.position.x = 2000;
 
     Matter.World.add(engine.world, [boxB2]);   
+
+    collisionPortalB = true;
 
     stateAB = false;
     stateB2C = true;
@@ -189,7 +200,10 @@ setInterval(function () {
   if (collisionHellC.collided) {
     //Matter.World.remove(engine.world, [boxC]);  
     boxC.position.x = 2000; 
+
     Matter.World.add(engine.world, [boxC2]); 
+
+    collisionPortalC = true;
 
     stateB2C = false;
     stateC2D = true;
@@ -206,7 +220,10 @@ setInterval(function () {
   if (collisionHellD.collided) {
     //Matter.World.remove(engine.world, [boxD]); 
     boxD.position.x = 2000; 
+    
     Matter.World.add(engine.world, [boxD2]);  
+
+    collisionPortalD = true;
 
     stateC2D = false;
   } else if(stateC2D){
@@ -217,14 +234,15 @@ setInterval(function () {
     boxD.force.y = gravityY(boxC2);
   }
   
-  // if (collisionACcheck) {
-  //   levelComplete = true;
-  //   finishedPlaying.style.visibility = "visible";
-  //   finishedButton.style.visibility = "visible";
-  // } else {
-  //   finishedPlaying.style.visibility = "hidden";
-  // }
+  if (collisionPortalB && collisionPortalC && collisionPortalD){
+    levelComplete = true;
+    finishedPlaying.style.visibility = "visible";
+    finishedButton.style.visibility = "visible";
+  } else {
+    finishedPlaying.style.visibility = "hidden";
+  }
 }, 1);
+
 
 function getDistanceToSingularity(object) {
   let distance = Math.sqrt(
