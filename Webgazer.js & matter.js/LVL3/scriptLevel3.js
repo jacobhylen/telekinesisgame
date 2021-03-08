@@ -174,49 +174,6 @@ let stack3 = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
 });
 
 
-var lowerLeftShelf = Bodies.rectangle(200, 500, 300, 20, {
-  isStatic: true,
-  render: {
-    fillStyle: '#B0EB6E',
-  }
-});
-
-var lowerLeftShelf1 = Bodies.rectangle(200, 600, 300, 20, {
-  isStatic: true,
-  render: {
-    fillStyle: '#B0EB6E',
-  }
-});
-
-
-var upperLeftShelf = Bodies.rectangle(200, 250, 300, 20, {
-  isStatic: true,
-  render: {
-    fillStyle: '#F9D857',
-  }
-});
-
-var upperLeftShelf1 = Bodies.rectangle(200, 350, 300, 20, {
-  isStatic: true,
-  render: {
-    fillStyle: '#F9D857',
-  }
-});
-
-
-var rightShelf1 = Bodies.rectangle(1290, 400, 300, 20, {
-  isStatic: true,
-  render: {
-    fillStyle: '#E36744',
-  }
-});
-
-var rightShelf2 = Bodies.rectangle(1290, 500, 300, 20, {
-  isStatic: true,
-  render: {
-    fillStyle: '#E36744',
-  }
-});
 
 
 
@@ -257,11 +214,9 @@ var wall2 = Bodies.rectangle(
 
 // add all of the bodies to the world
 World.add(engine.world, [ground, ground2,
-  wall1, wall2, stack, lowerLeftShelf, lowerLeftShelf1,
-  rightShelf1, rightShelf2, stack2,
-  stack3,
-  upperLeftShelf,
-  upperLeftShelf1,
+  wall1, wall2, stack, stack2,
+  stack3
+ 
   
 ]);
 
