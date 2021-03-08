@@ -7,6 +7,9 @@ let calibrationCounter = 0;
 let body = document.getElementById("body");
 let calibrationMeter = document.getElementById("calibratingProgress");
 
+let finishedPlaying = document.getElementById("finished");
+let finishedButton = document.getElementById("backButton");
+
 var start = Date.now();
 
 let singularityMass = 1 * Math.pow(10, 10);
@@ -25,6 +28,13 @@ let boxKAttached = false;
 let boxLAttached = false;
 let boxMAttached = false;
 let boxNAttached = false;
+
+let levelComplete = false;
+
+let timer = document.getElementById("timer");
+let timePassed = 0;
+
+var start = Date.now();
 
 
 window.onload = async function () {
@@ -468,6 +478,21 @@ cloud1Constraint.render.visible = false;
 cloud2Constraint.render.visible = false;
 cloud3Constraint.render.visible = false;
 
+var checkIfLoaded = setInterval(() => {
+  if(eyeX != 0){
+    
+    start = Date.now();
+    clearInterval(checkIfLoaded);
+    setInterval(function(){
+      if (levelComplete == false){
+      timePassed = Date.now() - start;
+      timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+      }
+    }, 10);
+  }
+
+}, 10);
+
 // add all of the bodies to the world
 World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, boxI, boxJ, boxK, boxL, boxM, boxN, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxEConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint, boxJConstraint, boxKConstraint, boxLConstraint, boxMConstraint, boxNConstraint, cloud1, cloud2, cloud3, cloud1Constraint, cloud2Constraint, cloud3Constraint]);
 
@@ -503,7 +528,7 @@ setInterval(function () {
     boxI.force.x = gravityX(boxI);
     boxI.force.y = gravityY(boxI);
 
-    if(getDistanceToSingularity(boxA) < 50 && boxAAttached == false){
+    if(getDistanceToSingularity(boxA) < 50 && boxAAttached == false && levelComplete == false){
       boxAAttached = true;
     }
     if(getDistanceToSingularity(boxB) < 50 && boxBAttached == false){
@@ -561,6 +586,9 @@ setInterval(function () {
       boxLAttached = false;
       boxMAttached = false;
       boxNAttached = false;
+
+
+   
     } 
 
     if(boxBAttached){
@@ -659,6 +687,14 @@ setInterval(function () {
       cloud1Constraint.pointB =  { x: eyeX, y: eyeY };
       cloud2Constraint.pointB =  { x: eyeX, y: eyeY };
       cloud3Constraint.pointB =  { x: eyeX, y: eyeY };
+
+      if (boxBAttached && boxCAttached && boxDAttached && boxEAttached && boxFAttached && boxGAttached && boxHAttached && boxIAttached && boxJAttached && boxKAttached && boxLAttached && boxMAttached && boxNAttached){
+        levelComplete = true;
+        finishedPlaying.style.visibility = "visible";
+        finishedButton.style.visibility = "visible";
+      } else {
+        finishedPlaying.style.visibility = "hidden";
+      }
     
 }, 1);
 
