@@ -4,13 +4,31 @@
   <title>Webgazer.js + D3.js + matter.js</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body style="background-color:#2d2d2d;" id="body">
-
+<body style="background-color: #2d2d2d" id="body">
+  <button
+    id="resetbutton"
+    class="button"
+    onclick="window.location.reload();"
+    style="
+      visibility: visible;
+      display: block;
+      position: fixed;
+      transform: translate3d(1300px, 50px, 0px);
+      border-radius: 12px;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      transition-duration: 0.4s;
+    "
+  >
+    Reset
+  </button>
   <script src="https://d3js.org/d3.v3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
   <script src="webgazer.js"></script>
   <script src="matter.js"></script>
   <script src="scriptLevel3.js"></script>
-
   <a href="./index.html">level1</a>
 </body>

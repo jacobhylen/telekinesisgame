@@ -12,3 +12,6 @@ body {
   background-color: #555555;
   color: white;
 }
+video {
+  opacity: 20%;
+}
