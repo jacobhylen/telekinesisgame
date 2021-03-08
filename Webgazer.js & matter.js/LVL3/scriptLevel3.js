@@ -158,25 +158,7 @@ let stack = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
   });
 });
 
-let stack2 = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
-  let sides2 = Math.round(Matter.Common.random(3, 7));
-  return Matter.Bodies.polygon(x, y, sides2, 40, {
-    render: {
-      //green
-      fillStyle: '#B0EB6E'
-    }
-  });
-});
 
-let stack3 = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
-  let sides3 = Math.round(Matter.Common.random(3, 7));
-  return Matter.Bodies.polygon(x, y, sides3, 40, {
-    render: {
-      //yellow
-      fillStyle: '#F9D857'
-    }
-  });
-});
 
 
 
@@ -215,14 +197,31 @@ var wall2 = Bodies.rectangle(
   }
 );
 
+var cabinetdoor1 = Bodies.rectangle(
+  window.innerWidth/3,
+  150,
+  500,
+  50, {
+    isStatic: true
+  }
+);
+var cabinetdoor2 = Bodies.rectangle(
+  window.innerWidth - window.innerWidth/3,
+  150,
+  500,
+  50, {
+    isStatic: true
+  }
+);
 
 //make the first stack attract towards the right shelf
 
 
 // add all of the bodies to the world
 World.add(engine.world, [ground, ground2,
-  wall1, wall2, stack, stack2,
-  stack3
+  wall1, wall2, stack,
+  cabinetdoor1, cabinetdoor2
+  
  
   
 ]);
@@ -240,19 +239,16 @@ setInterval(function () {
     stack.bodies[i].force.y = -gravityY(stack.bodies[i]);
     
   }
-  for (let i=0; i < stack2.bodies.length; i++){
-    stack2.bodies[i].force.x = -gravityX(stack2.bodies[i]);
-    stack2.bodies[i].force.y = -gravityY(stack2.bodies[i]);
-    
-  }
-  for (let i=0; i < stack3.bodies.length; i++){
-    stack3.bodies[i].force.x = -gravityX(stack3.bodies[i]);
-    stack3.bodies[i].force.y = -gravityY(stack3.bodies[i]);
-    
-  }
- 
+
   //followSlot(slot);
 }, 1);
+
+let thing = 0
+/*setInterval(function(){
+  if(thing < 10){
+  thing++;
+  Matter.Body.scale(cabinetdoor1, 0.9, 1, {x: 600, y: 0})
+  Matter.Body.scale(cabinetdoor2, 0.9, 1, {x: 900, y: 0})}}, 0);*/
 
 
 
