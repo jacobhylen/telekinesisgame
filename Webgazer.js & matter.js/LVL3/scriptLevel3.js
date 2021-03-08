@@ -13,11 +13,13 @@ body.addEventListener("click", function () {
   calibrationCounter += 3;
 
 
-  calibrationMeter.style.width = calibrationCounter + "px";
+  
 })
 
-let singularityMass = 1 * Math.pow(10, 12);
+let singularityMass = 1 * Math.pow(10, 11);
 
+let singularityMassMagnet = 1 * Math.pow(10, 12
+  );
 window.onload = async function () {
   if (!window.saveDataAcrossSessions) {
     var localstorageDataLabel = "webgazerGlobalData";
@@ -118,9 +120,9 @@ Events.on(render, 'afterRender', function() {
   if (collisions.length > 0) {
       context.strokeStyle = 'black';
      // console.log(collisions[0]);
-     if(slot == 0 && !collisions[0].bodyA.isStatic) {
-      slot = collisions[0].bodyA;
-     }
+     /*if(slot == 0 && !collisions[0].bodyA.isStatic) {
+      slot = collisions[0].bodyA;}*/
+     
      
   } else {
       context.strokeStyle = '#555';
@@ -150,6 +152,7 @@ let stack = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
   let sides = Math.round(Matter.Common.random(3, 7));
   return Matter.Bodies.polygon(x, y, sides, 40, {
     render: {
+      //orange
       fillStyle: '#E36744'
     }
   });
@@ -159,6 +162,7 @@ let stack2 = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
   let sides2 = Math.round(Matter.Common.random(3, 7));
   return Matter.Bodies.polygon(x, y, sides2, 40, {
     render: {
+      //green
       fillStyle: '#B0EB6E'
     }
   });
@@ -168,6 +172,7 @@ let stack3 = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
   let sides3 = Math.round(Matter.Common.random(3, 7));
   return Matter.Bodies.polygon(x, y, sides3, 40, {
     render: {
+      //yellow
       fillStyle: '#F9D857'
     }
   });
@@ -254,6 +259,8 @@ var wall2 = Bodies.rectangle(
 );
 
 
+//make the first stack attract towards the right shelf
+
 
 // add all of the bodies to the world
 World.add(engine.world, [ground, ground2,
@@ -273,11 +280,26 @@ Render.run(render);
 
 setInterval(function () {
 
-  boxA.force.x = gravityX(boxA);
-  boxA.force.y = gravityY(boxA);
-
-  followSlot(slot);
+  for (let i=0; i < stack.bodies.length; i++){
+    stack.bodies[i].force.x = -gravityX(stack.bodies[i]);
+    stack.bodies[i].force.y = -gravityY(stack.bodies[i]);
+    
+  }
+  for (let i=0; i < stack2.bodies.length; i++){
+    stack2.bodies[i].force.x = -gravityX(stack2.bodies[i]);
+    stack2.bodies[i].force.y = -gravityY(stack2.bodies[i]);
+    
+  }
+  for (let i=0; i < stack3.bodies.length; i++){
+    stack3.bodies[i].force.x = -gravityX(stack3.bodies[i]);
+    stack3.bodies[i].force.y = -gravityY(stack3.bodies[i]);
+    
+  }
+ 
+  //followSlot(slot);
 }, 1);
+
+
 
 setInterval(function () {
   timePassed = Date.now() - start;
@@ -300,6 +322,15 @@ function getDistanceToSingularity(object) {
   return distance;
 }
 
+function getDistanceToSingularityMagnets(object, magnet) {
+  let distance = Math.sqrt(
+    Math.pow(object.position.x - magnet.position.x, 2) +
+      Math.pow(object.position.y - magnet.position.y -20, 2)
+  );
+
+  return distance;
+}
+
 function calculateGravityForce(object) {
   let Fg =
     6.673 *
@@ -312,6 +343,38 @@ function calculateGravityForce(object) {
   }
 
   return Fg;
+}
+function gravityXmagnet(object, magnet) {
+  let percentage =
+    (magnet.position.x - object.position.x) / getDistanceToSingularityMagnets(object, magnet);
+  let gravityForce = calculateGravityForceMagnets(object, magnet);
+
+  let gravityX = gravityForce * percentage;
+
+  return gravityX;
+}
+
+function gravityYmagnet(object, magnet) {
+  let percentage =
+    (magnet.position.y - object.position.y) / getDistanceToSingularityMagnets(object, magnet);
+  let gravityForce = calculateGravityForceMagnets(object, magnet);
+
+  let gravityY = gravityForce * percentage;
+
+  return gravityY;
+}
+function calculateGravityForceMagnets(object, magnet) {
+  let FgM =
+    6.673 *
+    Math.pow(10, -11) *
+    ((singularityMassMagnet * object.mass) /
+      Math.pow(getDistanceToSingularityMagnets(object, magnet), 2));
+
+  if (FgM > 1) {
+    FgM = 1;
+  }
+
+  return FgM;
 }
 
 function gravityX(object) {
@@ -337,7 +400,7 @@ function gravityY(object) {
 function followSlot(object){
 if(slot !=0){
 
-    object.mass = 3;
+    object.mass = 1;
     if(object.position.x < eyeX){
       object.force.x = 0.1;
     } else {
