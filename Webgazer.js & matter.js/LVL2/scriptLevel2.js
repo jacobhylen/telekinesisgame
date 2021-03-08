@@ -87,7 +87,7 @@ var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2,
 
 //Teleported B-box from hell to heaven
 var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
-  fillStyle: 'Red',
+  fillStyle: 'White',
 }});
 
 var boxC = Bodies.rectangle(window.innerWidth / 2 + 250, window.innerHeight / 2, 140, 100, {isStatic: false, render: {
@@ -95,7 +95,7 @@ var boxC = Bodies.rectangle(window.innerWidth / 2 + 250, window.innerHeight / 2,
 }});
 
 var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 250, window.innerHeight / 2, 140, 100, {isStatic: false, render: {
-  fillStyle: 'Green',
+  fillStyle: 'White',
 }});
 
 var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2, 80, 160, {isStatic: false, render: {
@@ -103,7 +103,7 @@ var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2,
 }});
 
 var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight / 2, 80, 160, {isStatic: false, render: {
-  fillStyle: 'Blue',
+  fillStyle: 'White',
 }});
 
 var ground = Bodies.rectangle(
@@ -159,10 +159,6 @@ Engine.run(engine);
 // run the renderer
 Render.run(render);
 
-let collisionHellB = false;
-let collisionHellC = false;
-let collisionHellD = false;
-
 let stateAB = true;
 let stateB2C = false;
 let stateC2D = false;
@@ -175,12 +171,13 @@ setInterval(function () {
 
   if (collisionHellB.collided) {
     //Matter.World.remove(engine.world, [boxB]); 
-    boxB.position.x = 2000;  
+    boxB.position.x = 2000;
+
     Matter.World.add(engine.world, [boxB2]);   
 
     stateAB = false;
     stateB2C = true;
-    //collisionHellB = true;
+  
   } else if (stateAB) {
     boxA.force.x = gravityX(boxA);
     boxA.force.y = gravityY(boxA);
@@ -196,7 +193,7 @@ setInterval(function () {
 
     stateB2C = false;
     stateC2D = true;
-    //collisionHellC = true;
+   
   } else if (stateB2C) {
 
     boxB2.force.x = gravityX(boxB2);
@@ -204,8 +201,6 @@ setInterval(function () {
 
     boxC.force.x = gravityX(boxB2);
     boxC.force.y = gravityY(boxB2);
-
-    //collisionHellB = true;
   }
 
   if (collisionHellD.collided) {
@@ -214,10 +209,6 @@ setInterval(function () {
     Matter.World.add(engine.world, [boxD2]);  
 
     stateC2D = false;
-
-    // stateB2C = false;
-    // stateC2D = true;
-    //collisionHellC = true;
   } else if(stateC2D){
     boxC2.force.x = gravityX(boxC2);
     boxC2.force.y = gravityY(boxC2);
@@ -225,31 +216,7 @@ setInterval(function () {
     boxD.force.x = gravityX(boxC2);
     boxD.force.y = gravityY(boxC2);
   }
-
-
-  // if (stateC2D){
-  //   boxC2.force.x = gravityX(boxC2);
-  //   boxC2.force.y = gravityY(boxC2);
-
-  //   boxD.force.x = gravityX(boxC2);
-  //   boxD.force.y = gravityY(boxC2);
-
-  // } else if(stateB2C){
-  //   boxB2.force.x = gravityX(boxB2);
-  //   boxB2.force.y = gravityY(boxB2);
-
-  //   boxC.force.x = gravityX(boxB2);
-  //   boxC.force.y = gravityY(boxB2);
-
-  // } else if (stateAB) {
-  //   boxA.force.x = gravityX(boxA);
-  //   boxA.force.y = gravityY(boxA);
-
-  //   boxB.force.x = gravityX(boxA);
-  //   boxB.force.y = gravityY(boxA);
-  // }
-
-
+  
   // if (collisionACcheck) {
   //   levelComplete = true;
   //   finishedPlaying.style.visibility = "visible";
