@@ -200,7 +200,7 @@ var wall2 = Bodies.rectangle(
 var cabinetdoor1 = Bodies.rectangle(
   window.innerWidth/3,
   150,
-  500,
+  window.innerWidth/3,
   50, {
     isStatic: true
   }
@@ -208,7 +208,7 @@ var cabinetdoor1 = Bodies.rectangle(
 var cabinetdoor2 = Bodies.rectangle(
   window.innerWidth - window.innerWidth/3,
   150,
-  500,
+  window.innerWidth/3,
   50, {
     isStatic: true
   }
