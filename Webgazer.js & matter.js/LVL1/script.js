@@ -2,7 +2,7 @@ window.saveDataAcrossSessions = true;
 
 let body = document.getElementById("body");
 let finishedPlaying = document.getElementById("finished");
-let finishedButton = document.getElementById("backButton");
+let finishedButton = document.getElementById("nextButton");
 let timer = document.getElementById("timer");
 let timePassed = 0;
 
