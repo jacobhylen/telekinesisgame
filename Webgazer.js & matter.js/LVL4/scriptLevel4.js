@@ -366,98 +366,98 @@ var boxAConstraint = Constraint.create({
   bodyA: boxA,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxBConstraint = Constraint.create({
   bodyA: boxB,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxCConstraint = Constraint.create({
   bodyA: boxC,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxDConstraint = Constraint.create({
   bodyA: boxD,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxEConstraint = Constraint.create({
   bodyA: boxE,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxFConstraint = Constraint.create({
   bodyA: boxF,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxGConstraint = Constraint.create({
   bodyA: boxG,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxHConstraint = Constraint.create({
   bodyA: boxH,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxIConstraint = Constraint.create({
   bodyA: boxI,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxJConstraint = Constraint.create({
   bodyA: boxJ,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxKConstraint = Constraint.create({
   bodyA: boxK,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxLConstraint = Constraint.create({
   bodyA: boxL,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxMConstraint = Constraint.create({
   bodyA: boxM,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 
 var boxNConstraint = Constraint.create({
   bodyA: boxN,
   pointB: { x: 500, y: 500 },
   stiffness: 0.000001,
-  length:100
+  length:0.1
 });;
 boxAConstraint.render.visible = false
 boxBConstraint.render.visible = false
@@ -494,7 +494,7 @@ var checkIfLoaded = setInterval(() => {
 }, 10);
 
 // add all of the bodies to the world
-World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, boxI, boxJ, boxK, boxL, boxM, boxN, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxEConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint, boxJConstraint, boxKConstraint, boxLConstraint, boxMConstraint, boxNConstraint, cloud1, cloud2, cloud3, cloud1Constraint, cloud2Constraint, cloud3Constraint]);
+World.add(engine.world, [ground, ground2, wall1, wall2, boxA, boxB, boxC, boxD, boxE, boxF, boxG, boxH, boxI, boxJ, boxK, boxL, boxM, boxN, boxAConstraint, boxBConstraint, boxCConstraint, boxDConstraint, boxEConstraint, boxFConstraint, boxGConstraint, boxHConstraint, boxIConstraint, boxJConstraint, boxKConstraint, boxLConstraint, boxMConstraint, boxNConstraint, cloud1, cloud1Constraint, cloud2Constraint, cloud3Constraint]);
 
 // run the engine
 Engine.run(engine);
@@ -592,79 +592,79 @@ setInterval(function () {
     } 
 
     if(boxBAttached){
-      boxBConstraint.stiffness = 0.005;
+      boxBConstraint.stiffness = 0.05;
     }else {
       boxBConstraint.stiffness = 0.000001;
     }
 
     if(boxCAttached){
-      boxCConstraint.stiffness = 0.005;
+      boxCConstraint.stiffness = 0.05;
     } else {
       boxCConstraint.stiffness = 0.000001;
     }
 
     if(boxDAttached){
-      boxDConstraint.stiffness = 0.005;
+      boxDConstraint.stiffness = 0.05;
     } else {
       boxDConstraint.stiffness = 0.000001;
     }
 
     if(boxEAttached){
-      boxEConstraint.stiffness = 0.005;
+      boxEConstraint.stiffness = 0.05;
     }else {
       boxEConstraint.stiffness = 0.000001;
     }
 
     if(boxFAttached){
-      boxFConstraint.stiffness = 0.005;
+      boxFConstraint.stiffness = 0.05;
     }else {
       boxFConstraint.stiffness = 0.000001;
     }
 
     if(boxGAttached){
-      boxGConstraint.stiffness = 0.005;
+      boxGConstraint.stiffness = 0.05;
     }else {
       boxGConstraint.stiffness = 0.000001;
     }
 
     if(boxHAttached){
-      boxHConstraint.stiffness = 0.005;
+      boxHConstraint.stiffness = 0.05;
     }else {
       boxHConstraint.stiffness = 0.000001;
     }
 
     if(boxIAttached){
-      boxIConstraint.stiffness = 0.005;
+      boxIConstraint.stiffness = 0.05;
     }else {
       boxIConstraint.stiffness = 0.000001;
     }
 
     if(boxJAttached){
-      boxJConstraint.stiffness = 0.005;
+      boxJConstraint.stiffness = 0.05;
     }else {
       boxJConstraint.stiffness = 0.000001;
     }
 
     if(boxKAttached){
-      boxKConstraint.stiffness = 0.005;
+      boxKConstraint.stiffness = 0.05;
     }else {
       boxKConstraint.stiffness = 0.000001;
     }
 
     if(boxLAttached){
-      boxLConstraint.stiffness = 0.005;
+      boxLConstraint.stiffness = 0.05;
     }else {
       boxLConstraint.stiffness = 0.000001;
     }
 
     if(boxMAttached){
-      boxMConstraint.stiffness = 0.005;
+      boxMConstraint.stiffness = 0.05;
     }else {
       boxMConstraint.stiffness = 0.000001;
     }
 
     if(boxNAttached){
-      boxNConstraint.stiffness = 0.005;
+      boxNConstraint.stiffness = 0.05;
     }else {
       boxNConstraint.stiffness = 0.000001;
     }
