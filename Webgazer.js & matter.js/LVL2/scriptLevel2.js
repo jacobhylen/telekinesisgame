@@ -75,39 +75,39 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
-    background: 'rgba(255, 217, 0, 0)',
+    background: 'rgba(0, 0, 0, 0.4)',
   },
 });
 
-//var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'White'}}, 20);
-var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 40, {isStatic: true, render: { fillStyle: 'Pink'}}, 20);
+//var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 50, {isStatic: true, render: { fillStyle: 'rgba(255,255,255, 0.5)'}}, 20);
+var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 50, {isStatic: true, render: { fillStyle: 'rgba(226, 106, 106, 1)'}}, 20);
 
 var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
 var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2 + 100, 80, 80, {isStatic: false, render: {
-  fillStyle: 'Yellow',
+  fillStyle: '#845ec2',
 }});
 
 //Teleported B-box from hell to heaven
-var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2 + 100, 80, 80, {isStatic: false, render: {
+var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 80, 80, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
 var boxC = Bodies.rectangle(window.innerWidth / 2 + 500, window.innerHeight / 2 + 100, 140, 100, {isStatic: false, render: {
-  fillStyle: 'Green',
+  fillStyle: '#f9ed69',
 }});
 
-var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 250, window.innerHeight / 2 + 100, 140, 100, {isStatic: false, render: {
+var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 140, 100, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
 var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2 + 100, 80, 160, {isStatic: false, render: {
-  fillStyle: 'Blue',
+  fillStyle: '#61b15a',
 }});
 
-var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 300, window.innerHeight / 2 + 100, 80, 160, {isStatic: false, render: {
+var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 80, 160, {isStatic: false, render: {
   fillStyle: 'White',
 }});
 
@@ -147,13 +147,13 @@ var middleWall = Bodies.rectangle(
   { isStatic: true }
 );
 
-boxA.mass = 1000;
-boxB.mass = 1000;
-boxB2.mass = 1000;
-boxC.mass = 1000;
-boxC2.mass = 1000;
-boxD.mass = 1000;
-boxD2.mass = 1000;
+boxA.mass = 500;
+boxB.mass = 500;
+boxB2.mass = 500;
+boxC.mass = 500;
+boxC2.mass = 500;
+boxD.mass = 500;
+boxD2.mass = 500;
 
 // add all of the bodies to the world
 World.add(engine.world, [boxA, boxB, boxC, boxD, ground, ground2, wall1, wall2, middleWall, portalHell]);
@@ -178,7 +178,7 @@ setInterval(function () {
   let collisionHellC = Matter.SAT.collides(portalHell, boxC);
   let collisionHellD = Matter.SAT.collides(portalHell, boxD);
 
-  if (collisionHellB.collided) {
+  if (collisionHellB.collided && stateAB) {
     //Matter.World.remove(engine.world, [boxB]); 
     boxB.position.x = 2000;
 
@@ -197,7 +197,7 @@ setInterval(function () {
     boxB.force.y = gravityY(boxA);
   }
 
-  if (collisionHellC.collided) {
+  if (collisionHellC.collided && stateB2C) {
     //Matter.World.remove(engine.world, [boxC]);  
     boxC.position.x = 2000; 
 
@@ -217,7 +217,7 @@ setInterval(function () {
     boxC.force.y = gravityY(boxB2);
   }
 
-  if (collisionHellD.collided) {
+  if (collisionHellD.collided && stateC2D) {
     //Matter.World.remove(engine.world, [boxD]); 
     boxD.position.x = 2000; 
     
