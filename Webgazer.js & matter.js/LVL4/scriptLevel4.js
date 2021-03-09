@@ -8,7 +8,7 @@ let body = document.getElementById("body");
 let calibrationMeter = document.getElementById("calibratingProgress");
 
 let finishedPlaying = document.getElementById("finished");
-let finishedButton = document.getElementById("backButton");
+let finishedButton = document.getElementById("menuButton");
 
 var start = Date.now();
 
@@ -176,7 +176,7 @@ var cloud3Constraint = Constraint.create({
 });;
 
 
-var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
+var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candyBad.png',
@@ -187,7 +187,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxA.mass = 100;
 
-  var boxB = Bodies.rectangle(300, 300, 30, 30, { render: {
+  var boxB = Bodies.rectangle(0.5 * window.innerWidth, 0.3 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy1.png',
@@ -198,7 +198,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxB.mass = 100;
 
-  var boxC = Bodies.rectangle(1400, 50, 30, 30, { render: {
+  var boxC = Bodies.rectangle(0.7 * window.innerWidth, 0.5 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
@@ -209,7 +209,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxC.mass = 100;
 
-  var boxD = Bodies.rectangle(1300, 500, 30, 30, { render: {
+  var boxD = Bodies.rectangle(0.9 * window.innerWidth, 0.5 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy1.png',
@@ -220,7 +220,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxD.mass = 100;
 
-  var boxE = Bodies.rectangle(1000, 300, 30, 30, { render: {
+  var boxE = Bodies.rectangle(0.4 * window.innerWidth, 0.7 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
@@ -231,7 +231,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxE.mass = 100;
 
-  var boxF = Bodies.rectangle(500, 900, 30, 30, { render: {
+  var boxF = Bodies.rectangle(0.5 * window.innerWidth, 0.4 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
@@ -242,7 +242,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxF.mass = 100;
 
-  var boxG = Bodies.rectangle(1600, 800, 30, 30, { render: {
+  var boxG = Bodies.rectangle(0.2 * window.innerWidth, 0.8 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy1.png',
@@ -253,7 +253,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxG.mass = 100;
 
-  var boxH = Bodies.rectangle(1400, 300, 30, 30, { render: {
+  var boxH = Bodies.rectangle(0.3 * window.innerWidth, 0.3 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
@@ -264,7 +264,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxH.mass = 100;
 
-  var boxI = Bodies.rectangle(100, 50, 30, 30, { render: {
+  var boxI = Bodies.rectangle(0.7 * window.innerWidth, 0.7 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy1.png',
@@ -275,7 +275,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxI.mass = 100;
 
-  var boxJ = Bodies.rectangle(1700, 400, 30, 30, { render: {
+  var boxJ = Bodies.rectangle(0.8 * window.innerWidth, 0.4 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
@@ -286,7 +286,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxJ.mass = 100;
 
-  var boxK = Bodies.rectangle(100, 900, 30, 30, { render: {
+  var boxK = Bodies.rectangle(0.9 * window.innerWidth, 0.9 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy1.png',
@@ -297,7 +297,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxK.mass = 100;
 
-  var boxL = Bodies.rectangle(200, 800, 30, 30, { render: {
+  var boxL = Bodies.rectangle(0.4 * window.innerWidth, 0.8 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
@@ -308,7 +308,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxL.mass = 100;
 
-  var boxM = Bodies.rectangle(1500, 100, 30, 30, { render: {
+  var boxM = Bodies.rectangle(0.2 * window.innerWidth, 0.1 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy1.png',
@@ -319,7 +319,7 @@ var boxA = Bodies.rectangle(1200, 700, 30, 30, { render: {
   }});
   boxM.mass = 100;
 
-  var boxN = Bodies.rectangle(300, 600, 30, 30, { render: {
+  var boxN = Bodies.rectangle(0.9 * window.innerWidth, 0.6 * window.innerHeight, 30, 30, { render: {
     // orange
     sprite: {
       texture: 'candy2.png',
