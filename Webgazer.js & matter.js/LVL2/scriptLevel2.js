@@ -10,6 +10,7 @@ let eyeY = 0;
 
 
 let singularityMass = 1 * Math.pow(10, 12);
+let singularityMassMagnet = 1 * Math.pow(10, 11);
 
 window.onload = async function () {
   if (!window.saveDataAcrossSessions) {
@@ -193,8 +194,8 @@ setInterval(function () {
     boxA.force.x = gravityX(boxA);
     boxA.force.y = gravityY(boxA);
 
-    boxB.force.x = gravityX(boxA);
-    boxB.force.y = gravityY(boxA);
+    boxB.force.x = gravityX(boxA) + gravityXmagnet(boxB, portalHell);
+    boxB.force.y = gravityY(boxA) + gravityYmagnet(boxB, portalHell);
   }
 
   if (collisionHellC.collided && stateB2C) {
@@ -213,8 +214,8 @@ setInterval(function () {
     boxB2.force.x = gravityX(boxB2);
     boxB2.force.y = gravityY(boxB2);
 
-    boxC.force.x = gravityX(boxB2);
-    boxC.force.y = gravityY(boxB2);
+    boxC.force.x = gravityX(boxB2) + gravityXmagnet(boxC, portalHell);
+    boxC.force.y = gravityY(boxB2) + gravityYmagnet(boxC, portalHell);
   }
 
   if (collisionHellD.collided && stateC2D) {
@@ -230,8 +231,8 @@ setInterval(function () {
     boxC2.force.x = gravityX(boxC2);
     boxC2.force.y = gravityY(boxC2);
 
-    boxD.force.x = gravityX(boxC2);
-    boxD.force.y = gravityY(boxC2);
+    boxD.force.x = gravityX(boxC2) + gravityXmagnet(boxD, portalHell);
+    boxD.force.y = gravityY(boxC2) + gravityYmagnet(boxD, portalHell);
   }
   
   if (collisionPortalB && collisionPortalC && collisionPortalD){
@@ -285,4 +286,47 @@ function gravityY(object) {
   let gravityY = gravityForce * percentage;
 
   return gravityY;
+}
+
+function getDistanceToSingularityMagnets(object, magnet) {
+  let distance = Math.sqrt(
+    Math.pow(object.position.x - magnet.position.x, 2) +
+      Math.pow(object.position.y - magnet.position.y, 2)
+  );
+
+  return distance;
+}
+
+function gravityXmagnet(object, magnet) {
+  let percentage =
+    (magnet.position.x - object.position.x) / getDistanceToSingularityMagnets(object, magnet);
+  let gravityForce = calculateGravityForceMagnets(object, magnet);
+
+  let gravityX = gravityForce * percentage;
+
+  return gravityX;
+}
+
+function gravityYmagnet(object, magnet) {
+  let percentage =
+    (magnet.position.y - object.position.y) / getDistanceToSingularityMagnets(object, magnet);
+  let gravityForce = calculateGravityForceMagnets(object, magnet);
+
+  let gravityY = gravityForce * percentage;
+
+  return gravityY;
+}
+
+function calculateGravityForceMagnets(object, magnet) {
+  let FgM =
+    6.673 *
+    Math.pow(10, -11) *
+    ((singularityMassMagnet * object.mass) /
+      Math.pow(getDistanceToSingularityMagnets(object, magnet), 2));
+
+  if (FgM > 1) {
+    FgM = 1;
+  }
+
+  return FgM;
 }
