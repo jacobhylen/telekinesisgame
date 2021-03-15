@@ -82,34 +82,69 @@ var render = Render.create({
 
 //var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 50, {isStatic: true, render: { fillStyle: 'rgba(255,255,255, 0.5)'}}, 20);
 var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 50, {isStatic: true, render: { fillStyle: 'rgba(226, 106, 106, 1)'}}, 20);
-
+  
 var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
-  fillStyle: 'White',
+  //fillStyle: 'White',
+  sprite: {
+    texture: 'donutGood.png',
+    xScale: 0.25,
+    yScale: 0.25
+  }
 }});
 
 var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2 + 100, 80, 80, {isStatic: false, render: {
-  fillStyle: '#845ec2',
+  //fillStyle: '#845ec2',
+  sprite: {
+    texture: 'donutBad.png',
+    xScale: 0.25,
+    yScale: 0.25
+  }
 }});
 
 //Teleported B-box from hell to heaven
 var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 80, 80, {isStatic: false, render: {
-  fillStyle: 'White',
+  //fillStyle: 'White',
+  sprite: {
+    texture: 'donutGood2.png',
+    xScale: 0.45,
+    yScale: 0.45
+  }
 }});
 
 var boxC = Bodies.rectangle(window.innerWidth / 2 + 500, window.innerHeight / 2 + 100, 140, 100, {isStatic: false, render: {
-  fillStyle: '#f9ed69',
+  //fillStyle: '#f9ed69',
+  sprite: {
+    texture: 'donutBad2.png',
+    xScale: 0.45,
+    yScale: 0.45
+  }
 }});
 
 var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 140, 100, {isStatic: false, render: {
-  fillStyle: 'White',
+  //fillStyle: 'White',
+  sprite: {
+    texture: 'donutGood3.png',
+    xScale: 0.65,
+    yScale: 0.65
+  }
 }});
 
 var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2 + 100, 80, 160, {isStatic: false, render: {
-  fillStyle: '#61b15a',
+  //fillStyle: '#61b15a',
+  sprite: {
+    texture: 'donutBad3.png',
+    xScale: 0.65,
+    yScale: 0.65
+  }
 }});
 
 var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 80, 160, {isStatic: false, render: {
-  fillStyle: 'White',
+  //fillStyle: 'White',
+  sprite: {
+    texture: 'donutGood4.png',
+    xScale: 0.45,
+    yScale: 0.45
+  }
 }});
 
 var ground = Bodies.rectangle(
