@@ -235,12 +235,12 @@ function sound(src, volume) {
   }
 }
 
-let mySound1 = new sound("Click.mp3", 1);
-let mySound2 = new sound("Click.mp3", 1);
-let mySound3 = new sound("Click.mp3", 1);
-let mySound4 = new sound("Click.mp3", 1);
-let mySound5 = new sound("Click.mp3", 1);
-let mySound6 = new sound("Click.mp3", 1);
+let click1 = new sound("Click.mp3", 1);
+let click2 = new sound("Click.mp3", 1);
+let click3 = new sound("Click.mp3", 1);
+let click4 = new sound("Click.mp3", 1);
+let click5 = new sound("Click.mp3", 1);
+let click6 = new sound("Click.mp3", 1);
 
 let backgroundMusic = new sound("StarGazing.mp3", 0.1);
 
@@ -252,11 +252,7 @@ soundPlayed5 = false;
 soundPlayed6 = false;
 
 setInterval(function () {
-  // mySound2.loop = false;
-  // mySound3.loop = false;
-  // mySound4.loop = false;
-  // mySound5.loop = false;
-  // mySound6.loop = false;
+
   backgroundMusic.play();
 
   let collisionAC = Matter.SAT.collides(boxA, boxC);
@@ -270,7 +266,7 @@ setInterval(function () {
   if (collisionAC.collided && !soundPlayed1) {
     //boxC.position.x = 2000;
     //boxC.isStatic = true;
-    mySound1.play();
+    click1.play();
     boxA.render.fillStyle = '#ff6f3c';
     soundPlayed1 = true;
     collisionACcheck = true;
@@ -278,7 +274,7 @@ setInterval(function () {
   if (collisionABE.collided && !soundPlayed2) {
     //boxE.position.x = 2000;
     //boxE.isStatic = true;
-    mySound2.play();
+    click2.play();
     boxAB.render.fillStyle = '#005691';
     soundPlayed2 = true;
     collisionABEcheck = true;
@@ -286,7 +282,7 @@ setInterval(function () {
   if (collisionACG.collided && !soundPlayed3) {
     //boxG.position.x = 2000;
     //boxG.isStatic = true;
-    mySound3.play();
+    click3.play();
     boxAC.render.fillStyle = '#f9ed69';
     soundPlayed3 = true;
     collisionACGcheck = true;
@@ -294,7 +290,7 @@ setInterval(function () {
   if (collisionBD.collided && !soundPlayed4) {
     //boxD.position.x = 2000;
     //boxD.isStatic = true;
-    mySound4.play();
+    click4.play();
     boxB.render.fillStyle = '#61b15a';
     soundPlayed4 = true;
     collisionBDcheck = true; 
@@ -302,7 +298,7 @@ setInterval(function () {
   if (collisionBBF.collided && !soundPlayed5) {
     //boxF.position.x = 2000;
     //boxF.isStatic = true;
-    mySound5.play();
+    click5.play();
     boxBB.render.fillStyle = '#e84545';
     soundPlayed5 = true;
     collisionBBFcheck = true;
@@ -310,7 +306,7 @@ setInterval(function () {
   if (collisionBCH.collided && !soundPlayed6) {
     //boxH.position.x = 2000;
     //boxH.isStatic = true;
-    mySound6.play();
+    click6.play();
     boxBC.render.fillStyle = '#845ec2';
     soundPlayed6 = true;
     collisionBCHcheck = true;
