@@ -241,6 +241,10 @@ let mySound4 = new sound("Click.mp3");
 let mySound5 = new sound("Click.mp3");
 let mySound6 = new sound("Click.mp3");
 
+let backgroundMusic = new sound("StarGazing.mp3");
+
+backgroundMusic.play();
+
 soundPlayed1 = false;
 soundPlayed2 = false;
 soundPlayed3 = false;
@@ -254,6 +258,7 @@ setInterval(function () {
   // mySound4.loop = false;
   // mySound5.loop = false;
   // mySound6.loop = false;
+  backgroundMusic.play();
 
   let collisionAC = Matter.SAT.collides(boxA, boxC);
   let collisionABE = Matter.SAT.collides(boxAB, boxE);
