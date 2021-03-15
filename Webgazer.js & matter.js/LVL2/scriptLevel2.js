@@ -83,7 +83,7 @@ var render = Render.create({
 //var portalHeaven = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 50, {isStatic: true, render: { fillStyle: 'rgba(255,255,255, 0.5)'}}, 20);
 var portalHell = Bodies.circle(window.innerWidth / 2 + 350, window.innerHeight / 2 - 200, 50, {isStatic: true, render: { fillStyle: 'rgba(226, 106, 106, 1)'}}, 20);
   
-var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2, 80, 80, {isStatic: false, render: {
+var boxA = Bodies.circle(window.innerWidth / 2 - 200, window.innerHeight / 2, 50, {isStatic: false, render: {
   //fillStyle: 'White',
   sprite: {
     texture: 'donutGood.png',
@@ -92,7 +92,7 @@ var boxA = Bodies.rectangle(window.innerWidth / 2 - 200, window.innerHeight / 2,
   }
 }});
 
-var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2 + 100, 80, 80, {isStatic: false, render: {
+var boxB = Bodies.circle(window.innerWidth / 2 + 200, window.innerHeight / 2 + 100, 50, {isStatic: false, render: {
   //fillStyle: '#845ec2',
   sprite: {
     texture: 'donutBad.png',
@@ -102,7 +102,7 @@ var boxB = Bodies.rectangle(window.innerWidth / 2 + 200, window.innerHeight / 2 
 }});
 
 //Teleported B-box from hell to heaven
-var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 80, 80, {isStatic: false, render: {
+var boxB2 = Bodies.circle(window.innerWidth / 2 - 350 , window.innerHeight / 2 + 200, 85, {isStatic: false, render: {
   //fillStyle: 'White',
   sprite: {
     texture: 'donutGood2.png',
@@ -111,7 +111,7 @@ var boxB2 = Bodies.rectangle(window.innerWidth / 2 - 350 , window.innerHeight / 
   }
 }});
 
-var boxC = Bodies.rectangle(window.innerWidth / 2 + 500, window.innerHeight / 2 + 100, 140, 100, {isStatic: false, render: {
+var boxC = Bodies.circle(window.innerWidth / 2 + 500, window.innerHeight / 2 + 100, 85, {isStatic: false, render: {
   //fillStyle: '#f9ed69',
   sprite: {
     texture: 'donutBad2.png',
@@ -120,7 +120,7 @@ var boxC = Bodies.rectangle(window.innerWidth / 2 + 500, window.innerHeight / 2 
   }
 }});
 
-var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 140, 100, {isStatic: false, render: {
+var boxC2 = Bodies.circle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 125, {isStatic: false, render: {
   //fillStyle: 'White',
   sprite: {
     texture: 'donutGood3.png',
@@ -129,7 +129,7 @@ var boxC2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2
   }
 }});
 
-var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2 + 100, 80, 160, {isStatic: false, render: {
+var boxD = Bodies.circle(window.innerWidth / 2 + 300, window.innerHeight / 2 + 100, 125, {isStatic: false, render: {
   //fillStyle: '#61b15a',
   sprite: {
     texture: 'donutBad3.png',
@@ -138,7 +138,7 @@ var boxD = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight / 2 
   }
 }});
 
-var boxD2 = Bodies.rectangle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 80, 160, {isStatic: false, render: {
+var boxD2 = Bodies.circle(window.innerWidth / 2 - 350, window.innerHeight / 2 + 200, 85, {isStatic: false, render: {
   //fillStyle: 'White',
   sprite: {
     texture: 'donutGood4.png',
