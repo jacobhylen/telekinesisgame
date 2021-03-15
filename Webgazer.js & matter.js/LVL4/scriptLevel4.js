@@ -528,46 +528,46 @@ setInterval(function () {
     boxI.force.x = gravityX(boxI);
     boxI.force.y = gravityY(boxI);
 
-    if(getDistanceToSingularity(boxA) < 50 && boxAAttached == false && levelComplete == false){
+    if(getDistanceToSingularity(boxA) < 100 && boxAAttached == false && levelComplete == false){
       boxAAttached = true;
     }
-    if(getDistanceToSingularity(boxB) < 50 && boxBAttached == false){
+    if(getDistanceToSingularity(boxB) < 100 && boxBAttached == false){
       boxBAttached = true;
     }
-    if(getDistanceToSingularity(boxC) < 50 && boxCAttached == false){
+    if(getDistanceToSingularity(boxC) < 100 && boxCAttached == false){
       boxCAttached = true;
     }
-    if(getDistanceToSingularity(boxD) < 50 && boxDAttached == false){
+    if(getDistanceToSingularity(boxD) < 100 && boxDAttached == false){
       boxDAttached = true;
     }
-    if(getDistanceToSingularity(boxE) < 50 && boxEAttached == false){
+    if(getDistanceToSingularity(boxE) < 100 && boxEAttached == false){
       boxEAttached = true;
     }
-    if(getDistanceToSingularity(boxF) < 50 && boxFAttached == false){
+    if(getDistanceToSingularity(boxF) < 100 && boxFAttached == false){
       boxFAttached = true;
     }
-    if(getDistanceToSingularity(boxG) < 50 && boxGAttached == false){
+    if(getDistanceToSingularity(boxG) < 100 && boxGAttached == false){
       boxGAttached = true;
     }
-    if(getDistanceToSingularity(boxH) < 50 && boxHAttached == false){
+    if(getDistanceToSingularity(boxH) < 100 && boxHAttached == false){
       boxHAttached = true;
     }
-    if(getDistanceToSingularity(boxI) < 50 && boxIAttached == false){
+    if(getDistanceToSingularity(boxI) < 100 && boxIAttached == false){
       boxIAttached = true;
     }
-    if(getDistanceToSingularity(boxJ) < 50 && boxJAttached == false){
+    if(getDistanceToSingularity(boxJ) < 100 && boxJAttached == false){
       boxJAttached = true;
     }
-    if(getDistanceToSingularity(boxK) < 50 && boxKAttached == false){
+    if(getDistanceToSingularity(boxK) < 100 && boxKAttached == false){
       boxKAttached = true;
     }
-    if(getDistanceToSingularity(boxL) < 50 && boxLAttached == false){
+    if(getDistanceToSingularity(boxL) < 100 && boxLAttached == false){
       boxLAttached = true;
     }
-    if(getDistanceToSingularity(boxM) < 50 && boxMAttached == false){
+    if(getDistanceToSingularity(boxM) < 100 && boxMAttached == false){
       boxMAttached = true;
     }
-    if(getDistanceToSingularity(boxN) < 50 && boxNAttached == false){
+    if(getDistanceToSingularity(boxN) < 100 && boxNAttached == false){
       boxNAttached = true;
     }
 
