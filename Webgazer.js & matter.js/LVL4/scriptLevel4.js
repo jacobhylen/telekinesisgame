@@ -502,9 +502,10 @@ Engine.run(engine);
 // run the renderer
 Render.run(render);
 
-function sound(src) {
+function sound(src, volume) {
   this.sound = document.createElement("audio");
   this.sound.src = src;
+  this.sound.volume = volume;
   this.sound.setAttribute("preload", "auto");
   this.sound.setAttribute("controls", "none");
   this.sound.style.display = "none";
@@ -517,10 +518,12 @@ function sound(src) {
   }
 }
 
-let backgroundMusic = new sound("Ballerina.mp3");
+let backgroundMusic = new sound("Ballerina.mp3", 0.1);
+let wrapperSound = new sound("wrapper.m4a",1);
 
 setInterval(function () {
 
+  wrapperSound.play();
   backgroundMusic.play();
 
     boxA.force.x = gravityX(boxA);
