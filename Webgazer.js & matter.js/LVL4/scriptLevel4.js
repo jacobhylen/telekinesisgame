@@ -519,11 +519,22 @@ function sound(src, volume) {
 }
 
 let backgroundMusic = new sound("Ballerina.mp3", 0.1);
-let wrapperSound = new sound("wrapper.m4a",1);
+let wrapperSound1 = new sound("wrapper.m4a",0.5);
+let wrapperSound2 = new sound("wrapper.m4a",0.5);
+let wrapperSound3 = new sound("wrapper.m4a",0.5);
+let wrapperSound4 = new sound("wrapper.m4a",0.5);
+let wrapperSound5 = new sound("wrapper.m4a",0.5);
+let wrapperSound6 = new sound("wrapper.m4a",0.5);
+let wrapperSound7 = new sound("wrapper.m4a",0.5);
+let wrapperSound8 = new sound("wrapper.m4a",0.5);
+let wrapperSound9 = new sound("wrapper.m4a",0.5);
+let wrapperSound10 = new sound("wrapper.m4a",0.5);
+let wrapperSound11 = new sound("wrapper.m4a",0.5);
+let wrapperSound12 = new sound("wrapper.m4a",0.5);
+let wrapperSound13 = new sound("wrapper.m4a",0.5);
 
 setInterval(function () {
 
-  wrapperSound.play();
   backgroundMusic.play();
 
     boxA.force.x = gravityX(boxA);
@@ -555,42 +566,55 @@ setInterval(function () {
     }
     if(getDistanceToSingularity(boxB) < 100 && boxBAttached == false){
       boxBAttached = true;
+      wrapperSound1.play();
     }
     if(getDistanceToSingularity(boxC) < 100 && boxCAttached == false){
       boxCAttached = true;
+      wrapperSound2.play();
     }
     if(getDistanceToSingularity(boxD) < 100 && boxDAttached == false){
       boxDAttached = true;
+      wrapperSound3.play();
     }
     if(getDistanceToSingularity(boxE) < 100 && boxEAttached == false){
       boxEAttached = true;
+      wrapperSound4.play();
     }
     if(getDistanceToSingularity(boxF) < 100 && boxFAttached == false){
       boxFAttached = true;
+      wrapperSound5.play();
     }
     if(getDistanceToSingularity(boxG) < 100 && boxGAttached == false){
       boxGAttached = true;
+      wrapperSound6.play();
     }
     if(getDistanceToSingularity(boxH) < 100 && boxHAttached == false){
       boxHAttached = true;
+      wrapperSound7.play();
     }
     if(getDistanceToSingularity(boxI) < 100 && boxIAttached == false){
       boxIAttached = true;
+      wrapperSound8.play();
     }
     if(getDistanceToSingularity(boxJ) < 100 && boxJAttached == false){
       boxJAttached = true;
+      wrapperSound9.play();
     }
     if(getDistanceToSingularity(boxK) < 100 && boxKAttached == false){
       boxKAttached = true;
+      wrapperSound10.play();
     }
     if(getDistanceToSingularity(boxL) < 100 && boxLAttached == false){
       boxLAttached = true;
+      wrapperSound11.play();
     }
     if(getDistanceToSingularity(boxM) < 100 && boxMAttached == false){
       boxMAttached = true;
+      wrapperSound12.play();
     }
     if(getDistanceToSingularity(boxN) < 100 && boxNAttached == false){
       boxNAttached = true;
+      wrapperSound13.play();
     }
 
     if(boxAAttached){
