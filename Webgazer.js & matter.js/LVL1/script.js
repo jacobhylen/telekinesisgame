@@ -219,9 +219,10 @@ var checkIfLoaded = setInterval(() => {
 
 }, 10);
 
-function sound(src) {
+function sound(src, volume) {
   this.sound = document.createElement("audio");
   this.sound.src = src;
+  this.sound.volume = volume;
   this.sound.setAttribute("preload", "auto");
   this.sound.setAttribute("controls", "none");
   this.sound.style.display = "none";
@@ -234,14 +235,14 @@ function sound(src) {
   }
 }
 
-let mySound1 = new sound("Click.mp3");
-let mySound2 = new sound("Click.mp3");
-let mySound3 = new sound("Click.mp3");
-let mySound4 = new sound("Click.mp3");
-let mySound5 = new sound("Click.mp3");
-let mySound6 = new sound("Click.mp3");
+let mySound1 = new sound("Click.mp3", 1);
+let mySound2 = new sound("Click.mp3", 1);
+let mySound3 = new sound("Click.mp3", 1);
+let mySound4 = new sound("Click.mp3", 1);
+let mySound5 = new sound("Click.mp3", 1);
+let mySound6 = new sound("Click.mp3", 1);
 
-let backgroundMusic = new sound("StarGazing.mp3");
+let backgroundMusic = new sound("StarGazing.mp3", 0.1);
 
 soundPlayed1 = false;
 soundPlayed2 = false;
