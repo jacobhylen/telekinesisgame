@@ -12,6 +12,8 @@ let eyeY = 0;
 let singularityMass = 1 * Math.pow(10, 12);
 let singularityMassMagnet = 1 * Math.pow(10, 11);
 
+let choirVolume = 0;
+
 window.onload = async function () {
   if (!window.saveDataAcrossSessions) {
     var localstorageDataLabel = "webgazerGlobalData";
@@ -58,6 +60,24 @@ var collisionEyeListener = async function (data, clock) {
   eyeX = data.x;
   eyeY = data.y;
 };
+
+function sound(src, volume) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.volume = volume;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
+let choir = new sound("ShadesOfOrange.mp3", 1);
 
 var Engine = Matter.Engine,
   Render = Matter.Render,
@@ -231,6 +251,10 @@ setInterval(function () {
 
     boxB.force.x = gravityX(boxA) + gravityXmagnet(boxB, portalHell);
     boxB.force.y = gravityY(boxA) + gravityYmagnet(boxB, portalHell);
+
+    choirVolume = (window.innerHeight - boxA.position.y) / window.innerHeight / 2;
+    choir.sound.volume = choirVolume;
+    choir.play();
   }
 
   if (collisionHellC.collided && stateB2C) {
@@ -251,6 +275,10 @@ setInterval(function () {
 
     boxC.force.x = gravityX(boxB2) + gravityXmagnet(boxC, portalHell);
     boxC.force.y = gravityY(boxB2) + gravityYmagnet(boxC, portalHell);
+
+    choirVolume = (window.innerHeight - boxB2.position.y) / window.innerHeight / 2;
+    choir.sound.volume = choirVolume;
+    choir.play();
   }
 
   if (collisionHellD.collided && stateC2D) {
@@ -268,6 +296,10 @@ setInterval(function () {
 
     boxD.force.x = gravityX(boxC2) + gravityXmagnet(boxD, portalHell);
     boxD.force.y = gravityY(boxC2) + gravityYmagnet(boxD, portalHell);
+
+    choirVolume = (window.innerHeight - boxC2.position.y) / window.innerHeight / 2;
+    choir.sound.volume = choirVolume;
+    choir.play();
   }
   
   if (collisionPortalB && collisionPortalC && collisionPortalD){
