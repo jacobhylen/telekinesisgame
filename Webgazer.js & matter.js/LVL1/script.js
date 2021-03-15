@@ -219,7 +219,42 @@ var checkIfLoaded = setInterval(() => {
 
 }, 10);
 
+function sound(src) {
+  this.sound = document.createElement("audio");
+  this.sound.src = src;
+  this.sound.setAttribute("preload", "auto");
+  this.sound.setAttribute("controls", "none");
+  this.sound.style.display = "none";
+  document.body.appendChild(this.sound);
+  this.play = function(){
+    this.sound.play();
+  }
+  this.stop = function(){
+    this.sound.pause();
+  }
+}
+
+let mySound1 = new sound("Click.mp3");
+let mySound2 = new sound("Click.mp3");
+let mySound3 = new sound("Click.mp3");
+let mySound4 = new sound("Click.mp3");
+let mySound5 = new sound("Click.mp3");
+let mySound6 = new sound("Click.mp3");
+
+soundPlayed1 = false;
+soundPlayed2 = false;
+soundPlayed3 = false;
+soundPlayed4 = false;
+soundPlayed5 = false;
+soundPlayed6 = false;
+
 setInterval(function () {
+  // mySound2.loop = false;
+  // mySound3.loop = false;
+  // mySound4.loop = false;
+  // mySound5.loop = false;
+  // mySound6.loop = false;
+
   let collisionAC = Matter.SAT.collides(boxA, boxC);
   let collisionABE = Matter.SAT.collides(boxAB, boxE);
   let collisionACG = Matter.SAT.collides(boxAC, boxG);
@@ -228,40 +263,52 @@ setInterval(function () {
   let collisionBBF = Matter.SAT.collides(boxBB, boxF);
   let collisionBCH = Matter.SAT.collides(boxBC, boxH);
 
-  if (collisionAC.collided) {
+  if (collisionAC.collided && !soundPlayed1) {
     //boxC.position.x = 2000;
     //boxC.isStatic = true;
+    mySound1.play();
     boxA.render.fillStyle = '#ff6f3c';
+    soundPlayed1 = true;
     collisionACcheck = true;
   }
-  if (collisionABE.collided) {
+  if (collisionABE.collided && !soundPlayed2) {
     //boxE.position.x = 2000;
     //boxE.isStatic = true;
+    mySound2.play();
     boxAB.render.fillStyle = '#005691';
+    soundPlayed2 = true;
     collisionABEcheck = true;
   } 
-  if (collisionACG.collided) {
+  if (collisionACG.collided && !soundPlayed3) {
     //boxG.position.x = 2000;
     //boxG.isStatic = true;
+    mySound3.play();
     boxAC.render.fillStyle = '#f9ed69';
+    soundPlayed3 = true;
     collisionACGcheck = true;
   } 
-  if (collisionBD.collided) {
+  if (collisionBD.collided && !soundPlayed4) {
     //boxD.position.x = 2000;
     //boxD.isStatic = true;
+    mySound4.play();
     boxB.render.fillStyle = '#61b15a';
+    soundPlayed4 = true;
     collisionBDcheck = true; 
   } 
-  if (collisionBBF.collided) {
+  if (collisionBBF.collided && !soundPlayed5) {
     //boxF.position.x = 2000;
     //boxF.isStatic = true;
+    mySound5.play();
     boxBB.render.fillStyle = '#e84545';
+    soundPlayed5 = true;
     collisionBBFcheck = true;
   }
-  if (collisionBCH.collided) {
+  if (collisionBCH.collided && !soundPlayed6) {
     //boxH.position.x = 2000;
     //boxH.isStatic = true;
+    mySound6.play();
     boxBC.render.fillStyle = '#845ec2';
+    soundPlayed6 = true;
     collisionBCHcheck = true;
   }
 
