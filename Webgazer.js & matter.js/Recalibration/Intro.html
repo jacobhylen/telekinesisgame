@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<meta charset="utf-8" />
+<head>
+  <title>Introduction and calibration</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body style="background-color: #2d2d2d" id="body">
+  <div
+    style="
+      display: block;
+      position: fixed;
+      z-index: 99999;
+      left: -5px;
+      top: -5px;
+      background: black;
+      opacity: 0.7;
+      width: 200px;
+      height: 50px;
+      transform: translate3d(75px, 250px, 0px);
+    "
+  ></div>
+  <div
+    id="calibratingProgress"
+    style="
+      display: block;
+      position: fixed;
+      z-index: 99999;
+      left: -5px;
+      top: -5px;
+      background: red;
+      opacity: 0.7;
+      width: 0px;
+      height: 50px;
+      transform: translate3d(75px, 250px, 0px);
+    "
+  ></div>
+  <p
+    id="instructions"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(800px, 150px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      width: 400px;
+    "
+  >
+    In order to mantain accuracy we ask you to recalibrate the eye tracking. <br/>
+    <br />
+    Make sure you have your webcam turned on, position yourself in good lighting
+    while making sure your face is within the square, keeping it green. <br />
+    <br />
+    To calibrate the data, move the mouse over the purple appearing dot one by
+    one. Look at the cursor hovering the dot and click on it.
+  </p>
+  <p
+    id="complete"
+    style="
+      display: block;
+      position: fixed;
+      transform: translate3d(800px, 250px, 0px);
+      color: white;
+      font-size: 20px;
+      font-family: 'Courier New', Courier, monospace;
+      width: 400px;
+      visibility: hidden;
+    "
+  >
+    Recalibration complete.<br />
+    <br />
+    You may now proceed to the next level!
+  </p>
+  <a href="../LVL4/level4.html">
+    <button
+      id="button"
+      class="button"
+      style="
+        visibility: hidden;
+        display: block;
+        position: fixed;
+        transform: translate3d(800px, 420px, 0px);
+        border-radius: 12px;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 16px;
+        transition-duration: 0.4s;
+      "
+    >
+      Play
+    </button>
+  </a>
+  <button
+    id="resetbutton"
+    class="button"
+    onclick="window.location.reload();"
+    style="
+      visibility: visible;
+      display: block;
+      position: fixed;
+      right: 100px;
+      top: 70px;
+      border-radius: 12px;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      transition-duration: 0.4s;
+    "
+  >
+    Reset
+  </button>
+  <a href="../Menu/Intro.html">
+    <button
+      id="menubutton"
+      class="button"
+      style="
+        visibility: visible;
+        display: block;
+        position: fixed;
+        right:100px;
+        top: 130px;
+        border-radius: 12px;
+        padding: 10px 15px;
+        text-align: center;
+        text-decoration: none;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        transition-duration: 0.4s;
+      "
+    >
+      Menu
+    </button>
+  </a>
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.8.1/localforage.js"></script>
+  <script src="./webgazer.js"></script>
+  <script src="./matter.js"></script>
+  <script src="./script.js"></script>
+</body>
