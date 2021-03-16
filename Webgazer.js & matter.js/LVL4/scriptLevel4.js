@@ -105,7 +105,7 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
-    background: 'background.png' 
+    background: '#F6BBBB' 
   },
 });
 
@@ -338,28 +338,45 @@ var ground = Bodies.rectangle(
   window.innerHeight,
   window.innerWidth,
   60,
-  { isStatic: true }
+  { isStatic: true,
+    render: {
+      fillStyle: 'F6BBBB'
+    }
+   }
 );
 var ground2 = Bodies.rectangle(
   window.innerWidth / 2,
   10,
   window.innerWidth,
   60,
-  { isStatic: true }
+  { isStatic: true,
+    render: {
+      fillStyle: 'F6BBBB'
+    }
+  }
 );
 var wall1 = Bodies.rectangle(
   0,
   window.innerHeight / 2,
   100,
   window.innerHeight,
-  { isStatic: true }
+  { isStatic: true,
+    render: {
+      fillStyle: 'F6BBBB'
+    }
+  
+  }
 );
 var wall2 = Bodies.rectangle(
   window.innerWidth,
   window.innerHeight / 2,
   100,
   window.innerHeight,
-  { isStatic: true }
+  { isStatic: true,
+    render: {
+      fillStyle: 'F6BBBB'
+    }
+  }
 );
 
 var boxAConstraint = Constraint.create({
