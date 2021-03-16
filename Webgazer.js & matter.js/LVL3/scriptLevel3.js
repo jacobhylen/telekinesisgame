@@ -93,7 +93,6 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
-    background: 'background.png'
   },
 });
 
@@ -138,7 +137,7 @@ Events.on(render, 'afterRender', function() {
     context.rect(collision.bodyA.position.x - 4.5, collision.bodyA.position.y - 4.5, 8, 8);
 
 
-    if(collision.bodyA.id == 19){
+    if(collision.bodyA.id == 21){
       door1ShouldOpen = true;
     } 
 }
@@ -157,11 +156,11 @@ Render.endViewTransform(render);
 
 // create two stacks of objects
 let stack = Matter.Composites.stack(500, 300, 2, 4, 0, 0, function (x, y) {
-  let sides = Math.round(Matter.Common.random(3, 7));
+  let sides = Math.round(Matter.Common.random(2, 2.5));
   return Matter.Bodies.polygon(x, y, sides, 40, {
     render: {
       //orange
-      fillStyle: '#E36744'
+      fillStyle: '#33ADD6'
     }
   });
 });
@@ -204,15 +203,56 @@ var cabinetdoor1 = Bodies.rectangle(
   150,
   window.innerWidth/3,
   50, {
-    isStatic: true
+    isStatic: true,
+    render: {
+   
+      fillStyle: '#F0E956'
+    }
   }
 );
+var cabinetDoorLeft = Bodies.rectangle(
+
+window.innerWidth*0.135,
+150,
+window.innerWidth*0.2,
+50,
+ {
+   isStatic: true,
+
+   render: {
+   
+    fillStyle: 'black'
+  }
+ }
+ 
+);
+
+
+var cabinetDoorRight = Bodies.rectangle(
+
+  window.innerWidth *0.865,
+  150,
+  window.innerWidth * 0.2,
+  50,
+   {
+     isStatic: true,
+  
+     render: {
+      fillStyle: 'black'
+    }
+   }
+   
+  );
 var cabinetdoor2 = Bodies.rectangle(
   window.innerWidth - window.innerWidth/3,
   150,
   window.innerWidth/3,
   50, {
-    isStatic: true
+    isStatic: true,
+    render: {
+   
+      fillStyle: '#F0E956'
+    }
   }
 );
 
@@ -231,14 +271,14 @@ var cabinetRightPost = Bodies.rectangle(
   10,
   80, {
     isStatic: true
-  }
+  } 
 );
 
 var ghostBox = Bodies.rectangle(
   window.innerWidth/2 ,
   80,
   window.innerWidth/1.5,
-  190, {
+  150, {
     isStatic: true,
     collisionFilter: {
       group:-1,
@@ -258,9 +298,9 @@ ghostBox.render.visible = false;
 World.add(engine.world, [ground, ground2,
   wall1, wall2, stack,
   cabinetdoor1, cabinetdoor2,
-  cabinetLeftPost,
-  cabinetRightPost,
-  ghostBox
+  ghostBox,
+  cabinetDoorRight,
+  cabinetDoorLeft
    
 ]);
 
