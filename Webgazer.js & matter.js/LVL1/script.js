@@ -123,27 +123,51 @@ var boxBC = Bodies.rectangle(window.innerWidth / 2 + 300, window.innerHeight - 5
 // create two boxes and a ground
 var boxC = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
   // orange
-  fillStyle: '#ff6f3c',
+  sprite: {
+    texture: 'lvl1Candy3.png',
+    xScale: 0.2,
+    yScale: 0.2
+  }
 }});
 var boxD = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 650, 50, 50, { render: {
-  //blue
-  fillStyle: '#61b15a',
+  //green
+  sprite: {
+    texture: 'lvl1Candy5.png',
+    xScale: 0.2,
+    yScale: 0.2
+  }
 }});
 var boxE = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 650, 50, 50, { render: {
-  // orange
-  fillStyle: '#005691',
+  // blue
+  sprite: {
+    texture: 'lvl1Candy4.png',
+    xScale: 0.2,
+    yScale: 0.2
+  }
 }});
 var boxF = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
-  //blue
-  fillStyle: '#e84545',
+  //red
+  sprite: {
+    texture: 'lvl1Candy2.png',
+    xScale: 0.2,
+    yScale: 0.2
+  }
 }});
 var boxG = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 600, 50, 50, { render: {
-  // orange
-  fillStyle: '#f9ed69',
+  // yellow
+  sprite: {
+    texture: 'lvl1Candy1.png',
+    xScale: 0.2,
+    yScale: 0.2
+  }
 }});
 var boxH = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
   // blue
-  fillStyle: '#845ec2',
+  sprite: {
+    texture: 'lvl1Candy6.png',
+    xScale: 0.2,
+    yScale: 0.2
+  }
 }});
 
 
