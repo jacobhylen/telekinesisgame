@@ -4,6 +4,22 @@ let finishedPlaying = document.getElementById("finished");
 let finishedButton = document.getElementById("nextButton");
 
 let levelComplete = false;
+var start = Date.now();
+
+var checkIfLoaded = setInterval(() => {
+  if(eyeX != 0){
+    
+    start = Date.now();
+    clearInterval(checkIfLoaded);
+    setInterval(function(){
+      if (levelComplete == false){
+      timePassed = Date.now() - start;
+      timer.innerHTML = Math.round(timePassed / 10)/100 +"s";
+      }
+    }, 10);
+  }
+
+}, 10);
 
 let eyeX = 0;
 let eyeY = 0;
