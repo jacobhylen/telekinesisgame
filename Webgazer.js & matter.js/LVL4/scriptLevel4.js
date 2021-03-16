@@ -191,8 +191,8 @@ var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 3
     // orange
     sprite: {
       texture: 'candy1.png',
-      xScale: 0.5,
-      yScale: 0.5
+      xScale: 0.1,
+      yScale: 0.1
     },
     
   }});
@@ -213,8 +213,8 @@ var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 3
     // orange
     sprite: {
       texture: 'candy1.png',
-      xScale: 0.5,
-      yScale: 0.5
+      xScale: 0.1,
+      yScale: 0.1
     },
     
   }});
@@ -246,8 +246,8 @@ var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 3
     // orange
     sprite: {
       texture: 'candy1.png',
-      xScale: 0.5,
-      yScale: 0.5
+      xScale: 0.1,
+      yScale: 0.1
     },
     
   }});
@@ -268,8 +268,8 @@ var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 3
     // orange
     sprite: {
       texture: 'candy1.png',
-      xScale: 0.5,
-      yScale: 0.5
+      xScale: 0.1,
+      yScale: 0.1
     },
     
   }});
@@ -290,8 +290,8 @@ var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 3
     // orange
     sprite: {
       texture: 'candy1.png',
-      xScale: 0.5,
-      yScale: 0.5
+      xScale: 0.1,
+      yScale: 0.1
     },
     
   }});
@@ -312,8 +312,8 @@ var boxA = Bodies.rectangle(0.5 * window.innerWidth, 0.5 * window.innerHeight, 3
     // orange
     sprite: {
       texture: 'candy1.png',
-      xScale: 0.5,
-      yScale: 0.5
+      xScale: 0.1,
+      yScale: 0.1
     },
     
   }});
