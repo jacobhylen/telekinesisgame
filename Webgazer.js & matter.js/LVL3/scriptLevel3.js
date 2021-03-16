@@ -93,6 +93,7 @@ var render = Render.create({
     height: window.innerHeight,
     width: window.innerWidth,
     wireframes: false,
+    background: 'rgba(0, 0, 0, 0.1)'
   },
 });
 
