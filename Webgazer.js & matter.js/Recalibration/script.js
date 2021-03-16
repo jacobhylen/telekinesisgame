@@ -173,7 +173,7 @@ Events.on(mouseConstraint, 'mouseup', function(event) {
   } else if (calibration == 4) {
     Matter.Body.setPosition(ball, { x: 0.5 * window.innerWidth, y: 0.86 * window.innerHeight});
   } else if (calibration == 5) {
-    Matter.Body.setPosition(ball, { x: 0.92 * window.innerWidth, y: 0.1 * window.innerHeight});
+    Matter.Body.setPosition(ball, { x: 0.92 * window.innerWidth, y: 0.31 * window.innerHeight});
   } else if (calibration == 6) {
     Matter.Body.setPosition(ball, { x: 0.92 * window.innerWidth, y: 0.68 * window.innerHeight});
   } else if (calibration == 7) {
