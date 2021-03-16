@@ -162,7 +162,7 @@ var boxG = Bodies.rectangle(window.innerWidth / 2 + Math.random(500), 600, 50, 5
   }
 }});
 var boxH = Bodies.rectangle(window.innerWidth / 2 - Math.random(500), 600, 50, 50, { render: {
-  // blue
+  // purple
   sprite: {
     texture: 'lvl1Candy6.png',
     xScale: 0.2,
