@@ -10,7 +10,7 @@ let eyeY = 0;
 
 
 let singularityMass = 1 * Math.pow(10, 12);
-let singularityMassMagnet = 1 * Math.pow(10, 11);
+let singularityMassMagnet = 4 * Math.pow(10, 11);
 
 let choirVolume = 0;
 
